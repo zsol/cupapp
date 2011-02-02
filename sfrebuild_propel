@@ -33,7 +33,7 @@ php symfony propel:data-load
 echo ----                    ----
 echo ---- Creating superuser ----
 echo ----                    ----
-php symfony guard:create-user superadmin aston
+php symfony guard:create-user superadmin WhatCouldThePasswordPossiblyBe
 php symfony guard:promote superadmin
 
 echo ----                      ----
