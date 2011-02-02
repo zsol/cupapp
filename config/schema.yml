@@ -1,0 +1,52 @@
+propel:
+  sf_guard_user_profile:
+    _attributes: { phpName: sfGuardUserProfile }
+    id:             ~
+    user_id:        { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true, onDelete: cascade }
+    email:          { type: varchar(50), required: true }
+    avatar:         { type: varchar(128), required: false }
+    modified_at:    { type: timestamp, required: true }
+    last_commented: { type: timestamp, required: false }
+    last_uploaded:  { type: timestamp, required: false }
+
+  replay_game_type:
+    id:             ~
+    name:           { type: varchar(8) }
+
+  replay:
+    id:             ~
+    user_id:        { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true }
+    game_type_id:   { type: integer, foreignTable: replay_game_type, foreignReference: id, required: true }
+    category_id:    { type: integer, foreignTable: replay_category, foreignReference: id, required: true }
+    file_name:      { type: varchar(255), required: true }
+    game_info:      { type: longvarchar, required: true }
+    description:    { type: longvarchar, required: true }
+    avg_apm:        { type: smallint, sqlType: SMALLINT(2) UNSIGNED, required: true }
+    players:        { type: varchar(255), required: true }
+    map_name:       { type: varchar(255), required: true }
+    download_count: { type: smallint, sqlType: SMALLINT(3) UNSIGNED, required: true, default: 0 }
+    published_at:   { type: timestamp, required: false }
+    created_at:     ~
+    updated_at:     ~
+
+  replay_category:
+    id:             ~
+    code:           { type: varchar(50), required: true }
+
+  replay_category_i18n:
+    name:           { type: varchar(50), required: true }
+
+  replay_comment:
+    id:             ~
+    user_id:        { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true }
+    replay_id:      { type: integer, foreignTable: replay, foreignReference: id, required: true }
+    culture:        { type: varchar(7), required: true }
+    comment:        { type: longvarchar, required: true }
+    created_at:     ~
+    updated_at:     ~
+
+  replay_oftheweek:
+    id:             ~
+    replay_id:      { type: integer, foreignTable: replay, foreignReference: id, required: true }
+    description:    { type: longvarchar, required: true }
+    created_at:     ~

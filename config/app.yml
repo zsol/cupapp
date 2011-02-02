@@ -1,0 +1,42 @@
+all:
+  version:                     0.3.0
+  domain:                      sc2.blizzfanatic.com
+
+  date_format:                 m-d H:i
+  noresponse_email:            no-response@blizzfanatic.com
+  send_confirmation_email:     true
+
+  replay:
+    max_upload_size:           500000 # 100 Kbytes
+    description_min:           10
+    pager_max_perpage:         10
+    disable_upload:            false
+    profile_url_pattern:       http://eu.battle.net/sc2/en/profile/%%UID%%/%%UIDINDEX%%/%%NAME%%/
+    flood_defence_seconds:     30 #5 minutes
+
+  register:
+    username_min_length:       5
+    username_max_length:       20
+    password_min_length:       5
+    password_max_length:       50
+    email_min_length:          5
+    avatar_max_upload_size:    50000 # 50 Kbytes
+    avatar_width:              50
+    avatar_height:             50
+
+  profile:
+    default_avatar:            /images/unknown.png
+
+  boxes:
+    last_uploaded_replays_num: 5
+    my_last_replays_num:       5
+
+  comment:
+    flood_defence_seconds:     30
+
+  sf_guard_plugin:
+    routes_register:           false
+
+dev:
+  domain:                      test.cupapp.com
+  send_confirmation_email:     false

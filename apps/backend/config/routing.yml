@@ -1,0 +1,44 @@
+replay_comment:
+  class: sfPropelRouteCollection
+  options:
+    model:                ReplayComment
+    module:               replay_comment
+    prefix_path:          /replay_comment
+    column:               id
+    with_wildcard_routes: true
+
+replay_replayadmin:
+  class: sfPropelRouteCollection
+  options:
+    model:                Replay
+    module:               replayadmin
+    prefix_path:          /replayadmin
+    column:               id
+    with_wildcard_routes: true
+
+replay:
+  class: sfPropelRouteCollection
+  options:
+    model:                Replay
+    module:               replay
+    prefix_path:          /replay
+    column:               id
+    with_wildcard_routes: true
+
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: home, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

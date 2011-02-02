@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2010-10-23T15:30:38Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Replays index</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Upload replay</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Browse replays</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Wrong extension!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>File cannot be parsed!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Upload successfull!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Replay index</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>View Replay</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Replay details</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Message log</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Player</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Target</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Message</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Standard informations</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Map name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Match length</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Game speed</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Download replay</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Description</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Category</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Players</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>This players average APM was %%ss%%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>Upload time</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Type</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>Details</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Latest comments</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>Last uploaded replays</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>There is no replay in the system right now.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>Links</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>Menu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>Logged in as</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Logout</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>You are not logged in.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Login</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Register</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>My replays</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>You have no replays in the system.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Average APM</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>Uploaded at</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>Winner?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>How to share this replay?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>Send this link to your friends</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>Username</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Password</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>Password confirmation</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Email address</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Avatar (optional)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Accept our rules</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>I accept the rules written here.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>You don't have the required permission to access this page.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Email is confirmed. Now you can log in.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Registration complete! You will get an email with the confirmation link.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>There were errors in the submission. See the form for details.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Edit profile</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Profile updated successfully.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>This replay doesn't exist in our database anymore.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Cannot find the replay file. Please contact an administrator!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>Wrong request to download replay.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Download counter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Winner is unkown</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>Replay comments</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Warning!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>This site has never been tested on Internet Explorer ... at all! Please if you are still using Internet Explorer 6 please at least upgrade to IE8, that should work fine.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Thank you for your understanding and sorry for the inconveniences it may cause.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Contact</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Created and maintained by Ágoston Fung with the help of</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>the replay parser</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>This is an Open Source project hosted by</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Login form</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Send comment</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>You need to &lt;a href="%s"&gt;log in&lt;/a&gt; to comment.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>No comments yet.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Special thanks</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Go to admin</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>Replay result list</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Map</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>First page</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Previous Page</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Next Page</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Last page</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>There is no replay in the system that is in the searching criteria.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Sorry the replay upload is currently turned off because of the new version of Starcraft2. Thank you for your understanding.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>Replay filter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>List me all the replays that has a player like %%seachPlayer%% take place on the map %%searchMap%% </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>I am only interested in replays in the category of %%category%% and game type of %%gametype%%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Please order the list for me by %%orderby%%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Search/Filter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>You can only comment in every %%sec%% seconds.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Sorry you cannot upload a new replay right now. Please wait %%min%% minutes.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>#top</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

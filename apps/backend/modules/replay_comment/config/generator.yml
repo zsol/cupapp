@@ -1,0 +1,21 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           ReplayComment
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ReplayComment
+    plural:                ReplayComments
+    route_prefix:          replay_comment
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

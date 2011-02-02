@@ -1,0 +1,22 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Replay
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Replay
+    plural:                Replays
+    route_prefix:          replay_replayadmin
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display:           [user_id, game_type_id, category_id, playersName, created_at]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        BlizzFanatic.Com - Replay
+    #description:
+    #keywords:
+    #language:     en
+    robots:       index, follow
+
+  stylesheets:    [reset.css, main.css]
+
+  javascripts:    [jquery/jquery-1.4.3.min.js, main.js]
+
+  has_layout:     true
+  layout:         layout

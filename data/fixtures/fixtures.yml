@@ -1,0 +1,85 @@
+# # Populate this file with data to be loaded by your ORM's *:data-load task.
+# # You can create multiple files in this directory (i.e. 010_users.yml,
+# # 020_articles.yml, etc) which will be loaded in alphabetical order.
+# # 
+# # See documentation for your ORM's *:data-load task for more information.
+# 
+# User:
+#   fabien:
+#     username: fabien
+#     password: changeme
+#     name:     Fabien Potencier
+#     email:    fabien.potencier@symfony-project.com
+#   kris:
+#     username: Kris.Wallsmith
+#     password: changeme
+#     name:     Kris Wallsmith
+#     email:    kris.wallsmith@symfony-project.com
+
+ReplayGameType:
+  1v1:
+    name: "1v1"
+  2v2:
+    name: "2v2"
+  3v3:
+    name: "3v3"
+  4v4:
+    name: "4v4"
+  FFA:
+    name: "FFA"
+  Unknown:
+    name: "Nemtudni"
+
+ReplayCategory:
+  Common:
+    code: "COMMON"
+  Pro:
+    code: "PRO"
+  Low:
+    code: "LOW"
+  Cup:
+    code: "CUP"
+  Fun:
+    code: "FUN"
+
+ReplayCategoryI18n:
+  ICommonHu:
+    id:      Common
+    culture: "hu"
+    name:    "Általános"
+  IProHu:
+    id:      Pro
+    culture: "hu"
+    name:    "Profi"
+  ILowHu:
+    id:      Low
+    culture: "hu"
+    name:    "Kezdő"
+  ICupHu:
+    id:      Cup
+    culture: "hu"
+    name:    "Kupa"
+  IFunHu:
+    id:      Fun
+    culture: "hu"
+    name:    "Poén"
+  ICommonEn:
+    id:      Common
+    culture: "en"
+    name:    "Common"
+  IProEn:
+    id:      Pro
+    culture: "en"
+    name:    "Professional"
+  ILowEn:
+    id:      Low
+    culture: "en"
+    name:    "Beginner"
+  ICupEn:
+    id:      Cup
+    culture: "en"
+    name:    "Cup"
+  IFunEn:
+    id:      Fun
+    culture: "en"
+    name:    "Fun"

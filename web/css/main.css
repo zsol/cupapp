@@ -1,0 +1,326 @@
+/*
+    COMMON
+*/
+body {
+    padding-top:193px;
+    background: #000000 url('/images/bg_1.jpg') center top no-repeat;
+    font-family: arial;
+    font-size: 15px;
+}
+
+a:link, a:visited {
+    color:#FF9C00;
+    text-decoration:none;
+}
+
+a:hover {
+    color: #FFBB4F;
+}
+
+.wrapper a {
+    color: #BF0000;
+}
+
+.menu a {
+    color:#FF9C00;
+}
+
+h1 {
+    font-size: 1.5em;
+    padding:15px;
+    padding-left:15px;
+    margin-top:0px;
+    margin-bottom:0px;
+    background: #ccc;
+    border: 1px solid black;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+    background: #777;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size:1.2em;
+    padding:10px;
+    padding-left:15px;
+    margin-top:0px;
+    margin-bottom:0px;
+    background: #ccc;
+    border: 1px solid black;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+    background: #777;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 0px;
+    text-align: center;
+    padding:5px;
+    border: 1px solid black;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+    background: #777;
+    margin-bottom: 10px;
+}
+
+h1#replay_details_title {
+    background:#777 url(/images/titlebg_2.jpg) top right no-repeat;
+}
+h1#replay_upload_title {
+    background:#777 url(/images/titlebg_3.jpg) top right no-repeat;
+}
+h1#replay_index_title {
+    background:#777 url(/images/titlebg_4.jpg) top right no-repeat;
+}
+h1#replay_browse_title {
+    background:#777 url(/images/titlebg_1.jpg) top right no-repeat;
+}
+h1#signin_title {
+    background:#777 url(/images/titlebg_1.jpg) top right no-repeat;
+}
+h1#contact_title {
+    background:#777 url(/images/titlebg_4.jpg) top right no-repeat;
+}
+
+/*.wrapper h1:hover {
+    background: #bbb;
+}*/
+
+/*
+    LAYOUT
+*/
+div.wrapper {
+/*  padding:5px;
+    background:#eee;
+    border: 10px solid #333;
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;*/
+    width:1000px;
+    background: transparent;
+    margin:0px auto;
+    #border:1px solid red;
+}
+
+div.footer {
+    margin-top:10px;
+    color:#ccc;
+    font-size: 11px;
+    text-align:center;
+}
+
+div.menu {
+    margin-top:0px;
+    height:34px;
+    text-align: center;
+    clear:both;
+}
+
+div.menu a:link, div.menu a:visited {
+    background: #444;
+    padding:10px;
+    border: 2px solid black;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+
+div.menu a:hover {
+    background: #333;
+}
+
+div.leftbar {
+    width:150px;
+    float:left;
+}
+
+div.rightbar {
+    margin-left:3px;
+    width:244px;
+    float:left;
+}
+
+div.main_content {
+    width:600px;
+    float:left;
+    margin-left:3px;
+    overflow: hidden;
+}
+
+div.content_wide {
+    width:844px;
+}
+
+/*
+    TOP MESSAGES
+*/
+div.top_err_message {
+    width:100%;
+    border:1px solid black;
+    color:red;
+    font-weight:bold;
+    background:#aaa;
+    padding:5px;
+    margin-bottom:2px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+div.top_suc_message {
+    width:100%;
+    border:1px solid black;
+    color:green;
+    font-weight:bold;
+    background:#aaa;
+    padding:5px;
+    margin-bottom:2px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+
+/*
+    TABLES
+*/
+.centered {
+    text-align:center;
+}
+
+td.bg_winner {
+    background: green;
+}
+
+td.bg_loser {
+    background: gray;
+}
+
+table.stdtable {
+    border-collapse: collapse;
+}
+
+table.stdtable td, table.stdtable th {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    padding:5px;
+}
+
+table.stdtable tr.odd {
+    background: #ddd;
+}
+
+table.stdtable tr:hover {
+    background: #bbb;
+}
+
+div.stdtable_border {
+    border: 2px solid #555;
+    padding: 2px;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+}
+
+/*
+    BOXES
+*/
+h3.toggle_down {
+    padding-left:16px;
+    cursor: pointer;
+}
+
+div.greybox {
+    margin-top:0px;
+    margin-bottom: 4px;
+    padding:5px;
+    background: #ccc;
+    border: 1px solid black;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+}
+
+div.pColorBox {
+    width:10px;
+    height:10px;
+    border:1px solid #333;
+}
+
+/*
+  Replay box
+*/
+div.repListBox {
+    font-size: 0.9em;
+    border-bottom: 1px solid #666;
+    margin-bottom: 10px;
+}
+
+span.repListBoxTime {
+    font-style: italic;
+    float:right;
+    font-size: 0.8em;
+}
+
+#winner_list {
+    text-align:center;
+    display:none;
+    border: 1px solid #222;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+}
+
+/*
+    Register form
+*/
+table.registerForm {
+    width:450px;
+    margin:0px auto;
+    border:1px solid black;
+    padding-top:5px;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+}
+
+table.registerForm th{
+    text-align: right;
+    padding-right:10px;
+}
+
+table.registerForm ul {
+    color: #920000;
+    margin: 0px;
+    padding-left: 0px;
+    font-style: italic;
+    list-style-type: none;
+    font-size: 0.9em;
+}
+
+table.registerForm input {
+    border: 1px solid green;
+    padding: 4px;
+    width: 200px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+}
+
+/*
+ Comment and avatar
+*/
+
+div.comment {
+    clear:both;
+    overflow: hidden;
+    border: 1px solid blue;
+    padding: 4px;
+    margin-bottom:5px;
+    font-size: 0.9em;
+    background:#eee;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+}
+
+div.comment_header {
+    font-size: 0.8em;
+}
+
+div.comment_content {
+    margin-left: 55px;
+}
+
+#replay_comment_comment {
+    width:582px;
+}

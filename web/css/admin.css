@@ -1,0 +1,30 @@
+html {
+    background:black;
+}
+
+body {
+    background: #000;
+    padding-top:30px;
+    background: black;
+}
+
+div.admin_wrapper {
+    background: #ccc;
+    margin:20px;
+    padding:20px;
+    border: 2px solid #555;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+}
+
+div.admin_logo {
+    position:absolute;
+    top:15px;
+    left:70px;
+    color:gold;
+    font-size:3em;
+}
+
+h1 {
+    padding: 10px !important;
+}

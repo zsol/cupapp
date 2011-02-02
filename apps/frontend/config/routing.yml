@@ -1,0 +1,80 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+sf_guard_signin:
+  url:   /:sf_culture/login
+  param: { module: sfGuardAuth, action: signin }
+  requirements: { sf_culture: (?:hu|en) }
+
+sf_guard_signout:
+  url:   /:sf_culture/logout
+  param: { module: sfGuardAuth, action: signout }
+  requirements: { sf_culture: (?:hu|en) }
+
+sf_guard_password:
+  url:   /:sf_culture/request_password
+  param: { module: sfGuardAuth, action: password }
+  requirements: { sf_culture: (?:hu|en) }
+
+register:
+  url:   /:sf_culture/register
+  param: { module: sfGuardAuth, action: register }
+  requirements: { sf_culture: (?:hu|en) }
+
+confirmemail:
+  url:   /:sf_culture/confirmemail/:username/:code
+  param: { module: email, action: confirm }
+  requirements: { sf_culture: (?:hu|en) }
+
+editmyprofile:
+  url:   /:sf_culture/editmyprofile
+  param: { module: sfGuardAuth, action: editMyProfile }
+  requirements: { sf_culture: (?:hu|en) }
+
+rules:
+  url:   /:sf_culture/rules
+  param: { module: default, action: index }
+  requirements: { sf_culture: (?:hu|en) }
+
+homepage:
+  url:   /
+  param: { module: replay, action: index }
+
+replayhome:
+  url:   /:sf_culture/replay
+  param: { module: replay, action: index }
+  requirements: { sf_culture: (?:hu|en) }
+
+uploadreplay:
+  url:   /:sf_culture/replay/upload
+  param: { module: replay, action: upload }
+  requirements: { sf_culture: (?:hu|en) }
+
+browsereplay:
+  url:   /:sf_culture/replay/browse
+  param: { module: replay, action: browse }
+  requirements: { sf_culture: (?:hu|en) }
+
+viewreplay:
+  url:   /:sf_culture/replay/view/:id/:name
+  param: { module: replay, action: view }
+  requirements: { sf_culture: (?:hu|en) }
+
+downloadreplay:
+  url:   /:sf_culture/replay/download/:id
+  param: { module: replay, action: download }
+  requirements: { sf_culture: (?:hu|en) }
+
+contact:
+  url:   /:sf_culture/replay/contact
+  param: { module: replay, action: contact }
+  requirements: { sf_culture: (?:hu|en) }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
