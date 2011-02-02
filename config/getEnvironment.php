@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER['SERVER_NAME'] == 'test.cupapp.com') {
+if ($_SERVER['SERVER_NAME'] == 'cupapp.dyndns.info') {
     $env = 'dev';
     $debug = true;
 }
