@@ -3,7 +3,7 @@
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
-    <title>BlizzFanatic.com - <?php include_slot('title'); ?></title>
+   <title>CupApp<?php if (has_slot('title')) { echo " - "; include_slot('title'); } ?></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>

@@ -6,7 +6,7 @@ default:
     content-type: text/html
 
   metas:
-    title:        BlizzFanatic.Com - Replay
+    #title:        CupApp
     #description:
     #keywords:
     #language:     en
