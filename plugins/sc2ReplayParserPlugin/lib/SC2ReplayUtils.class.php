@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,8 +25,6 @@ define("SC2_TYPEGEN", 8); // anything that doesn't fit into earlier categories
 define("SC2_SUBTYPECREATE", 1); // opposite of cancel
 define("SC2_SUBTYPECANCEL", 2); // cancel
 
-define("SC2_DEPMAP", 1); // dependency is a map, name contains map name
-define("SC2_DEPOTHER",2); // dependency is something else
 class SC2ReplayUtils {
 	public static $ABILITYCODES = array(
 		// terran
@@ -363,11 +361,16 @@ class SC2ReplayUtils {
 	public static $ABILITYCODES_16561 = array(
 		// terran 
 		0x020A00 => array('link' => 0x080A00),
+		0x011810 => array('link' => 0x050800), // rally point with action (gather, repair, etc)
+		0x01FE01 => array('link' => 0x070E01),
+		0x013E01 => array('link' => 0x070E01),
+		0x01FE03 => array('link' => 0x070E03),
 		0x011820 => array('link' => 0x050800),
 		0x013011 => array('link' => 0x070001),
 		0x013013 => array('link' => 0x070003),
 		0x013022 => array('link' => 0x070002),
 		0x011610 => array('link' => 0x050600),
+		0x011620 => array('link' => 0x050600), // rally point with action (gather, load into bunker, etc)
 		0x020E00 => array('link' => 0x080E00),
 		0x031200 => array('link' => 0x0D0300),
 		0x020200 => array('link' => 0x080200),
@@ -382,9 +385,13 @@ class SC2ReplayUtils {
 		0x017015 => array('link' => 0x07000D),
 		0x013010 => array('link' => 0x070000),
 		0x020400 => array('link' => 0x080400),
+		0x020410 => array('link' => 0x080400), // while floating
 		0x020401 => array('link' => 0x080401),
+		0x020411 => array('link' => 0x080401), // while floating
 		0x020600 => array('link' => 0x080600),
+		0x020610 => array('link' => 0x080600), // while floating
 		0x020601 => array('link' => 0x080601),
+		0x020611 => array('link' => 0x080601), // while floating
 		0x013014 => array('link' => 0x070004),
 		0x030D00 => array('link' => 0x0C0D00),
 		0x013016 => array('link' => 0x070006),
@@ -397,8 +404,10 @@ class SC2ReplayUtils {
 		0x020910 => array('link' => 0x080900),
 		0x020300 => array('link' => 0x080300),
 		0x020B10 => array('link' => 0x080B00),
-		0x012F00 => array('link' => 0x080A00), // scv autorepair
+		0x012F00 => array('desc' => 'toggles auto-repair (SCV)', 'name' => 'autorepair (SCV)', 'type' => SC2_TYPEGEN), // scv autorepair
 		0x010A20 => array('link' => 0x040A00),
+		0x010A10 => array('link' => 0x040A00), // MULE not on mineral patch
+		0x030D01 => array('link' => 0x060D01),
 		0x012120 => array('link' => 0x060100), 
 		0x013A10 => array('link' => 0x070A00), 
 		0x020E02 => array('link' => 0x080E02),
@@ -411,6 +420,8 @@ class SC2ReplayUtils {
 		0x021400 => array('link' => 0x090400),
 		0x021402 => array('link' => 0x090402),
 		0x021203 => array('link' => 0x090203),
+		0x01FF04 => array('link' => 0x070F04),
+		0x01FF01 => array('link' => 0x070F01),
 		0x020000 => array('link' => 0x080000),
 		0x020110 => array('link' => 0x080100),
 		0x021501 => array('link' => 0x090501),
@@ -452,6 +463,7 @@ class SC2ReplayUtils {
 		0x020F05 => array('link' => 0x080F05),
 		0x020F01 => array('link' => 0x080F01),
 		0x020F04 => array('link' => 0x080F04),
+		0x013500 => array('desc' => 'toggles auto-heal (Medivac)', 'name' => 'autoheal (Medivac)', 'type' => SC2_TYPEGEN),
 		0x013600 => array('link' => 0x070600),
 		0x013700 => array('link' => 0x070700),
 		0x033910 => array('link' => 0x0F0A00),
@@ -476,6 +488,7 @@ class SC2ReplayUtils {
 		0x013920 => array('link' => 0x070900),
 		0x370003 => array('link' => 0x070903),
 		0x013912 => array('link' => 0x070902),
+		0x013922 => array('link' => 0x070902),
 		0x013C00 => array('link' => 0x070C00),
 		0x013D00 => array('link' => 0x070D00),
 		0x012B00 => array('link' => 0x0D0301),
@@ -556,16 +569,20 @@ class SC2ReplayUtils {
 		0x030820 => array('link' => 0x0C0800),
 		0x011E20 => array('link' => 0x050E00),
 		0x030833 => array('link' => 0x0C0801),
+		0x030801 => array('desc' => 'unloads unit (Nydus Worm)', 'name' => 'unload unit (Nydus Worm)', 'type' => SC2_TYPEABILITY),
 		0x011610 => array('link' => 0x050600),
 		0x010F00 => array('desc' => 'uses Spawn changeling (Infestor)', 'name' => 'Changeling', 'type' => SC2_TYPEABILITY),
 		0x040120 => array('link' => 0x100200),
 		0x033200 => array('link' => 0x0C0200),
 		0x033201 => array('link' => 0x0F0301),
 		0x030220 => array('link' => 0x0C0200),
+		0x030222 => array('desc' => 'unloads unit (Overlord)', 'name' => 'unload unit (Overlord)', 'type' => SC2_TYPEABILITY),
 		0x030233 => array('link' => 0x0C0202),
 		0x030212 => array('link' => 0x0C0202),
 		0x031000 => array('desc' => 'uses Burrow (Ultralisk)', 'name' => 'Burrow (Ultralisk)', 'type' => SC2_TYPEABILITY),
 		0x031100 => array('desc' => 'uses Unburrow (Ultralisk)', 'name' => 'Unburrow (Ultralisk)', 'type' => SC2_TYPEABILITY),
+		0x030600 => array('link' => 0x0C0600),
+		0x030700 => array('link' => 0x0C0700),
 		0x030A00 => array('link' => 0x0C0A00),
 		0x030B00 => array('link' => 0x0C0B00),
 		0x023400 => array('link' => 0x0B0400),
@@ -581,8 +598,14 @@ class SC2ReplayUtils {
 		0x023300 => array('link' => 0x0B0300),
 		0x003400 => array('link' => 0x030400),
 		0x011C20 => array('link' => 0x050C00),
+		0x03F806 => array('desc' => 'cancels build in progress (Creep tumor)', 'name' => 'cancel (Creep tumor)', 'type' => SC2_TYPEABILITY, 'subtype' => SC2_SUBTYPECANCEL),
+		0x012A00 => array('desc' => 'cancels morph in progress', 'name' => 'cancel morph', 'type' => SC2_TYPEABILITY, 'subtype' => SC2_SUBTYPECANCEL),
+		0x030C01 => array('desc' => 'cancels morph in progress (Overseer)', 'name' => 'cancel (Overseer)', 'type' => SC2_TYPEABILITY, 'subtype' => SC2_SUBTYPECANCEL),
+		0x023101 => array('desc' => 'cancels morph in progress (Brood Lord)', 'name' => 'cancel (Brood Lord)', 'type' => SC2_TYPEABILITY, 'subtype' => SC2_SUBTYPECANCEL),
 		
 		//protoss
+		0x011A10 => array('link' => 0x050900),
+		0x011A20 => array('link' => 0x050900), // rally point with action
 		0x021E00 => array('link' => 0x090E00),
 		0x021911 => array('link' => 0x090901),
 		0x021922 => array('link' => 0x090902),
@@ -685,6 +708,7 @@ class SC2ReplayUtils {
 		0x002610 => array('link' => 0x020600),
 		0x002400 => array('link' => 0x020400),
 		0x002602 => array('link' => 0x020900),
+		0x002613 => array('desc' => 'scan moves (attack)', 'name' => 'scan move', 'type' => SC2_TYPEGEN),
 		0x022701 => array('desc' => 'returns cargo', 'name' => 'return cargo', 'type' => SC2_TYPEGEN),
 		0x01F006 => array('desc' => 'continues construction', 'name' => 'construct', 'type' => SC2_TYPEGEN)
 	);
@@ -825,87 +849,229 @@ class SC2ReplayUtils {
 		0x004C01 => array('name' => "Lowered Supply Depot", 'type' => SC2_TYPEBUILDING, 'upgrades_to' => array(0x002D01)),
 		0x004101 => array('name' => "Flying Command Center", 'type' => SC2_TYPEBUILDING, 'upgrades_to' => array(0x002C01)),
 	);
-	public static $depHashes = array(
-		"6de41503baccd05656360b6f027db88169fa1989bb6357b1b215a2547939f5fb" => array("name" => "Core.SC2Mod", "type" => SC2_DEPOTHER),
-		"421c8aa0f3619b652d23a2735dfee812ab644228235e7a797edecfe8b67da30e" => array("name" => "Liberty.SC2Mod", "type" => SC2_DEPOTHER),
-		"5c673e6cd2f1bf6e068fa59e2f9421f5debb91cb516aca3237d3b05fe7c7e9fa" => array("name" => "LibertyMulti.SC2Mod", "type" => SC2_DEPOTHER),
-		"7f41411aa597f4b46440d42a563348bf53822d2a68112f0104f9b891f6f05ae1" => array("name" => "Teams02.SC2Mod", "type" => SC2_DEPOTHER),
-		"658e520aa5deb48866dc2b21b023daa9a291be4cf22fd9d785ca67f178132a87" => array("name" => "Teams04.SC2Mod", "type" => SC2_DEPOTHER),
-		"d0482679c925f8c5dd6228f2411c995e0fd2768015eb3dbc777584922731d349" => array("name" => "Abyss", "type" => SC2_DEPMAP, "deDE" => "Abgrund", "enUS" => "Abyss", "" => "Abyss", "esES" => "Abismo", "esMX" => "Abismo", "frFR" => "Abysse", "itIT" => "Abisso", "koKR" => "심연", "plPL" => "Otchłań", "ptBR" => "Abismo", "ruRU" => "Бездна", "zhCN" => "深渊", "zhTW" => "無盡深淵"),
-		"ee129ab013dd3fe080fc437d19b380b868ab3e302c35ae526ea6f15af6f6b078" => array("name" => "Agria Valley", "type" => SC2_DEPMAP, "deDE" => "Tal von Agria", "enUS" => "Agria Valley", "" => "Agria Valley", "esES" => "Valle de Agria", "esMX" => "Valle de Agria", "frFR" => "Vallée d'Agria", "itIT" => "Valle di Agria", "koKR" => "아그리아 골짜기", "plPL" => "Dolina Agrii", "ptBR" => "Vale de Agria", "ruRU" => "Долина Агрии", "zhCN" => "阿格瑞亚山谷", "zhTW" => "阿格利亞山谷"),
-		"4fa2764424a0d4b06c3c3f160df5ce17c382cec712d1a0b9aec104ca2236eff3" => array("name" => "Arakan Citadel", "type" => SC2_DEPMAP, "deDE" => "Zitadelle von Arakan", "enUS" => "Arakan Citadel", "" => "Arakan Citadel", "esES" => "Ciudadela de Arakan", "esMX" => "Ciudadela arakana", "frFR" => "Citadelle d'Arakan", "itIT" => "Cittadella di Arakan", "koKR" => "아라칸 요새", "plPL" => "Arakańska cytadela", "ptBR" => "Cidadela de Arakan", "ruRU" => "Цитадель Аракана", "zhCN" => "阿拉坎城堡", "zhTW" => "阿洛坎要塞"),
-		"c22955a9e3b97f3511d1d3950859ce9d2855a338fb5ab931eb977c7188255bd6" => array("name" => "Arid Wastes", "type" => SC2_DEPMAP, "deDE" => "Dürres Ödland", "enUS" => "Arid Wastes", "" => "Arid Wastes", "esES" => "Baldíos áridos", "esMX" => "", "frFR" => "", "itIT" => "Distese aride", "koKR" => "아리드 황무지", "plPL" => "", "ptBR" => "", "ruRU" => "Аридные пустоши", "zhCN" => "旱荒之地", "zhTW" => "貧地廢料"),
-		"7abaae864c20201d74f657a6f7406106f113c8e6b52b078ecafdaaf290a761b6" => array("name" => "Arid Wastes", "type" => SC2_DEPMAP, "deDE" => "Dürres Ödland", "enUS" => "Arid Wastes", "" => "Arid Wastes", "esES" => "Baldíos áridos", "esMX" => "Páramos áridos", "frFR" => "Terres arides", "itIT" => "Distese aride", "koKR" => "메마른 황무지", "plPL" => "Bezwodne pustkowie", "ptBR" => "Deserto Árido", "ruRU" => "Сухие пустоши", "zhCN" => "旱荒之地", "zhTW" => "不毛荒地"),
-		"e33a5890ad2eedeaa56ce17356d1e618ad4ff99f50e76a34e7772e087802e8ea" => array("name" => "Blistering Sands", "type" => SC2_DEPMAP, "deDE" => "Glühende Sande", "enUS" => "Blistering Sands", "" => "Blistering Sands", "esES" => "Arenas abrasadoras", "esMX" => "Arenas abrasadoras", "frFR" => "Désert ardent", "itIT" => "Sabbie ardenti", "koKR" => "폭염 사막", "plPL" => "Palące piaski", "ptBR" => "Dunas Escaldantes", "ruRU" => "Бурлящие пески", "zhCN" => "热砂荒野", "zhTW" => "極熱沙漠"),
-		"7dbf6b641bc5fce7abdaa352c66a9ba4e942d5bdf48a67e33cbff0ff32b3d47c" => array("name" => "Burial Grounds", "type" => SC2_DEPMAP, "deDE" => "Begräbnisstätte", "enUS" => "Burial Grounds", "" => "Burial Grounds", "esES" => "Camposanto", "esMX" => "Cementerios", "frFR" => "Nécropole", "itIT" => "Cimitero", "koKR" => "묘지", "plPL" => "Cmentarzysko", "ptBR" => "Cemitério", "ruRU" => "Могильные холмы", "zhCN" => "湮埋之地", "zhTW" => "死亡墓園"),
-		"60d74c966e691599876ea18b55db99b36f2b62b85c05ff4e69551bb10bc0fd0b" => array("name" => "Colony 426", "type" => SC2_DEPMAP, "deDE" => "Kolonie 426", "enUS" => "Colony 426", "" => "Colony 426", "esES" => "Colonia 426", "esMX" => "Colonia 426", "frFR" => "Colonie 426", "itIT" => "Colonia 426", "koKR" => "426 거주지", "plPL" => "Kolonia 426", "ptBR" => "Colônia 426", "ruRU" => "Колония 426", "zhCN" => "移民地426", "zhTW" => "426區殖民地"),
-		"824d92a85f50bc4924966d0c0ad8733ae581020cc0409c7ec42c76bc16fcaa26" => array("name" => "Crossfire", "type" => SC2_DEPMAP, "deDE" => "Kreuzfeuer", "enUS" => "Crossfire", "" => "Crossfire", "esES" => "Fuego cruzado", "esMX" => "Fuego cruzado", "frFR" => "Tirs croisés", "itIT" => "Fuoco incrociato", "koKR" => "십자포화", "plPL" => "Krzyżowy ogień", "ptBR" => "Fogo cruzado", "ruRU" => "Перекрестный огонь", "zhCN" => "交叉火力", "zhTW" => "交叉火力"),
-		"b68951b568e7255f442d7285a178870494b9b3e6023b831770a7558400b4cf5e" => array("name" => "Debris Field", "type" => SC2_DEPMAP, "deDE" => "Trümmerfeld", "enUS" => "Debris Field", "" => "Debris Field", "esES" => "Campo de escombros", "esMX" => "Campo de restos", "frFR" => "Débris spatiaux", "itIT" => "Campo di detriti", "koKR" => "조각난 전장", "plPL" => "Gruzowisko", "ptBR" => "Campo de escombros", "ruRU" => "Мусорный завал", "zhCN" => "太空岛群", "zhTW" => "破碎群島"),
-		"5dc1d6dde914c02b8d64adf8f51cb1f811be7e89db53c6c0ded8c6e057202bad" => array("name" => "Delta Quadrant", "type" => SC2_DEPMAP, "deDE" => "Delta-Quadrant", "enUS" => "Delta Quadrant", "" => "Delta Quadrant", "esES" => "Cuadrante Delta", "esMX" => "Cuadrante Delta", "frFR" => "Quadrant Delta", "itIT" => "Quadrante Delta", "koKR" => "델타 사분면", "plPL" => "Kwadrant Delta", "ptBR" => "Quadrante Delta", "ruRU" => "Квадрант «Дельта»", "zhCN" => "第四战区", "zhTW" => "第四象限"),
-		"f34aa7113bb3c1a7892bfa0dd60de7f34e619434ebefe45412164277abed5bf3" => array("name" => "Desert Oasis", "type" => SC2_DEPMAP, "deDE" => "Wüstenoase", "enUS" => "Desert Oasis", "" => "Desert Oasis", "esES" => "Oasis del desierto", "esMX" => "Oasis del desierto", "frFR" => "Oasis du désert", "itIT" => "Oasi desertica", "koKR" => "사막 오아시스", "plPL" => "Pustynna oaza", "ptBR" => "Oásis do deserto", "ruRU" => "Оазис", "zhCN" => "荒野绿洲", "zhTW" => "沙漠綠洲"),
-		"2b3a003426de842f63fb97f2f68e6b71a6177d98ef9a945aba877f6cfb2c0a89" => array("name" => "Dig Site", "type" => SC2_DEPMAP, "deDE" => "Ausgrabung", "enUS" => "Dig Site", "" => "Dig Site", "esES" => "Lugar de excavación", "esMX" => "Sitio de excavación", "frFR" => "Site de fouilles", "itIT" => "Sito di scavo", "koKR" => "발굴지", "plPL" => "Wykopalisko", "ptBR" => "Local da escavação", "ruRU" => "Раскопки", "zhCN" => "挖掘站", "zhTW" => "挖掘場"),
-		"8fe944d0879bf22c6fc7a6b3f36ea946e43d6636448d6a08b7734d6822bc425d" => array("name" => "Dirt Side", "type" => SC2_DEPMAP, "deDE" => "Staub und Dreck", "enUS" => "Dirt Side", "" => "Dirt Side", "esES" => "Tierra", "esMX" => "Lado de tierra", "frFR" => "Poussière", "itIT" => "Lordura", "koKR" => "먼지 지대", "plPL" => "Ustronie", "ptBR" => "Lado da terra", "ruRU" => "Глиняное плато", "zhCN" => "沙尘废墟", "zhTW" => "蠻荒之境"),
-		"505b560e0d2739a919384766e2f331fd42483a347c92111549c442e7e1cd738d" => array("name" => "Discord IV", "type" => SC2_DEPMAP, "deDE" => "Zwietracht IV", "enUS" => "Discord IV", "" => "Discord IV", "esES" => "Discordia IV", "esMX" => "Discordia IV", "frFR" => "Discorde IV", "itIT" => "Discordia IV", "koKR" => "불협화음 IV", "plPL" => "Niezgoda IV", "ptBR" => "Discórdia IV", "ruRU" => "Раздор IV", "zhCN" => "纷争IV", "zhTW" => "紛爭 IV"),
-		"58fca7d89dc576b889ae1f7ab194f425545fbe8c9dac2c3d739fcb1cd2c2f324" => array("name" => "Elysium", "type" => SC2_DEPMAP, "deDE" => "Elysium", "enUS" => "Elysium", "" => "Elysium", "esES" => "Elíseo", "esMX" => "Elisio", "frFR" => "Elysium", "itIT" => "Elisio", "koKR" => "엘리시움", "plPL" => "Pola Elizejskie", "ptBR" => "Elísio", "ruRU" => "Элизий", "zhCN" => "乐土", "zhTW" => "極樂淨土"),
-		"da2512882b815f774b0a7469e0d52945c486599406271e10d8cb7193e77c64db" => array("name" => "Extinction", "type" => SC2_DEPMAP, "deDE" => "Untergang", "enUS" => "Extinction", "" => "Extinction", "esES" => "Extinción", "esMX" => "Extinción", "frFR" => "Extinction", "itIT" => "Estinzione", "koKR" => "절멸", "plPL" => "Unicestwienie", "ptBR" => "Extinção", "ruRU" => "Истребление", "zhCN" => "灭绝之地", "zhTW" => "滅絕"),
-		"c845f8e0b2084352047ed0ea2d8701321e3fa908b4d67b5002d04656b45b4a45" => array("name" => "Forbidden Planet", "type" => SC2_DEPMAP, "deDE" => "Der verbotene Planet", "enUS" => "Forbidden Planet", "" => "Forbidden Planet", "esES" => "Planeta prohibido", "esMX" => "El planeta prohibido", "frFR" => "Planète interdite", "itIT" => "Pianeta proibito", "koKR" => "금단의 행성", "plPL" => "Zakazana planeta", "ptBR" => "Planeta Proibido", "ruRU" => "Закрытая планета", "zhCN" => "禁访行星", "zhTW" => "禁星"),
-		"36422e713b8b825a7aa8c4f27301145400bacf76fd5ddd5caedde411c935ea0d" => array("name" => "Frontier", "type" => SC2_DEPMAP, "deDE" => "Grenzen", "enUS" => "Frontier", "" => "Frontier", "esES" => "Frontera", "esMX" => "Frontera", "frFR" => "Confins", "itIT" => "Frontiera", "koKR" => "변경 지대", "plPL" => "Pogranicze", "ptBR" => "Fronteira", "ruRU" => "Рубеж", "zhCN" => "前沿", "zhTW" => "邊疆地帶"),
-		"4c26d855a635fae81efa1bbebc39f52a3a0703ac966698288fe526cdaad7f35d" => array("name" => "High Ground", "type" => SC2_DEPMAP, "deDE" => "Erhöhtes Terrain", "enUS" => "High Ground", "" => "High Ground", "esES" => "Terreno elevado", "esMX" => "Terreno elevado", "frFR" => "Surplomb", "itIT" => "Alture", "koKR" => "고지대", "plPL" => "Wysoka pozycja", "ptBR" => "Terreno elevado", "ruRU" => "Возвышение", "zhCN" => "高地", "zhTW" => "高地"),
-		"1d961d930214c7de51b903db4c2e6796aee154531fe344686ce54803107a168c" => array("name" => "High Orbit", "type" => SC2_DEPMAP, "deDE" => "Hoher Orbit", "enUS" => "High Orbit", "" => "High Orbit", "esES" => "Alta órbita", "esMX" => "Órbita superior", "frFR" => "Orbite haute", "itIT" => "Orbita superiore", "koKR" => "고궤도", "plPL" => "Wysoka orbita", "ptBR" => "Órbita elevada", "ruRU" => "Высокая орбита", "zhCN" => "高位轨道", "zhTW" => "高軌道區"),
-		"395fb54902a9ae84698940dbf414a91520b3c27322515ff3e7e600b548ac81b7" => array("name" => "Incineration Zone", "type" => SC2_DEPMAP, "deDE" => "Asche zu Asche", "enUS" => "Incineration Zone", "" => "Incineration Zone", "esES" => "Zona de incineración", "esMX" => "Zona de incineración", "frFR" => "Zone d'incinération", "itIT" => "Zona d'incenerimento", "koKR" => "소각 지대", "plPL" => "Strefa spalania", "ptBR" => "Zona de incineração", "ruRU" => "Зона испепеления", "zhCN" => "焚毁区", "zhTW" => "焚燒之地"),
-		"d3c721754d1534500142950e3943a0bd631f54df56593096c7740389f01fa816" => array("name" => "Jungle Basin", "type" => SC2_DEPMAP, "deDE" => "Dschungelbecken", "enUS" => "Jungle Basin", "" => "Jungle Basin", "esES" => "Cuenca selvática", "esMX" => "Cuenca de la selva", "frFR" => "Bassins luxuriants", "itIT" => "Selva oscura", "koKR" => "밀림 분지", "plPL" => "Tropikalna niecka", "ptBR" => "Vale da Selva", "ruRU" => "Изумрудная долина", "zhCN" => "蛮荒盆地", "zhTW" => "叢林盆地"),
-		"a49177ada7f0f1848761319edd889f31a925b292a37b5d2622628a5dfa267f43" => array("name" => "Junk Yard", "type" => SC2_DEPMAP, "deDE" => "Müllkippe", "enUS" => "Junk Yard", "" => "Junk Yard", "esES" => "Basurero", "esMX" => "Deshuesadero", "frFR" => "La décharge", "itIT" => "Discarica", "koKR" => "고물 처리장", "plPL" => "Wysypisko", "ptBR" => "Fero-velho", "ruRU" => "Свалка", "zhCN" => "垃圾场", "zhTW" => "垃圾港"),
-		"c7667c45f7cc6e3c2c453feee632b34dae9670f4a269bd373872f70cabd274eb" => array("name" => "Kulas Ravine", "type" => SC2_DEPMAP, "deDE" => "Kulasklamm", "enUS" => "Kulas Ravine", "" => "Kulas Ravine", "esES" => "Barranco de Kulas", "esMX" => "Desfiladero de Kulas", "frFR" => "Ravin de Kulas", "itIT" => "Gola di Kulas", "koKR" => "쿨라스 협곡", "plPL" => "Wąwóz Kulas", "ptBR" => "Ravina Kulas", "ruRU" => "Каньон Кулас", "zhCN" => "库拉斯峡谷", "zhTW" => "庫拉斯溪谷"),
-		"99e71fcbffff967b8f008d87e297c78ab913d0d129ca354ec8174b57f398ce68" => array("name" => "Kulas Ravine", "type" => SC2_DEPMAP, "deDE" => "Kulasklamm", "enUS" => "Kulas Ravine", "" => "Kulas Ravine", "esES" => "Barranco de Kulas", "esMX" => "Desfiladero de Kulas", "frFR" => "Ravin de Kulas", "itIT" => "Gola di Kulas", "koKR" => "쿨라스 협곡", "plPL" => "Wąwóz Kulas", "ptBR" => "Ravina Kulas", "ruRU" => "Каньон Кулас", "zhCN" => "库拉斯峡谷", "zhTW" => "庫拉斯溪谷"),
-		"445dca1ae32b25437023c0ea2497edda56a9f87b42bccbc0125054962c6bac8a" => array("name" => "Kulas Ravine", "type" => SC2_DEPMAP, "deDE" => "Kulasklamm", "enUS" => "Kulas Ravine", "" => "Kulas Ravine", "esES" => "Barranco de Kulas", "esMX" => "Desfiladero de Kulas", "frFR" => "Ravin de Kulas", "itIT" => "Gola di Kulas", "koKR" => "쿨라스 협곡", "plPL" => "Wąwóz Kulas", "ptBR" => "Ravina Kulas", "ruRU" => "Каньон Кулас", "zhCN" => "库拉斯峡谷", "zhTW" => "庫拉斯溪谷"),
-		"5e43b6129af26498d8c84a230936a2eb350e6f0ba54791cd41d5a22b6f728556" => array("name" => "Lava Flow", "type" => SC2_DEPMAP, "deDE" => "Im Lavastrom", "enUS" => "Lava Flow", "" => "Lava Flow", "esES" => "Flujo de lava", "esMX" => "Corriente de lava", "frFR" => "Fleuve de lave", "itIT" => "Flusso di lava", "koKR" => "용암 흐름", "plPL" => "Napływ lawy", "ptBR" => "Fluxo de lava", "ruRU" => "Поток лавы", "zhCN" => "岩浆浮台", "zhTW" => "熔漿岩地"),
-		"cfa196a601daaadd3d29a16cd1b2cf0a2917ad8d959ca9813ca12ce123782760" => array("name" => "Lost Temple", "type" => SC2_DEPMAP, "deDE" => "Verschollener Tempel", "enUS" => "Lost Temple", "" => "Lost Temple", "esES" => "Templo perdido", "esMX" => "Templo perdido", "frFR" => "Temple oublié", "itIT" => "Tempio perduto", "koKR" => "잃어버린 사원", "plPL" => "Zaginiona świątynia", "ptBR" => "Templo Perdido", "ruRU" => "Затерянный храм", "zhCN" => "失落的神庙", "zhTW" => "失落神廟"),
-		"711dd8749cd5f04a06d1cf2f5f7b045febf9a655c382d09424620752594657d1" => array("name" => "Megaton", "type" => SC2_DEPMAP, "deDE" => "Megaton", "enUS" => "Megaton", "" => "Megaton", "esES" => "Megatón", "esMX" => "Megatón", "frFR" => "Mégatonne", "itIT" => "Megaton", "koKR" => "메가톤", "plPL" => "Megatona", "ptBR" => "Megaton", "ruRU" => "Мегатонна", "zhCN" => "麦加顿", "zhTW" => "梅迦鎮"),
-		"71d1c6773ad36035333cad61ceac0789828e3b49690fad95efb1475ca3b6f1d8" => array("name" => "Metalopolis", "type" => SC2_DEPMAP, "deDE" => "Metalopolis", "enUS" => "Metalopolis", "" => "Metalopolis", "esES" => "Metalópolis", "esMX" => "Metalópolis", "frFR" => "Métalopolis", "itIT" => "Metallopoli", "koKR" => "금속도시", "plPL" => "Metalopolis", "ptBR" => "Metalópolis", "ruRU" => "Металополис", "zhCN" => "钢铁都城", "zhTW" => "大都會"),
-		"5f1c8e57d5b1f33dd7a116fad1157848e890ee07de12181488fb77506b96279d" => array("name" => "Monlyth Ridge", "type" => SC2_DEPMAP, "deDE" => "Monlythgrat", "enUS" => "Monlyth Ridge", "" => "Monlyth Ridge", "esES" => "Sierra de Monlyth", "esMX" => "Cordillera de Monlito", "frFR" => "Crête de Monlyth", "itIT" => "Cresta di Monlyth", "koKR" => "몬리스 마루", "plPL" => "Góry Monlyth", "ptBR" => "Serra de Monlyth", "ruRU" => "Кряж Монлита", "zhCN" => "蒙莱斯山脊", "zhTW" => "蒙利斯山脈"),
-		"ce28ed769b1e73267c94256fafec4c5569d346e325d06fdcb6d8339d4d3c8d5a" => array("name" => "Monsoon", "type" => SC2_DEPMAP, "deDE" => "Monsun", "enUS" => "Monsoon", "" => "Monsoon", "esES" => "Monzón", "esMX" => "Monzón", "frFR" => "Mousson", "itIT" => "Monsone", "koKR" => "계절풍 지대", "plPL" => "Monsun", "ptBR" => "Monção", "ruRU" => "Муссон", "zhCN" => "季风地带", "zhTW" => "季風雨林"),
-		"3e600ff2917bae8e5734e56808958ca59978f3868c06272761a5194b0c58ad32" => array("name" => "New Antioch", "type" => SC2_DEPMAP, "deDE" => "Neu-Antioch", "enUS" => "New Antioch", "" => "New Antioch", "esES" => "New Antioch", "esMX" => "Nueva Antioquía", "frFR" => "Néo-Antioche", "itIT" => "New Antioch", "koKR" => "뉴 안티오크", "plPL" => "Nowa Antiochia", "ptBR" => "Nova Antióquia", "ruRU" => "Новый Антиох", "zhCN" => "新安提俄克", "zhTW" => "新安提奧克"),
-		"5c19269e878b4b9fbb37131eea80c3b3c828cc71f48c5d87b14e05585104a6d6" => array("name" => "Nightmare", "type" => SC2_DEPMAP, "deDE" => "Albtraum", "enUS" => "Nightmare", "" => "Nightmare", "esES" => "Pesadilla", "esMX" => "Pesadilla", "frFR" => "Cauchemar", "itIT" => "Incubo", "koKR" => "악몽", "plPL" => "Koszmar", "ptBR" => "Pesadelo", "ruRU" => "Кошмар", "zhCN" => "梦魇", "zhTW" => "夢靨"),
-		"638cbab4b1d5db1025c6edd07d9316f39731103fffcefaf6f0bd310cd8cc8002" => array("name" => "Novice Blistering Sands", "type" => SC2_DEPMAP, "deDE" => "Glühende Sande - Einsteiger", "enUS" => "Novice Blistering Sands", "" => "Novice Blistering Sands", "esES" => "Arenas abrasadoras principiante", "esMX" => "Novato - Arenas abrasadoras", "frFR" => "Désert ardent - Débutant", "itIT" => "Sabbie ardenti (Neofita)", "koKR" => "폭염 사막 초보자용", "plPL" => "Palące piaski – nowicjusz", "ptBR" => "Dunas escaldantes Novato", "ruRU" => "Бурлящие пески – новичок", "zhCN" => "热砂荒野（新手）", "zhTW" => "極熱沙漠（新手）"),
-		"f57d57fff5c83846f4c29d54afe14b32c29914f384f31eae76cba67c772aac6c" => array("name" => "Novice Desert Oasis", "type" => SC2_DEPMAP, "deDE" => "Wüstenoase - Einsteiger", "enUS" => "Novice Desert Oasis", "" => "Novice Desert Oasis", "esES" => "Oasis del desierto principiante", "esMX" => "Novato - Oasis del desierto", "frFR" => "Oasis du désert - Débutant", "itIT" => "Oasi desertica (Neofita)", "koKR" => "사막 오아시스 초보자용", "plPL" => "Pustynna oaza – nowicjusz", "ptBR" => "Oásis no deserto Novato", "ruRU" => "Оазис – новичок", "zhCN" => "荒野绿洲（新手）", "zhTW" => "沙漠綠洲（新手）"),
-		"1fc47bb57ac40ba7187ef8df88574208be0f5ab33864beba5a42ddb78ecd6482" => array("name" => "Novice Discord IV", "type" => SC2_DEPMAP, "deDE" => "Zwietracht IV - Einsteiger", "enUS" => "Novice Discord IV", "" => "Novice Discord IV", "esES" => "Discordia IV principiante", "esMX" => "Novato - Discordia IV", "frFR" => "Discorde IV - Débutant", "itIT" => "Discordia IV (Neofita)", "koKR" => "불협화음 IV 초보자용", "plPL" => "Niezgoda IV – nowicjusz", "ptBR" => "Discórdia IV Novato", "ruRU" => "Раздор IV – новичок", "zhCN" => "纷争IV（新手）", "zhTW" => "紛爭 IV（新手）"),
-		"2d6f32bd6489cafc593d932d71d8975c3f1d5bf33618f66d39a3ffa5138965d1" => array("name" => "Novice Kulas Ravine", "type" => SC2_DEPMAP, "deDE" => "Kulasklamm - Einsteiger", "enUS" => "Novice Kulas Ravine", "" => "Novice Kulas Ravine", "esES" => "Barranco de Kulas principiante", "esMX" => "Novato - Desfiladero de Kulas", "frFR" => "Ravin de Kulas - Débutant", "itIT" => "Gola di Kulas (Neofita)", "koKR" => "쿨라스 협곡 초보자용", "plPL" => "Wąwóz Kulas – nowicjusz", "ptBR" => "Ravina Kulas Novato", "ruRU" => "Каньон Кулас – новичок", "zhCN" => "库拉斯峡谷（新手）", "zhTW" => "庫拉斯溪谷（新手）"),
-		"bb1b7483a7a8424f9e3463198a2e9830a8bae4cb05fc2be5eb8f7398a3f7feb9" => array("name" => "Novice Metalopolis", "type" => SC2_DEPMAP, "deDE" => "Metalopolis - Einsteiger", "enUS" => "Novice Metalopolis", "" => "Novice Metalopolis", "esES" => "Metalópolis principiante", "esMX" => "Novato - Metalópolis", "frFR" => "Métalopolis - Débutant", "itIT" => "Metallopoli (Neofita)", "koKR" => "금속도시 초보자용", "plPL" => "Metalopolis – nowicjusz", "ptBR" => "Metalópolis Novato", "ruRU" => "Металополис – новичок", "zhCN" => "钢铁都城（新手）", "zhTW" => "大都會（新手）"),
-		"614bb763e37ee9e422d4747c4e1979a32a14e7013db02b386d5ef9d5c48108e5" => array("name" => "Novice Monlyth Ridge", "type" => SC2_DEPMAP, "deDE" => "Monlythgrat - Einsteiger", "enUS" => "Novice Monlyth Ridge", "" => "Novice Monlyth Ridge", "esES" => "Sierra de Monlyth principiante", "esMX" => "Novato - Cordillera de Monlito", "frFR" => "Crête de Monlyth - Débutant", "itIT" => "Cresta di Monlyth (Neofita)", "koKR" => "몬리스 마루 초보자용", "plPL" => "Góry Monlyth – nowicjusz", "ptBR" => "Serra de Monlyth Novato", "ruRU" => "Кряж Монлита – новичок", "zhCN" => "蒙莱斯山脊（新手）", "zhTW" => "蒙利斯山脈（新手）"),
-		"0c09c2ab0f2243e3b0cef68a285e6ab83845f51e51d9cefb8acba2030f69fd0b" => array("name" => "Novice Steppes of War", "type" => SC2_DEPMAP, "deDE" => "Felder des Krieges - Einsteiger", "enUS" => "Novice Steppes of War", "" => "Novice Steppes of War", "esES" => "Estepas de guerra principiante", "esMX" => "Novato - Estepas de guerra", "frFR" => "Steppes de guerre - Débutant", "itIT" => "Steppe di guerra (Neofita)", "koKR" => "전쟁 초원 초보자용", "plPL" => "Wojenne stepy – nowicjusz", "ptBR" => "Estepes da Guerra Novato", "ruRU" => "Степи Войны – новичок", "zhCN" => "征战平原（新手）", "zhTW" => "戰爭平原（新手）"),
-		"9a037ed0bb5bb0a5cd5f62961d89f319a6cef92fa0765645f1171cafca6a2012" => array("name" => "Novice Terminus", "type" => SC2_DEPMAP, "deDE" => "Terminus - Einsteiger", "enUS" => "Novice Terminus", "" => "Novice Terminus", "esES" => "Terminus principiante", "esMX" => "Novato - Términus", "frFR" => "Terminus - Débutant", "itIT" => "Terminus (Neofita)", "koKR" => "터미누스 초보자용", "plPL" => "Terminus – nowicjusz", "ptBR" => "Terminus Novato", "ruRU" => "Терминий – новичок", "zhCN" => "集散平台（新手）", "zhTW" => "太空總站（新手）"),
-		"50f1dec30dbea330227e19d986f60b7cfeedd96bb12766ca473db4cf77a1f044" => array("name" => "Novice Twilight Fortress", "type" => SC2_DEPMAP, "deDE" => "Zwielichtfestung - Einsteiger", "enUS" => "Novice Twilight Fortress", "" => "Novice Twilight Fortress", "esES" => "Fortaleza crepuscular principiante", "esMX" => "Novato - Fortaleza crepuscular", "frFR" => "Forteresse du crépuscule - Débutant", "itIT" => "Fortezza del Crepuscolo (Neofita)", "koKR" => "황혼 요새 초보자용", "plPL" => "Mroczna forteca – nowicjusz", "ptBR" => "Fortaleza do crepúsculo Novato", "ruRU" => "Сумеречная крепость – новичок", "zhCN" => "光影要塞（新手）", "zhTW" => "暮光堡壘（新手）"),
-		"3ab8aa07be82e09220e5bf6c0bb433907d84f5c31c8a18d97a776cd70681a291" => array("name" => "Outpost", "type" => SC2_DEPMAP, "deDE" => "Außenposten", "enUS" => "Outpost", "" => "Outpost", "esES" => "Avanzada", "esMX" => "Puesto de avanzada", "frFR" => "Avant-poste", "itIT" => "Avamposto", "koKR" => "전초 기지", "plPL" => "Posterunek", "ptBR" => "Posto avançado", "ruRU" => "Аванпост", "zhCN" => "前哨站", "zhTW" => "哨站"),
-		"c685252a915588b6143e77450995b9ccf91f1260030c04d823a9d8deac9a5e7a" => array("name" => "Primeval", "type" => SC2_DEPMAP, "deDE" => "Urwelt", "enUS" => "Primeval", "" => "Primeval", "esES" => "Primigenio", "esMX" => "Primitiva", "frFR" => "Origine", "itIT" => "Primevo", "koKR" => "태고의 대지", "plPL" => "Prastary", "ptBR" => "Primitivo", "ruRU" => "Первозданная природа", "zhCN" => "原始荒地", "zhTW" => "遠古之地"),
-		"0d5ca2cfdfdec15c9343d2a41f5fb6246b6dbcc4b738924c361747af1d34d2ce" => array("name" => "Quicksand", "type" => SC2_DEPMAP, "deDE" => "Treibsand", "enUS" => "Quicksand", "" => "Quicksand", "esES" => "Arenas movedizas", "esMX" => "Arena movediza", "frFR" => "Sables mouvants", "itIT" => "Sabbie mobili", "koKR" => "모래늪", "plPL" => "Ruchome piaski", "ptBR" => "Areia Movediça", "ruRU" => "Зыбучие пески", "zhCN" => "流沙之地", "zhTW" => "流沙"),
-		"ca6d7bf4f761ad3be1ce2548136ff4485e711bb166fc867ad6570026aa09baec" => array("name" => "Red Stone Gulch", "type" => SC2_DEPMAP, "deDE" => "Redstone-Schlucht", "enUS" => "Red Stone Gulch", "" => "Red Stone Gulch", "esES" => "Garganta de Redstone", "esMX" => "Quebrada de Roquígnea", "frFR" => "Gorge de Pierre rouge", "itIT" => "Baratro di Redstone", "koKR" => "레드스톤 협곡", "plPL" => "Jar na Czerwonej Skale", "ptBR" => "Desfiladeiro em Pedra Vermelha", "ruRU" => "Ущелье Редстоуна", "zhCN" => "褐石峡谷", "zhTW" => "紅石峽谷"),
-		"32e63267ec70860333cce4b11b2656908668bb8821e5faa2f7d429b341133632" => array("name" => "Sacred Ground", "type" => SC2_DEPMAP, "deDE" => "Heiliger Boden", "enUS" => "Sacred Ground", "" => "Sacred Ground", "esES" => "Terreno sagrado", "esMX" => "Tierra sagrada", "frFR" => "Terre sacrée", "itIT" => "Suolo sacro", "koKR" => "성지", "plPL" => "Święta ziemia", "ptBR" => "Solo sagrado", "ruRU" => "Священные земли", "zhCN" => "圣地", "zhTW" => "聖地"),
-		"509a19f1cfc38ed0c34a71ec472b1c27aaa55d4fe02a35bbbc3c1e41ef05b006" => array("name" => "Sand Canyon", "type" => SC2_DEPMAP, "deDE" => "Sandcanyon", "enUS" => "Sand Canyon", "" => "Sand Canyon", "esES" => "Cañón arenoso", "esMX" => "Cañón arenoso", "frFR" => "Canyon des sables", "itIT" => "Canyon delle sabbie", "koKR" => "모래 협곡", "plPL" => "Piaszczysty kanion", "ptBR" => "Cânion de areia", "ruRU" => "Песчаный каньон", "zhCN" => "尘沙峡谷", "zhTW" => "塵沙峽谷"),
-		"f88dfc7b28d920295984c0190a4eb4d33c16ef78acf82aaa70deedcc2e751de1" => array("name" => "Scorched Haven", "type" => SC2_DEPMAP, "deDE" => "Verbranntes Refugium", "enUS" => "Scorched Haven", "" => "Scorched Haven", "esES" => "Refugio calcinado", "esMX" => "Sanctuaris incinerado", "frFR" => "Havre calciné", "itIT" => "Terra bruciata", "koKR" => "잿더미 안식처", "plPL" => "Spopielony raj", "ptBR" => "Abrigus Queimado", "ruRU" => "Выжженная Гавань", "zhCN" => "焦灼之港", "zhTW" => "海文焦土"),
-		"3e066c551a8692fef70f653a09d68959092ea2a3c8cc87e83b34602964c3b97d" => array("name" => "Scrap Station", "type" => SC2_DEPMAP, "deDE" => "Schrottplatz", "enUS" => "Scrap Station", "" => "Scrap Station", "esES" => "Desguace", "esMX" => "Estación de chatarra", "frFR" => "Station de recyclage", "itIT" => "Stazione di rottamazione", "koKR" => "고철 처리장", "plPL" => "Stacja złomu", "ptBR" => "Estação de sucata", "ruRU" => "Мусоросборник", "zhCN" => "废品站", "zhTW" => "廢料處理站"),
-		"c890239f06d85410e2709991c854965529b811ec54638d8103f3ef3d93d073e1" => array("name" => "Shakuras Plateau", "type" => SC2_DEPMAP, "deDE" => "Shakuras-Plateau", "enUS" => "Shakuras Plateau", "" => "Shakuras Plateau", "esES" => "Meseta de Shakuras", "esMX" => "Meseta de Shakuras", "frFR" => "Plateau de Shakuras", "itIT" => "Altopiano di Shakuras", "koKR" => "샤쿠라스 고원", "plPL" => "Płaskowyż Shakuras", "ptBR" => "Platô de Shakuras", "ruRU" => "Плато Шакураса", "zhCN" => "萨古拉斯高地", "zhTW" => "夏庫拉斯高原"),
-		"0ab117440ef3ddc71dc180c73a860c23bf43e118e22c54114bc29b3bd0c038cc" => array("name" => "Steppes of War", "type" => SC2_DEPMAP, "deDE" => "Felder des Krieges", "enUS" => "Steppes of War", "" => "Steppes of War", "esES" => "Estepas de guerra", "esMX" => "Estepas de guerra", "frFR" => "Steppes de guerre", "itIT" => "Steppe di guerra", "koKR" => "전쟁 초원", "plPL" => "Wojenne stepy", "ptBR" => "Estepes da Guerra", "ruRU" => "Степи Войны", "zhCN" => "征战平原", "zhTW" => "戰爭平原"),
-		"916959be930e8a42e31fe085a6c47aed2cc0f88f261d82b5fa511dde7d877f3b" => array("name" => "Steppes of War", "type" => SC2_DEPMAP, "deDE" => "Felder des Krieges", "enUS" => "Steppes of War", "" => "Steppes of War", "esES" => "Estepas de guerra", "esMX" => "Estepas de guerra", "frFR" => "Steppes de guerre", "itIT" => "Steppe di guerra", "koKR" => "전쟁 초원", "plPL" => "Wojenne stepy", "ptBR" => "Estepes da Guerra", "ruRU" => "Степи Войны", "zhCN" => "征战平原", "zhTW" => "戰爭草原"),
-		"8a5123168202e152a93e46446151ceba237d47310b766273836f279f71e0f133" => array("name" => "Tarsonis Assault", "type" => SC2_DEPMAP, "deDE" => "Angriff auf Tarsonis", "enUS" => "Tarsonis Assault", "" => "Tarsonis Assault", "esES" => "Asalto a Tarsonis", "esMX" => "Asalto en Tarsonis", "frFR" => "Attaque sur tarsonis", "itIT" => "Assalto a Tarsonis", "koKR" => "타소니스 공습", "plPL" => "Atak na Tarsonis", "ptBR" => "Ataque em Tarsonis", "ruRU" => "Штурм Тарсониса", "zhCN" => "塔桑尼斯之战", "zhTW" => "塔桑尼斯突擊戰"),
-		"b6a71bd3eff8399dd6e374d3639b8950ea74763cc15b90fff197a0cad5b2a849" => array("name" => "Tectonic Rift", "type" => SC2_DEPMAP, "deDE" => "Tektonischer Riss", "enUS" => "Tectonic Rift", "" => "Tectonic Rift", "esES" => "Falla tectónica", "esMX" => "Fisura tecnónica", "frFR" => "Faille tectonique", "itIT" => "Faglia tettonica", "koKR" => "지각 균열", "plPL" => "Szczelina tektoniczna", "ptBR" => "Fenda tectônica", "ruRU" => "Тектонический разлом", "zhCN" => "裂谷", "zhTW" => "地殼裂痕"),
-		"f9039f994680d63928a549ec2082fd8429b0aa454c6f3346b2330c7dae47dee0" => array("name" => "Tempest", "type" => SC2_DEPMAP, "deDE" => "Tempest", "enUS" => "Tempest", "" => "Tempest", "esES" => "Tempestad", "esMX" => "Tempestad", "frFR" => "Tempête", "itIT" => "Tempesta", "koKR" => "폭풍우 전장", "plPL" => "Zamieć", "ptBR" => "Tempestade", "ruRU" => "Буря", "zhCN" => "风潮山地", "zhTW" => "大風暴"),
-		"a286bef07928f4c9c12d9ff96c7e32a7580f1691cd84b3d5db3bb9487621860d" => array("name" => "Terminus", "type" => SC2_DEPMAP, "deDE" => "Terminus", "enUS" => "Terminus", "" => "Terminus", "esES" => "Terminus", "esMX" => "Términus", "frFR" => "Terminus", "itIT" => "Terminus", "koKR" => "터미누스", "plPL" => "Terminus", "ptBR" => "Terminus", "ruRU" => "Терминий", "zhCN" => "集散平台", "zhTW" => "太空總站"),
-		"d54fab65d8ba0a8c867e48cfab365d381b7f22e5db4f0853b73432227b6ba271" => array("name" => "The Bio Lab", "type" => SC2_DEPMAP, "deDE" => "Das Biolabor", "enUS" => "The Bio Lab", "" => "The Bio Lab", "esES" => "Laboratorio biológico", "esMX" => "El biolaboratorio", "frFR" => "Laboratoire biologique", "itIT" => "Laboratorio biologico", "koKR" => "생체 실험실", "plPL" => "Laboratorium biologiczne", "ptBR" => "O laboratório biológico", "ruRU" => "Биолаборатория", "zhCN" => "生化实验区", "zhTW" => "生物實驗室"),
-		"f720500a2306f36330980d951ec016eaec6c33f0e7d7816323f3e1b111bde0da" => array("name" => "Toxic Slums", "type" => SC2_DEPMAP, "deDE" => "Giftige Slums", "enUS" => "Toxic Slums", "" => "Toxic Slums", "esES" => "Suburbios tóxicos", "esMX" => "Tugurios tóxicos", "frFR" => "Bas-fonds toxiques", "itIT" => "Bassifondi tossici", "koKR" => "독지대", "plPL" => "Toksyczne slumsy", "ptBR" => "Favelas tóxicas", "ruRU" => "Токсичные трущобы", "zhCN" => "毒壤贫民区", "zhTW" => "毒窟"),
-		"f99ea81406e87393885e793ec89aa3078154792429db49f948c7f52bfd636bd8" => array("name" => "Twilight Fortress", "type" => SC2_DEPMAP, "deDE" => "Zwielichtfestung", "enUS" => "Twilight Fortress", "" => "Twilight Fortress", "esES" => "Fortaleza crepuscular", "esMX" => "Fortaleza crepuscular", "frFR" => "Forteresse du crépuscule", "itIT" => "Fortezza del Crepuscolo", "koKR" => "황혼 요새", "plPL" => "Mroczna forteca", "ptBR" => "Fortaleza do Crepúsculo", "ruRU" => "Сумеречная крепость", "zhCN" => "光影要塞", "zhTW" => "暮光堡壘"),
-		"47604d075cbc4ff7eb8a716192e47bc4ece549ec1d280d79de15a06c81357cc0" => array("name" => "Typhon", "type" => SC2_DEPMAP, "deDE" => "Typhon", "enUS" => "Typhon", "" => "Typhon", "esES" => "Typhon", "esMX" => "Tifón", "frFR" => "Typhon", "itIT" => "Tifone", "koKR" => "티폰", "plPL" => "Typhon", "ptBR" => "Tífon", "ruRU" => "Тифон", "zhCN" => "提丰", "zhTW" => "鈦風"),
-		"9c512517d50954090136bd220bf7e093a39b4d2dd0c46d9e5509e03cd462f93e" => array("name" => "Ulaan Deeps", "type" => SC2_DEPMAP, "deDE" => "Die Tiefen von Ulaan", "enUS" => "Ulaan Deeps", "" => "Ulaan Deeps", "esES" => "Profundidades de Ulaan", "esMX" => "Honduras de Ulaan", "frFR" => "Profondeurs d'Ulaan", "itIT" => "Abissi di Ulaan", "koKR" => "울란의 심연", "plPL" => "Otchłanie Ulaan", "ptBR" => "Profundezas de Ulaan", "ruRU" => "Улаанские глубины", "zhCN" => "乌兰深渊", "zhTW" => "烏蘭深穴"),
-		"badc898529ca88e0ba055d4563e8739304bc9811a6841fb313456a3b164cfea9" => array("name" => "War Zone", "type" => SC2_DEPMAP, "deDE" => "Kriegsgebiet", "enUS" => "War Zone", "" => "War Zone", "esES" => "Zona de guerra", "esMX" => "Zona de guerra", "frFR" => "Zone de guerre", "itIT" => "Zona di guerra", "koKR" => "전쟁 지역", "plPL" => "Strefa wojenna", "ptBR" => "Zona de guerra", "ruRU" => "Зона конфликта", "zhCN" => "战区", "zhTW" => "戰爭特區"),
-		"666ebf589538e74ccd6f2e21dba2a80c03eff5c611e6d56ef19302c071aaa932" => array("name" => "Worldship", "type" => SC2_DEPMAP, "deDE" => "Das Weltenschiff", "enUS" => "Worldship", "" => "Worldship", "esES" => "Nave planetaria", "esMX" => "Navemundo", "frFR" => "Vaisseau-monde", "itIT" => "Nave dei mondi", "koKR" => "세계함", "plPL" => "Statek-świat", "ptBR" => "Nave Mundo", "ruRU" => "Корабль зел-нага", "zhCN" => "世界舰船", "zhTW" => "宇宙艦"),
-		"c89809141f63d58d05866ac8dad481a68cce8276264135d6a59b2c12abbea354" => array("name" => "Xel'Naga Caverns", "type" => SC2_DEPMAP, "deDE" => "Xel'Naga-Höhlen", "enUS" => "Xel'Naga Caverns", "" => "Xel'Naga Caverns", "esES" => "Cavernas Xel'Naga", "esMX" => "Cavernas Xel'Naga", "frFR" => "Cavernes Xel'Naga", "itIT" => "Caverne xel'naga", "koKR" => "젤나가 동굴", "plPL" => "Jaskinie xel'naga", "ptBR" => "Cavernas Xel'Naga", "ruRU" => "Пещеры зел-нага", "zhCN" => "萨尔纳加秘窟", "zhTW" => "薩爾納加洞穴"),
-		"fe69ceff7a3a7814260e42535303de14e6fcd96869acd345ebd7bcc451009d34" => array("name" => "Xel'Naga Caverns", "type" => SC2_DEPMAP, "deDE" => "Xel'Naga-Höhlen", "enUS" => "Xel'Naga Caverns", "" => "Xel'Naga Caverns", "esES" => "Cavernas Xel'Naga", "esMX" => "Cavernas Xel'Naga", "frFR" => "Cavernes Xel'Naga", "itIT" => "Caverne xel'naga", "koKR" => "젤나가 동굴", "plPL" => "Jaskinie xel'naga", "ptBR" => "Cavernas Xel'Naga", "ruRU" => "Пещеры зел-нага", "zhCN" => "萨尔纳加秘窟", "zhTW" => "薩爾納加洞穴"),
-		"73fe8f07d078da03618d9922f200dc720e33469bd8ec7302acd726c47af97357" => array("deDE" => "Szenarien", "enUS" => "Challenges", "" => "Challenges", "esES" => "Retos", "esMX" => "Desafíos", "frFR" => "Défis", "itIT" => "Sfide", "koKR" => "도전", "plPL" => "Wyzwania", "ptBR" => "Desafios", "ruRU" => "Испытания", "zhCN" => "挑战", "zhTW" => "挑戰"),
-		"be9c03af5d46e3fa236fa58e781a134e842289773390b94ada58d73c7f458a9d" => array("deDE" => "Felder des Krieges", "enUS" => "Steppes of War", "" => "Steppes of War", "esES" => "Estepas de guerra", "esMX" => "Estepas de guerra", "frFR" => "Steppes de guerre", "itIT" => "Steppe di guerra", "koKR" => "전쟁 초원", "plPL" => "Wojenne stepy", "ptBR" => "Estepes da Guerra", "ruRU" => "Степи Войны", "zhCN" => "征战平原", "zhTW" => "戰爭平原"),
-		"cadd112e2aca3ed743863b669bb869ce86cdce3ad6171087b8182abe4ac8e9cd" => array("deDE" => "Metalopolis", "enUS" => "Metalopolis", "" => "Metalopolis", "esES" => "Metalópolis", "esMX" => "Metalópolis", "frFR" => "Métalopolis", "itIT" => "Metallopoli", "koKR" => "금속도시", "plPL" => "Metalopolis", "ptBR" => "Metalópolis", "ruRU" => "Металополис", "zhCN" => "钢铁都城", "zhTW" => "大都會"),
-		"dabe7260addb80d3ab342575311e748ef27226f4ddcbca233cec1c51a12b7fbb" => array("deDE" => "Tal von Agria", "enUS" => "Agria Valley", "" => "Agria Valley", "esES" => "Valle de Agria", "esMX" => "Valle de Agria", "frFR" => "Vallée d'Agria", "itIT" => "Valle di Agria", "koKR" => "아그리아 골짜기", "plPL" => "Dolina Agrii", "ptBR" => "Vale de Agria", "ruRU" => "Долина Агрии", "zhCN" => "阿格瑞亚山谷", "zhTW" => "阿格利亞山谷"),
-		"e6c0c74690e4643e7acd1c7b4c64b8698b667035862dda9dca27ddacb9f494bf" => array("deDE" => "Szenarien", "enUS" => "Challenges", "" => "Challenges", "esES" => "Retos", "esMX" => "Desafíos", "frFR" => "Défis", "itIT" => "Sfide", "koKR" => "도전", "plPL" => "Wyzwania", "ptBR" => "Desafios", "ruRU" => "Испытания", "zhCN" => "挑战", "zhTW" => "挑戰"),
-		"fde384b702b1eb2f59f5c816506ee954238fe6aeec4e370085b1dcf622ec254b" => array("deDE" => "Schrottplatz", "enUS" => "Scrap Station", "" => "Scrap Station", "esES" => "Desguace", "esMX" => "Estación de chatarra", "frFR" => "Station de recyclage", "itIT" => "Stazione di rottamazione", "koKR" => "고철 처리장", "plPL" => "Stacja złomu", "ptBR" => "Estação de sucata", "ruRU" => "Мусоросборник", "zhCN" => "废品站", "zhTW" => "廢料處理站"),
+	
+	public static $depHashes = array (
+		"52cf2c611bd722eb1ad0eefa6d7951f7dbe0692fee5cb3aa5e814b3da3dd1727" => "Abyss",
+		"d0482679c925f8c5dd6228f2411c995e0fd2768015eb3dbc777584922731d349" => "Abyss",
+		"ee129ab013dd3fe080fc437d19b380b868ab3e302c35ae526ea6f15af6f6b078" => "Agria Valley",
+		"dabe7260addb80d3ab342575311e748ef27226f4ddcbca233cec1c51a12b7fbb" => "Agria Valley",
+		"4fa2764424a0d4b06c3c3f160df5ce17c382cec712d1a0b9aec104ca2236eff3" => "Arakan Citadel",
+		"95b954f97b089148ea55828e32d1aff7d7b67cdafd86c56802e552baf2ca5a46" => "Arakan Citadel",
+		"c22955a9e3b97f3511d1d3950859ce9d2855a338fb5ab931eb977c7188255bd6" => "Arid Wastes",
+		"7abaae864c20201d74f657a6f7406106f113c8e6b52b078ecafdaaf290a761b6" => "Arid Wastes",
+		"63d915ad5ba4971d6c890f781890ba9add450eb70d2209dad3665c24dbda7eff" => "Arid Wastes",
+		"e33a5890ad2eedeaa56ce17356d1e618ad4ff99f50e76a34e7772e087802e8ea" => "Blistering Sands",
+		"7dbf6b641bc5fce7abdaa352c66a9ba4e942d5bdf48a67e33cbff0ff32b3d47c" => "Burial Grounds",
+		"87aa39eec31f5b4ca101da297fa56ec06751e8ea6d24105d72425f106bb59b49" => "Burning Tide",
+		"e6c0c74690e4643e7acd1c7b4c64b8698b667035862dda9dca27ddacb9f494bf" => "Challenges",
+		"73fe8f07d078da03618d9922f200dc720e33469bd8ec7302acd726c47af97357" => "Challenges",		
+		"60d74c966e691599876ea18b55db99b36f2b62b85c05ff4e69551bb10bc0fd0b" => "Colony 426",
+		"b1da6c1695b28a0189e0224e0c22e6a189294df360a7fda8cc46a61aa4170ae3" => "Colony 426",
+		"824d92a85f50bc4924966d0c0ad8733ae581020cc0409c7ec42c76bc16fcaa26" => "Crossfire",
+		"b68951b568e7255f442d7285a178870494b9b3e6023b831770a7558400b4cf5e" => "Debris Field",
+		"5dc1d6dde914c02b8d64adf8f51cb1f811be7e89db53c6c0ded8c6e057202bad" => "Delta Quadrant",
+		"e22873b1c653920390a0a9792afa05dae7ef6b425285023d0aed40ba08b316d9" => "Delta Quadrant",
+		"f34aa7113bb3c1a7892bfa0dd60de7f34e619434ebefe45412164277abed5bf3" => "Desert Oasis",
+		"2b3a003426de842f63fb97f2f68e6b71a6177d98ef9a945aba877f6cfb2c0a89" => "Dig Site",
+		"d603d8b766deaab29c40cc8fba443e7d098a8541ed4fdc0620869d557612081b" => "Dig Site",
+		"8fe944d0879bf22c6fc7a6b3f36ea946e43d6636448d6a08b7734d6822bc425d" => "Dirt Side",
+		"505b560e0d2739a919384766e2f331fd42483a347c92111549c442e7e1cd738d" => "Discord IV",
+		"58fca7d89dc576b889ae1f7ab194f425545fbe8c9dac2c3d739fcb1cd2c2f324" => "Elysium",
+		"9cc56072526d6d7510b7103917fb4d2db2c68fa693602a99522c573dbe5ada92" => "Elysium",
+		"da2512882b815f774b0a7469e0d52945c486599406271e10d8cb7193e77c64db" => "Extinction",
+		"3719356530659b92d3ee95f0f2d723587131be9227dc1be8064d2fdd65c42919" => "Extinction",
+		"c845f8e0b2084352047ed0ea2d8701321e3fa908b4d67b5002d04656b45b4a45" => "Forbidden Planet",
+		"36422e713b8b825a7aa8c4f27301145400bacf76fd5ddd5caedde411c935ea0d" => "Frontier",
+		"e26a0feb29db90af4abca9236a780c16eee02cbcc9929beca9398b60219f0e15" => "Frontier",
+		"4c26d855a635fae81efa1bbebc39f52a3a0703ac966698288fe526cdaad7f35d" => "High Ground",
+		"c687f2019d8727efd7643baaf374a6cfd17426d9fcadbf3c7e68add8fabfc0e6" => "High Ground",
+		"1d961d930214c7de51b903db4c2e6796aee154531fe344686ce54803107a168c" => "High Orbit",
+		"cbd1f11c2aab825f6570d51f4493390ac06ff565a06a69864c318f88129bccee" => "High Orbit",
+		"395fb54902a9ae84698940dbf414a91520b3c27322515ff3e7e600b548ac81b7" => "Incineration Zone",
+		"d3c721754d1534500142950e3943a0bd631f54df56593096c7740389f01fa816" => "Jungle Basin",
+		"a6633d28c194b94e0dfbb163bcf6e3b307d4be0ac45d0f2c469b52cc17923c05" => "Jungle Basin",
+		"a49177ada7f0f1848761319edd889f31a925b292a37b5d2622628a5dfa267f43" => "Junk Yard",
+		"cc82ae2472c370fd10b7fd553a89369b7417e8a47cfa92bfa965d2a8235dd5cf" => "Junk Yard",
+		"c7667c45f7cc6e3c2c453feee632b34dae9670f4a269bd373872f70cabd274eb" => "Kulas Ravine",
+		"99e71fcbffff967b8f008d87e297c78ab913d0d129ca354ec8174b57f398ce68" => "Kulas Ravine",
+		"445dca1ae32b25437023c0ea2497edda56a9f87b42bccbc0125054962c6bac8a" => "Kulas Ravine",
+		"5e43b6129af26498d8c84a230936a2eb350e6f0ba54791cd41d5a22b6f728556" => "Lava Flow",
+		"094049180812d81a8315152a1c86571ee59989197f05da673506bddc13c1536b" => "Lava Flow",
+		"cfa196a601daaadd3d29a16cd1b2cf0a2917ad8d959ca9813ca12ce123782760" => "Lost Temple",
+		"58558f452af5ccf36c2eb1a6f55f510b4779b21fb0c316cceca38a69c5ffb3d1" => "Lost Temple",
+		"711dd8749cd5f04a06d1cf2f5f7b045febf9a655c382d09424620752594657d1" => "Megaton",
+		"c10c18ee4ed6c9d947049eb36bab3ea92b9d63eb76a858e8a7c55009887f3ff7" => "Megaton",
+		"71d1c6773ad36035333cad61ceac0789828e3b49690fad95efb1475ca3b6f1d8" => "Metalopolis",
+		"cadd112e2aca3ed743863b669bb869ce86cdce3ad6171087b8182abe4ac8e9cd" => "Metalopolis",
+		"5f1c8e57d5b1f33dd7a116fad1157848e890ee07de12181488fb77506b96279d" => "Monlyth Ridge",
+		"dec3f2d368017bb2deb6e168a517325dd2ee6ff6e5e8f159724836987ee170bf" => "Monlyth Ridge",
+		"ce28ed769b1e73267c94256fafec4c5569d346e325d06fdcb6d8339d4d3c8d5a" => "Monsoon",
+		"7478eedd1db831d9549ce9e6480aaebe6f64b507417f33ff5d26dc2b55c2a2e8" => "Monsoon",
+		"3e600ff2917bae8e5734e56808958ca59978f3868c06272761a5194b0c58ad32" => "New Antioch",
+		"5c19269e878b4b9fbb37131eea80c3b3c828cc71f48c5d87b14e05585104a6d6" => "Nightmare",
+		"638cbab4b1d5db1025c6edd07d9316f39731103fffcefaf6f0bd310cd8cc8002" => "Novice Blistering Sands",
+		"f57d57fff5c83846f4c29d54afe14b32c29914f384f31eae76cba67c772aac6c" => "Novice Desert Oasis",
+		"164f5ac1361b3cd2d0df13d15bd8871b0f5bd56de5a295e1a0a0fc38c33815e6" => "Novice Desert Oasis",
+		"1fc47bb57ac40ba7187ef8df88574208be0f5ab33864beba5a42ddb78ecd6482" => "Novice Discord IV",
+		"2d6f32bd6489cafc593d932d71d8975c3f1d5bf33618f66d39a3ffa5138965d1" => "Novice Kulas Ravine",
+		"7e76c859b40163a3a03a767a347a9f3ee9d8088b66dde09103701f660d00a70d" => "Novice Kulas Ravine",
+		"bb1b7483a7a8424f9e3463198a2e9830a8bae4cb05fc2be5eb8f7398a3f7feb9" => "Novice Metalopolis",
+		"614bb763e37ee9e422d4747c4e1979a32a14e7013db02b386d5ef9d5c48108e5" => "Novice Monlyth Ridge",
+		"0c09c2ab0f2243e3b0cef68a285e6ab83845f51e51d9cefb8acba2030f69fd0b" => "Novice Steppes of War",
+		"9789e9b43d0e39eed624185d478de50f69a91e35aabaf9459cbd6098a9bf84be" => "Novice Steppes of War",
+		"9a037ed0bb5bb0a5cd5f62961d89f319a6cef92fa0765645f1171cafca6a2012" => "Novice Terminus",
+		"50f1dec30dbea330227e19d986f60b7cfeedd96bb12766ca473db4cf77a1f044" => "Novice Twilight Fortress",
+		"c42491e72294796068e659e647502fb5c84f911c54e138e78edfb2b9edf8e01b" => "Novice Twilight Fortress",
+		"3ab8aa07be82e09220e5bf6c0bb433907d84f5c31c8a18d97a776cd70681a291" => "Outpost",
+		"002e8a38624400c054a5617966c7343b88d6b3a880b85ffeaa14b58fb1ef3d03" => "Outpost",
+		"c685252a915588b6143e77450995b9ccf91f1260030c04d823a9d8deac9a5e7a" => "Primeval",
+		"0d5ca2cfdfdec15c9343d2a41f5fb6246b6dbcc4b738924c361747af1d34d2ce" => "Quicksand",
+		"cc6ed451285ea362e71b8749c108d8f20aa47dae001b8a17e29a8e3de0b36e31" => "Quicksand",
+		"ca6d7bf4f761ad3be1ce2548136ff4485e711bb166fc867ad6570026aa09baec" => "Red Stone Gulch",
+		"6c35257bc94cb735d1e5da649661e7eb7f9007e57e9b696364a4f65998f02635" => "Red Stone Gulch",
+		"32e63267ec70860333cce4b11b2656908668bb8821e5faa2f7d429b341133632" => "Sacred Ground",
+		"509a19f1cfc38ed0c34a71ec472b1c27aaa55d4fe02a35bbbc3c1e41ef05b006" => "Sand Canyon",
+		"c8f51b300a4c67e6f7f74f1414492df7494e4f39e40d81909b250f6ac9b30811" => "Sand Canyon",
+		"f88dfc7b28d920295984c0190a4eb4d33c16ef78acf82aaa70deedcc2e751de1" => "Scorched Haven",
+		"98455021bf9badf9a55ab57edadf981ad264e783a322908d736f3e2989d694ac" => "Scorched Haven",
+		"3e066c551a8692fef70f653a09d68959092ea2a3c8cc87e83b34602964c3b97d" => "Scrap Station",
+		"fde384b702b1eb2f59f5c816506ee954238fe6aeec4e370085b1dcf622ec254b" => "Scrap Station",
+		"c890239f06d85410e2709991c854965529b811ec54638d8103f3ef3d93d073e1" => "Shakuras Plateau",
+		"147b0b1af57211e9dadbe715baff82e1393b8994dc7e0abce6d66401fbe3c673" => "Shakuras Plateau",
+		"0ab117440ef3ddc71dc180c73a860c23bf43e118e22c54114bc29b3bd0c038cc" => "Steppes of War",
+		"916959be930e8a42e31fe085a6c47aed2cc0f88f261d82b5fa511dde7d877f3b" => "Steppes of War",
+		"be9c03af5d46e3fa236fa58e781a134e842289773390b94ada58d73c7f458a9d" => "Steppes of War",
+		"8a5123168202e152a93e46446151ceba237d47310b766273836f279f71e0f133" => "Tarsonis Assault",
+        "404c0b66d28ee67c93de133ca3e6043293def1413feb0b4304fbf655b268db02" => "Tarsonis Assault",
+		"b6a71bd3eff8399dd6e374d3639b8950ea74763cc15b90fff197a0cad5b2a849" => "Tectonic Rift",
+		"5326319f9cdc765b9ea0b87cda6902b58284014efc29975a61f98ed7f1c1b18e" => "Tectonic Rift",
+		"f9039f994680d63928a549ec2082fd8429b0aa454c6f3346b2330c7dae47dee0" => "Tempest",
+		"ab3adc76a9e49f6c6603292342b58039158bfeab412ee015c142bd610c5b884c" => "Tempest",
+		"a286bef07928f4c9c12d9ff96c7e32a7580f1691cd84b3d5db3bb9487621860d" => "Terminus",
+		"d54fab65d8ba0a8c867e48cfab365d381b7f22e5db4f0853b73432227b6ba271" => "The Bio Lab",
+		"4fb5be5cf973fda2e16b684ef2d2452df8e51a76308543b6ca2a495912a87836" => "The Bio Lab",
+		"f720500a2306f36330980d951ec016eaec6c33f0e7d7816323f3e1b111bde0da" => "Toxic Slums",
+		"32d145b82695942fb39203c0369d8b0af321fcdb83771b9e8f4b05c902bfe1f9" => "Toxic Slums",
+		"f99ea81406e87393885e793ec89aa3078154792429db49f948c7f52bfd636bd8" => "Twilight Fortress",
+		"9ab0aa558962c30485f250431f2edb09bc7ff23b6746252549f51bbc63e404a1" => "Twilight Fortress",
+		"47604d075cbc4ff7eb8a716192e47bc4ece549ec1d280d79de15a06c81357cc0" => "Typhon",
+		"320cd118d6c04b15e07d14a7c8dea3ae8cf72aa5637b47c68ad7ee7d13b8302a" => "Typhon",
+		"9c512517d50954090136bd220bf7e093a39b4d2dd0c46d9e5509e03cd462f93e" => "Ulaan Deeps",
+		"e3fecbed67d6fda6edb5a9297a33e2dc6ccb67c866cee25c8ff5ed749adaa0cf" => "Ulaan Deeps",
+		"badc898529ca88e0ba055d4563e8739304bc9811a6841fb313456a3b164cfea9" => "War Zone",
+		"eb7332c0e7347c589f54234c98606f9b3a94638199985a3f3f1fb5c7cb4a64b8" => "War Zone",
+		"666ebf589538e74ccd6f2e21dba2a80c03eff5c611e6d56ef19302c071aaa932" => "Worldship",
+		"c89809141f63d58d05866ac8dad481a68cce8276264135d6a59b2c12abbea354" => "Xel'Naga Caverns",
+		"fe69ceff7a3a7814260e42535303de14e6fcd96869acd345ebd7bcc451009d34" => "Xel'Naga Caverns"
 	);
+	
+	
+	public static $mapLocales = array(
+		"Abyss" => array("deDE" => "Abgrund", "enUS" => "Abyss", "" => "Abyss", "esES" => "Abismo", "esMX" => "Abismo", "frFR" => "Abysse", "itIT" => "Abisso", "koKR" => "심연", "plPL" => "Otchłań", "ptBR" => "Abismo", "ruRU" => "Бездна", "zhCN" => "深渊", "zhTW" => "無盡深淵"),
+		"Agria Valley" => array("deDE" => "Tal von Agria", "enUS" => "Agria Valley", "" => "Agria Valley", "esES" => "Valle de Agria", "esMX" => "Valle de Agria", "frFR" => "Vallée d'Agria", "itIT" => "Valle di Agria", "koKR" => "아그리아 골짜기", "plPL" => "Dolina Agrii", "ptBR" => "Vale de Agria", "ruRU" => "Долина Агрии", "zhCN" => "阿格瑞亚山谷", "zhTW" => "阿格利亞山谷"),
+		"Arakan Citadel" => array("deDE" => "Zitadelle von Arakan", "enUS" => "Arakan Citadel", "" => "Arakan Citadel", "esES" => "Ciudadela de Arakan", "esMX" => "Ciudadela arakana", "frFR" => "Citadelle d'Arakan", "itIT" => "Cittadella di Arakan", "koKR" => "아라칸 요새", "plPL" => "Arakańska cytadela", "ptBR" => "Cidadela de Arakan", "ruRU" => "Цитадель Аракана", "zhCN" => "阿拉坎城堡", "zhTW" => "阿洛坎要塞"),
+		"Arid Wastes" => array("deDE" => "Dürres Ödland", "enUS" => "Arid Wastes", "" => "Arid Wastes", "esES" => "Baldíos áridos", "esMX" => "", "frFR" => "", "itIT" => "Distese aride", "koKR" => "아리드 황무지", "plPL" => "", "ptBR" => "", "ruRU" => "Аридные пустоши", "zhCN" => "旱荒之地", "zhTW" => "貧地廢料"),
+		"Blistering Sands" => array("deDE" => "Glühende Sande", "enUS" => "Blistering Sands", "" => "Blistering Sands", "esES" => "Arenas abrasadoras", "esMX" => "Arenas abrasadoras", "frFR" => "Désert ardent", "itIT" => "Sabbie ardenti", "koKR" => "폭염 사막", "plPL" => "Palące piaski", "ptBR" => "Dunas Escaldantes", "ruRU" => "Бурлящие пески", "zhCN" => "热砂荒野", "zhTW" => "極熱沙漠"),
+		"Burial Grounds" => array("deDE" => "Begräbnisstätte", "enUS" => "Burial Grounds", "" => "Burial Grounds", "esES" => "Camposanto", "esMX" => "Cementerios", "frFR" => "Nécropole", "itIT" => "Cimitero", "koKR" => "묘지", "plPL" => "Cmentarzysko", "ptBR" => "Cemitério", "ruRU" => "Могильные холмы", "zhCN" => "湮埋之地", "zhTW" => "死亡墓園"),
+		"Challenges" => array("deDE" => "Szenarien", "enUS" => "Challenges", "" => "Challenges", "esES" => "Retos", "esMX" => "Desafíos", "frFR" => "Défis", "itIT" => "Sfide", "koKR" => "도전", "plPL" => "Wyzwania", "ptBR" => "Desafios", "ruRU" => "Испытания", "zhCN" => "挑战", "zhTW" => "挑戰"),
+		"Colony 426" => array("deDE" => "Kolonie 426", "enUS" => "Colony 426", "" => "Colony 426", "esES" => "Colonia 426", "esMX" => "Colonia 426", "frFR" => "Colonie 426", "itIT" => "Colonia 426", "koKR" => "426 거주지", "plPL" => "Kolonia 426", "ptBR" => "Colônia 426", "ruRU" => "Колония 426", "zhCN" => "移民地426", "zhTW" => "426區殖民地"),
+		"Crossfire" => array("deDE" => "Kreuzfeuer", "enUS" => "Crossfire", "" => "Crossfire", "esES" => "Fuego cruzado", "esMX" => "Fuego cruzado", "frFR" => "Tirs croisés", "itIT" => "Fuoco incrociato", "koKR" => "십자포화", "plPL" => "Krzyżowy ogień", "ptBR" => "Fogo cruzado", "ruRU" => "Перекрестный огонь", "zhCN" => "交叉火力", "zhTW" => "交叉火力"),
+		"Debris Field" => array("deDE" => "Trümmerfeld", "enUS" => "Debris Field", "" => "Debris Field", "esES" => "Campo de escombros", "esMX" => "Campo de restos", "frFR" => "Débris spatiaux", "itIT" => "Campo di detriti", "koKR" => "조각난 전장", "plPL" => "Gruzowisko", "ptBR" => "Campo de escombros", "ruRU" => "Мусорный завал", "zhCN" => "太空岛群", "zhTW" => "破碎群島"),
+		"Delta Quadrant" => array("deDE" => "Delta-Quadrant", "enUS" => "Delta Quadrant", "" => "Delta Quadrant", "esES" => "Cuadrante Delta", "esMX" => "Cuadrante Delta", "frFR" => "Quadrant Delta", "itIT" => "Quadrante Delta", "koKR" => "델타 사분면", "plPL" => "Kwadrant Delta", "ptBR" => "Quadrante Delta", "ruRU" => "Квадрант «Дельта»", "zhCN" => "第四战区", "zhTW" => "第四象限"),
+		"Desert Oasis" => array("deDE" => "Wüstenoase", "enUS" => "Desert Oasis", "" => "Desert Oasis", "esES" => "Oasis del desierto", "esMX" => "Oasis del desierto", "frFR" => "Oasis du désert", "itIT" => "Oasi desertica", "koKR" => "사막 오아시스", "plPL" => "Pustynna oaza", "ptBR" => "Oásis do deserto", "ruRU" => "Оазис", "zhCN" => "荒野绿洲", "zhTW" => "沙漠綠洲"),
+		"Dig Site" => array("deDE" => "Ausgrabung", "enUS" => "Dig Site", "" => "Dig Site", "esES" => "Lugar de excavación", "esMX" => "Sitio de excavación", "frFR" => "Site de fouilles", "itIT" => "Sito di scavo", "koKR" => "발굴지", "plPL" => "Wykopalisko", "ptBR" => "Local da escavação", "ruRU" => "Раскопки", "zhCN" => "挖掘站", "zhTW" => "挖掘場"),
+		"Dirt Side" => array("deDE" => "Staub und Dreck", "enUS" => "Dirt Side", "" => "Dirt Side", "esES" => "Tierra", "esMX" => "Lado de tierra", "frFR" => "Poussière", "itIT" => "Lordura", "koKR" => "먼지 지대", "plPL" => "Ustronie", "ptBR" => "Lado da terra", "ruRU" => "Глиняное плато", "zhCN" => "沙尘废墟", "zhTW" => "蠻荒之境"),
+		"Discord IV" => array("deDE" => "Zwietracht IV", "enUS" => "Discord IV", "" => "Discord IV", "esES" => "Discordia IV", "esMX" => "Discordia IV", "frFR" => "Discorde IV", "itIT" => "Discordia IV", "koKR" => "불협화음 IV", "plPL" => "Niezgoda IV", "ptBR" => "Discórdia IV", "ruRU" => "Раздор IV", "zhCN" => "纷争IV", "zhTW" => "紛爭 IV"),
+		"Elysium" => array("deDE" => "Elysium", "enUS" => "Elysium", "" => "Elysium", "esES" => "Elíseo", "esMX" => "Elisio", "frFR" => "Elysium", "itIT" => "Elisio", "koKR" => "엘리시움", "plPL" => "Pola Elizejskie", "ptBR" => "Elísio", "ruRU" => "Элизий", "zhCN" => "乐土", "zhTW" => "極樂淨土"),
+		"Extinction" => array("deDE" => "Untergang", "enUS" => "Extinction", "" => "Extinction", "esES" => "Extinción", "esMX" => "Extinción", "frFR" => "Extinction", "itIT" => "Estinzione", "koKR" => "절멸", "plPL" => "Unicestwienie", "ptBR" => "Extinção", "ruRU" => "Истребление", "zhCN" => "灭绝之地", "zhTW" => "滅絕"),
+		"Forbidden Planet" => array("deDE" => "Der verbotene Planet", "enUS" => "Forbidden Planet", "" => "Forbidden Planet", "esES" => "Planeta prohibido", "esMX" => "El planeta prohibido", "frFR" => "Planète interdite", "itIT" => "Pianeta proibito", "koKR" => "금단의 행성", "plPL" => "Zakazana planeta", "ptBR" => "Planeta Proibido", "ruRU" => "Закрытая планета", "zhCN" => "禁访行星", "zhTW" => "禁星"),
+		"Frontier" => array("deDE" => "Grenzen", "enUS" => "Frontier", "" => "Frontier", "esES" => "Frontera", "esMX" => "Frontera", "frFR" => "Confins", "itIT" => "Frontiera", "koKR" => "변경 지대", "plPL" => "Pogranicze", "ptBR" => "Fronteira", "ruRU" => "Рубеж", "zhCN" => "前沿", "zhTW" => "邊疆地帶"),
+		"High Ground" => array("deDE" => "Erhöhtes Terrain", "enUS" => "High Ground", "" => "High Ground", "esES" => "Terreno elevado", "esMX" => "Terreno elevado", "frFR" => "Surplomb", "itIT" => "Alture", "koKR" => "고지대", "plPL" => "Wysoka pozycja", "ptBR" => "Terreno elevado", "ruRU" => "Возвышение", "zhCN" => "高地", "zhTW" => "高地"),
+		"High Orbit" => array("deDE" => "Hoher Orbit", "enUS" => "High Orbit", "" => "High Orbit", "esES" => "Alta órbita", "esMX" => "Órbita superior", "frFR" => "Orbite haute", "itIT" => "Orbita superiore", "koKR" => "고궤도", "plPL" => "Wysoka orbita", "ptBR" => "Órbita elevada", "ruRU" => "Высокая орбита", "zhCN" => "高位轨道", "zhTW" => "高軌道區"),
+		"Incineration Zone" => array("deDE" => "Asche zu Asche", "enUS" => "Incineration Zone", "" => "Incineration Zone", "esES" => "Zona de incineración", "esMX" => "Zona de incineración", "frFR" => "Zone d'incinération", "itIT" => "Zona d'incenerimento", "koKR" => "소각 지대", "plPL" => "Strefa spalania", "ptBR" => "Zona de incineração", "ruRU" => "Зона испепеления", "zhCN" => "焚毁区", "zhTW" => "焚燒之地"),
+		"Jungle Basin" => array("deDE" => "Dschungelbecken", "enUS" => "Jungle Basin", "" => "Jungle Basin", "esES" => "Cuenca selvática", "esMX" => "Cuenca de la selva", "frFR" => "Bassins luxuriants", "itIT" => "Selva oscura", "koKR" => "밀림 분지", "plPL" => "Tropikalna niecka", "ptBR" => "Vale da Selva", "ruRU" => "Изумрудная долина", "zhCN" => "蛮荒盆地", "zhTW" => "叢林盆地"),
+		"Junk Yard" => array("deDE" => "Müllkippe", "enUS" => "Junk Yard", "" => "Junk Yard", "esES" => "Basurero", "esMX" => "Deshuesadero", "frFR" => "La décharge", "itIT" => "Discarica", "koKR" => "고물 처리장", "plPL" => "Wysypisko", "ptBR" => "Fero-velho", "ruRU" => "Свалка", "zhCN" => "垃圾场", "zhTW" => "垃圾港"),
+		"Kulas Ravine" => array("deDE" => "Kulasklamm", "enUS" => "Kulas Ravine", "" => "Kulas Ravine", "esES" => "Barranco de Kulas", "esMX" => "Desfiladero de Kulas", "frFR" => "Ravin de Kulas", "itIT" => "Gola di Kulas", "koKR" => "쿨라스 협곡", "plPL" => "Wąwóz Kulas", "ptBR" => "Ravina Kulas", "ruRU" => "Каньон Кулас", "zhCN" => "库拉斯峡谷", "zhTW" => "庫拉斯溪谷"),
+		"Lava Flow" => array("deDE" => "Im Lavastrom", "enUS" => "Lava Flow", "" => "Lava Flow", "esES" => "Flujo de lava", "esMX" => "Corriente de lava", "frFR" => "Fleuve de lave", "itIT" => "Flusso di lava", "koKR" => "용암 흐름", "plPL" => "Napływ lawy", "ptBR" => "Fluxo de lava", "ruRU" => "Поток лавы", "zhCN" => "岩浆浮台", "zhTW" => "熔漿岩地"),
+		"Lost Temple" => array("deDE" => "Verschollener Tempel", "enUS" => "Lost Temple", "" => "Lost Temple", "esES" => "Templo perdido", "esMX" => "Templo perdido", "frFR" => "Temple oublié", "itIT" => "Tempio perduto", "koKR" => "잃어버린 사원", "plPL" => "Zaginiona świątynia", "ptBR" => "Templo Perdido", "ruRU" => "Затерянный храм", "zhCN" => "失落的神庙", "zhTW" => "失落神廟"),
+		"Megaton" => array("deDE" => "Megaton", "enUS" => "Megaton", "" => "Megaton", "esES" => "Megatón", "esMX" => "Megatón", "frFR" => "Mégatonne", "itIT" => "Megaton", "koKR" => "메가톤", "plPL" => "Megatona", "ptBR" => "Megaton", "ruRU" => "Мегатонна", "zhCN" => "麦加顿", "zhTW" => "梅迦鎮"),
+		"Metalopolis" => array("deDE" => "Metalopolis", "enUS" => "Metalopolis", "" => "Metalopolis", "esES" => "Metalópolis", "esMX" => "Metalópolis", "frFR" => "Métalopolis", "itIT" => "Metallopoli", "koKR" => "금속도시", "plPL" => "Metalopolis", "ptBR" => "Metalópolis", "ruRU" => "Металополис", "zhCN" => "钢铁都城", "zhTW" => "大都會"),
+		"Monlyth Ridge" => array("deDE" => "Monlythgrat", "enUS" => "Monlyth Ridge", "" => "Monlyth Ridge", "esES" => "Sierra de Monlyth", "esMX" => "Cordillera de Monlito", "frFR" => "Crête de Monlyth", "itIT" => "Cresta di Monlyth", "koKR" => "몬리스 마루", "plPL" => "Góry Monlyth", "ptBR" => "Serra de Monlyth", "ruRU" => "Кряж Монлита", "zhCN" => "蒙莱斯山脊", "zhTW" => "蒙利斯山脈"),
+		"Monsoon" => array("deDE" => "Monsun", "enUS" => "Monsoon", "" => "Monsoon", "esES" => "Monzón", "esMX" => "Monzón", "frFR" => "Mousson", "itIT" => "Monsone", "koKR" => "계절풍 지대", "plPL" => "Monsun", "ptBR" => "Monção", "ruRU" => "Муссон", "zhCN" => "季风地带", "zhTW" => "季風雨林"),
+		"New Antioch" => array("deDE" => "Neu-Antioch", "enUS" => "New Antioch", "" => "New Antioch", "esES" => "New Antioch", "esMX" => "Nueva Antioquía", "frFR" => "Néo-Antioche", "itIT" => "New Antioch", "koKR" => "뉴 안티오크", "plPL" => "Nowa Antiochia", "ptBR" => "Nova Antióquia", "ruRU" => "Новый Антиох", "zhCN" => "新安提俄克", "zhTW" => "新安提奧克"),
+		"Nightmare" => array("deDE" => "Albtraum", "enUS" => "Nightmare", "" => "Nightmare", "esES" => "Pesadilla", "esMX" => "Pesadilla", "frFR" => "Cauchemar", "itIT" => "Incubo", "koKR" => "악몽", "plPL" => "Koszmar", "ptBR" => "Pesadelo", "ruRU" => "Кошмар", "zhCN" => "梦魇", "zhTW" => "夢靨"),
+		"Novice Blistering Sands" => array("deDE" => "Glühende Sande - Einsteiger", "enUS" => "Novice Blistering Sands", "" => "Novice Blistering Sands", "esES" => "Arenas abrasadoras principiante", "esMX" => "Novato - Arenas abrasadoras", "frFR" => "Désert ardent - Débutant", "itIT" => "Sabbie ardenti (Neofita)", "koKR" => "폭염 사막 초보자용", "plPL" => "Palące piaski – nowicjusz", "ptBR" => "Dunas escaldantes Novato", "ruRU" => "Бурлящие пески – новичок", "zhCN" => "热砂荒野（新手）", "zhTW" => "極熱沙漠（新手）"),
+		"Novice Desert Oasis" => array("deDE" => "Wüstenoase - Einsteiger", "enUS" => "Novice Desert Oasis", "" => "Novice Desert Oasis", "esES" => "Oasis del desierto principiante", "esMX" => "Novato - Oasis del desierto", "frFR" => "Oasis du désert - Débutant", "itIT" => "Oasi desertica (Neofita)", "koKR" => "사막 오아시스 초보자용", "plPL" => "Pustynna oaza – nowicjusz", "ptBR" => "Oásis no deserto Novato", "ruRU" => "Оазис – новичок", "zhCN" => "荒野绿洲（新手）", "zhTW" => "沙漠綠洲（新手）"),
+		"Novice Discord IV" => array("deDE" => "Zwietracht IV - Einsteiger", "enUS" => "Novice Discord IV", "" => "Novice Discord IV", "esES" => "Discordia IV principiante", "esMX" => "Novato - Discordia IV", "frFR" => "Discorde IV - Débutant", "itIT" => "Discordia IV (Neofita)", "koKR" => "불협화음 IV 초보자용", "plPL" => "Niezgoda IV – nowicjusz", "ptBR" => "Discórdia IV Novato", "ruRU" => "Раздор IV – новичок", "zhCN" => "纷争IV（新手）", "zhTW" => "紛爭 IV（新手）"),
+		"Novice Kulas Ravine" => array("deDE" => "Kulasklamm - Einsteiger", "enUS" => "Novice Kulas Ravine", "" => "Novice Kulas Ravine", "esES" => "Barranco de Kulas principiante", "esMX" => "Novato - Desfiladero de Kulas", "frFR" => "Ravin de Kulas - Débutant", "itIT" => "Gola di Kulas (Neofita)", "koKR" => "쿨라스 협곡 초보자용", "plPL" => "Wąwóz Kulas – nowicjusz", "ptBR" => "Ravina Kulas Novato", "ruRU" => "Каньон Кулас – новичок", "zhCN" => "库拉斯峡谷（新手）", "zhTW" => "庫拉斯溪谷（新手）"),
+		"Novice Metalopolis" => array("deDE" => "Metalopolis - Einsteiger", "enUS" => "Novice Metalopolis", "" => "Novice Metalopolis", "esES" => "Metalópolis principiante", "esMX" => "Novato - Metalópolis", "frFR" => "Métalopolis - Débutant", "itIT" => "Metallopoli (Neofita)", "koKR" => "금속도시 초보자용", "plPL" => "Metalopolis – nowicjusz", "ptBR" => "Metalópolis Novato", "ruRU" => "Металополис – новичок", "zhCN" => "钢铁都城（新手）", "zhTW" => "大都會（新手）"),
+		"Novice Monlyth Ridge" => array("deDE" => "Monlythgrat - Einsteiger", "enUS" => "Novice Monlyth Ridge", "" => "Novice Monlyth Ridge", "esES" => "Sierra de Monlyth principiante", "esMX" => "Novato - Cordillera de Monlito", "frFR" => "Crête de Monlyth - Débutant", "itIT" => "Cresta di Monlyth (Neofita)", "koKR" => "몬리스 마루 초보자용", "plPL" => "Góry Monlyth – nowicjusz", "ptBR" => "Serra de Monlyth Novato", "ruRU" => "Кряж Монлита – новичок", "zhCN" => "蒙莱斯山脊（新手）", "zhTW" => "蒙利斯山脈（新手）"),
+		"Novice Steppes of War" => array("deDE" => "Felder des Krieges - Einsteiger", "enUS" => "Novice Steppes of War", "" => "Novice Steppes of War", "esES" => "Estepas de guerra principiante", "esMX" => "Novato - Estepas de guerra", "frFR" => "Steppes de guerre - Débutant", "itIT" => "Steppe di guerra (Neofita)", "koKR" => "전쟁 초원 초보자용", "plPL" => "Wojenne stepy – nowicjusz", "ptBR" => "Estepes da Guerra Novato", "ruRU" => "Степи Войны – новичок", "zhCN" => "征战平原（新手）", "zhTW" => "戰爭平原（新手）"),
+		"Novice Terminus" => array("deDE" => "Terminus - Einsteiger", "enUS" => "Novice Terminus", "" => "Novice Terminus", "esES" => "Terminus principiante", "esMX" => "Novato - Términus", "frFR" => "Terminus - Débutant", "itIT" => "Terminus (Neofita)", "koKR" => "터미누스 초보자용", "plPL" => "Terminus – nowicjusz", "ptBR" => "Terminus Novato", "ruRU" => "Терминий – новичок", "zhCN" => "集散平台（新手）", "zhTW" => "太空總站（新手）"),
+		"Novice Twilight Fortress" => array("deDE" => "Zwielichtfestung - Einsteiger", "enUS" => "Novice Twilight Fortress", "" => "Novice Twilight Fortress", "esES" => "Fortaleza crepuscular principiante", "esMX" => "Novato - Fortaleza crepuscular", "frFR" => "Forteresse du crépuscule - Débutant", "itIT" => "Fortezza del Crepuscolo (Neofita)", "koKR" => "황혼 요새 초보자용", "plPL" => "Mroczna forteca – nowicjusz", "ptBR" => "Fortaleza do crepúsculo Novato", "ruRU" => "Сумеречная крепость – новичок", "zhCN" => "光影要塞（新手）", "zhTW" => "暮光堡壘（新手）"),
+		"Outpost" => array("deDE" => "Außenposten", "enUS" => "Outpost", "" => "Outpost", "esES" => "Avanzada", "esMX" => "Puesto de avanzada", "frFR" => "Avant-poste", "itIT" => "Avamposto", "koKR" => "전초 기지", "plPL" => "Posterunek", "ptBR" => "Posto avançado", "ruRU" => "Аванпост", "zhCN" => "前哨站", "zhTW" => "哨站"),
+		"Primeval" => array("deDE" => "Urwelt", "enUS" => "Primeval", "" => "Primeval", "esES" => "Primigenio", "esMX" => "Primitiva", "frFR" => "Origine", "itIT" => "Primevo", "koKR" => "태고의 대지", "plPL" => "Prastary", "ptBR" => "Primitivo", "ruRU" => "Первозданная природа", "zhCN" => "原始荒地", "zhTW" => "遠古之地"),
+		"Quicksand" => array("deDE" => "Treibsand", "enUS" => "Quicksand", "" => "Quicksand", "esES" => "Arenas movedizas", "esMX" => "Arena movediza", "frFR" => "Sables mouvants", "itIT" => "Sabbie mobili", "koKR" => "모래늪", "plPL" => "Ruchome piaski", "ptBR" => "Areia Movediça", "ruRU" => "Зыбучие пески", "zhCN" => "流沙之地", "zhTW" => "流沙"),
+		"Red Stone Gulch" => array("deDE" => "Redstone-Schlucht", "enUS" => "Red Stone Gulch", "" => "Red Stone Gulch", "esES" => "Garganta de Redstone", "esMX" => "Quebrada de Roquígnea", "frFR" => "Gorge de Pierre rouge", "itIT" => "Baratro di Redstone", "koKR" => "레드스톤 협곡", "plPL" => "Jar na Czerwonej Skale", "ptBR" => "Desfiladeiro em Pedra Vermelha", "ruRU" => "Ущелье Редстоуна", "zhCN" => "褐石峡谷", "zhTW" => "紅石峽谷"),
+		"Sacred Ground" => array("deDE" => "Heiliger Boden", "enUS" => "Sacred Ground", "" => "Sacred Ground", "esES" => "Terreno sagrado", "esMX" => "Tierra sagrada", "frFR" => "Terre sacrée", "itIT" => "Suolo sacro", "koKR" => "성지", "plPL" => "Święta ziemia", "ptBR" => "Solo sagrado", "ruRU" => "Священные земли", "zhCN" => "圣地", "zhTW" => "聖地"),
+		"Sand Canyon" => array("deDE" => "Sandcanyon", "enUS" => "Sand Canyon", "" => "Sand Canyon", "esES" => "Cañón arenoso", "esMX" => "Cañón arenoso", "frFR" => "Canyon des sables", "itIT" => "Canyon delle sabbie", "koKR" => "모래 협곡", "plPL" => "Piaszczysty kanion", "ptBR" => "Cânion de areia", "ruRU" => "Песчаный каньон", "zhCN" => "尘沙峡谷", "zhTW" => "塵沙峽谷"),
+		"Scorched Haven" => array("deDE" => "Verbranntes Refugium", "enUS" => "Scorched Haven", "" => "Scorched Haven", "esES" => "Refugio calcinado", "esMX" => "Sanctuaris incinerado", "frFR" => "Havre calciné", "itIT" => "Terra bruciata", "koKR" => "잿더미 안식처", "plPL" => "Spopielony raj", "ptBR" => "Abrigus Queimado", "ruRU" => "Выжженная Гавань", "zhCN" => "焦灼之港", "zhTW" => "海文焦土"),
+		"Scrap Station" => array("deDE" => "Schrottplatz", "enUS" => "Scrap Station", "" => "Scrap Station", "esES" => "Desguace", "esMX" => "Estación de chatarra", "frFR" => "Station de recyclage", "itIT" => "Stazione di rottamazione", "koKR" => "고철 처리장", "plPL" => "Stacja złomu", "ptBR" => "Estação de sucata", "ruRU" => "Мусоросборник", "zhCN" => "废品站", "zhTW" => "廢料處理站"),
+		"Shakuras Plateau" => array("deDE" => "Shakuras-Plateau", "enUS" => "Shakuras Plateau", "" => "Shakuras Plateau", "esES" => "Meseta de Shakuras", "esMX" => "Meseta de Shakuras", "frFR" => "Plateau de Shakuras", "itIT" => "Altopiano di Shakuras", "koKR" => "샤쿠라스 고원", "plPL" => "Płaskowyż Shakuras", "ptBR" => "Platô de Shakuras", "ruRU" => "Плато Шакураса", "zhCN" => "萨古拉斯高地", "zhTW" => "夏庫拉斯高原"),
+		"Steppes of War" => array("deDE" => "Felder des Krieges", "enUS" => "Steppes of War", "" => "Steppes of War", "esES" => "Estepas de guerra", "esMX" => "Estepas de guerra", "frFR" => "Steppes de guerre", "itIT" => "Steppe di guerra", "koKR" => "전쟁 초원", "plPL" => "Wojenne stepy", "ptBR" => "Estepes da Guerra", "ruRU" => "Степи Войны", "zhCN" => "征战平原", "zhTW" => "戰爭平原"),
+		"Tarsonis Assault" => array("deDE" => "Angriff auf Tarsonis", "enUS" => "Tarsonis Assault", "" => "Tarsonis Assault", "esES" => "Asalto a Tarsonis", "esMX" => "Asalto en Tarsonis", "frFR" => "Attaque sur tarsonis", "itIT" => "Assalto a Tarsonis", "koKR" => "타소니스 공습", "plPL" => "Atak na Tarsonis", "ptBR" => "Ataque em Tarsonis", "ruRU" => "Штурм Тарсониса", "zhCN" => "塔桑尼斯之战", "zhTW" => "塔桑尼斯突擊戰"),
+		"Tectonic Rift" => array("deDE" => "Tektonischer Riss", "enUS" => "Tectonic Rift", "" => "Tectonic Rift", "esES" => "Falla tectónica", "esMX" => "Fisura tecnónica", "frFR" => "Faille tectonique", "itIT" => "Faglia tettonica", "koKR" => "지각 균열", "plPL" => "Szczelina tektoniczna", "ptBR" => "Fenda tectônica", "ruRU" => "Тектонический разлом", "zhCN" => "裂谷", "zhTW" => "地殼裂痕"),
+		"Tempest" => array("deDE" => "Tempest", "enUS" => "Tempest", "" => "Tempest", "esES" => "Tempestad", "esMX" => "Tempestad", "frFR" => "Tempête", "itIT" => "Tempesta", "koKR" => "폭풍우 전장", "plPL" => "Zamieć", "ptBR" => "Tempestade", "ruRU" => "Буря", "zhCN" => "风潮山地", "zhTW" => "大風暴"),
+		"Terminus" => array("deDE" => "Terminus", "enUS" => "Terminus", "" => "Terminus", "esES" => "Terminus", "esMX" => "Términus", "frFR" => "Terminus", "itIT" => "Terminus", "koKR" => "터미누스", "plPL" => "Terminus", "ptBR" => "Terminus", "ruRU" => "Терминий", "zhCN" => "集散平台", "zhTW" => "太空總站"),
+		"The Bio Lab" => array("deDE" => "Das Biolabor", "enUS" => "The Bio Lab", "" => "The Bio Lab", "esES" => "Laboratorio biológico", "esMX" => "El biolaboratorio", "frFR" => "Laboratoire biologique", "itIT" => "Laboratorio biologico", "koKR" => "생체 실험실", "plPL" => "Laboratorium biologiczne", "ptBR" => "O laboratório biológico", "ruRU" => "Биолаборатория", "zhCN" => "生化实验区", "zhTW" => "生物實驗室"),
+		"Toxic Slums" => array("deDE" => "Giftige Slums", "enUS" => "Toxic Slums", "" => "Toxic Slums", "esES" => "Suburbios tóxicos", "esMX" => "Tugurios tóxicos", "frFR" => "Bas-fonds toxiques", "itIT" => "Bassifondi tossici", "koKR" => "독지대", "plPL" => "Toksyczne slumsy", "ptBR" => "Favelas tóxicas", "ruRU" => "Токсичные трущобы", "zhCN" => "毒壤贫民区", "zhTW" => "毒窟"),
+		"Twilight Fortress" => array("deDE" => "Zwielichtfestung", "enUS" => "Twilight Fortress", "" => "Twilight Fortress", "esES" => "Fortaleza crepuscular", "esMX" => "Fortaleza crepuscular", "frFR" => "Forteresse du crépuscule", "itIT" => "Fortezza del Crepuscolo", "koKR" => "황혼 요새", "plPL" => "Mroczna forteca", "ptBR" => "Fortaleza do Crepúsculo", "ruRU" => "Сумеречная крепость", "zhCN" => "光影要塞", "zhTW" => "暮光堡壘"),
+		"Typhon" => array("deDE" => "Typhon", "enUS" => "Typhon", "" => "Typhon", "esES" => "Typhon", "esMX" => "Tifón", "frFR" => "Typhon", "itIT" => "Tifone", "koKR" => "티폰", "plPL" => "Typhon", "ptBR" => "Tífon", "ruRU" => "Тифон", "zhCN" => "提丰", "zhTW" => "鈦風"),
+		"Ulaan Deeps" => array("deDE" => "Die Tiefen von Ulaan", "enUS" => "Ulaan Deeps", "" => "Ulaan Deeps", "esES" => "Profundidades de Ulaan", "esMX" => "Honduras de Ulaan", "frFR" => "Profondeurs d'Ulaan", "itIT" => "Abissi di Ulaan", "koKR" => "울란의 심연", "plPL" => "Otchłanie Ulaan", "ptBR" => "Profundezas de Ulaan", "ruRU" => "Улаанские глубины", "zhCN" => "乌兰深渊", "zhTW" => "烏蘭深穴"),
+		"War Zone" => array("deDE" => "Kriegsgebiet", "enUS" => "War Zone", "" => "War Zone", "esES" => "Zona de guerra", "esMX" => "Zona de guerra", "frFR" => "Zone de guerre", "itIT" => "Zona di guerra", "koKR" => "전쟁 지역", "plPL" => "Strefa wojenna", "ptBR" => "Zona de guerra", "ruRU" => "Зона конфликта", "zhCN" => "战区", "zhTW" => "戰爭特區"),
+		"Worldship" => array("deDE" => "Das Weltenschiff", "enUS" => "Worldship", "" => "Worldship", "esES" => "Nave planetaria", "esMX" => "Navemundo", "frFR" => "Vaisseau-monde", "itIT" => "Nave dei mondi", "koKR" => "세계함", "plPL" => "Statek-świat", "ptBR" => "Nave Mundo", "ruRU" => "Корабль зел-нага", "zhCN" => "世界舰船", "zhTW" => "宇宙艦"),
+		"Xel'Naga Caverns" => array("deDE" => "Xel'Naga-Höhlen", "enUS" => "Xel'Naga Caverns", "" => "Xel'Naga Caverns", "esES" => "Cavernas Xel'Naga", "esMX" => "Cavernas Xel'Naga", "frFR" => "Cavernes Xel'Naga", "itIT" => "Caverne xel'naga", "koKR" => "젤나가 동굴", "plPL" => "Jaskinie xel'naga", "ptBR" => "Cavernas Xel'Naga", "ruRU" => "Пещеры зел-нага", "zhCN" => "萨尔纳加秘窟", "zhTW" => "薩爾納加洞穴")
+	);
+	// returns the ability array for the specified ability code ($num) and game build ($build)
+	// return false if the ability code is unknown
+	static function getAbilityArray($num, $build) {
+		while ($build > 0) {
+		       if ($build >= 17326) {
+			 if ($num > 0x012c00) {
+			   $num -= 0x200;
+			 } elseif ($num > 0x002900) {
+			   $num -= 0x100;
+			 }
+			 $array = self::$ABILITYCODES_16561;
+				$build = 16560;
+		       }
+		       elseif ($build >= 16561) {
+				$array = self::$ABILITYCODES_16561;
+				$build = 16560;
+			}
+			else {
+				$array = self::$ABILITYCODES;
+				$build = 0;
+			}
+
+			if (isset($array[$num])) {
+				if (isset($array[$num]['link'])) {
+					$num = $array[$num]['link'];
+				}
+				else return $array[$num];
+			}
+			else return false;
+		}
+		return false;
+	}
+	// returns the unit array for the specified unit code ($num) and game build ($build)
+	// return false if the unit code is unknown
+	static function getUnitArray($num, $build) {
+		if ($build >= 16561) return false;
+		if (isset(self::$UNITCODES[$num]))
+			return self::$UNITCODES[$num];
+		return false;
+	}
 }
 
 ?>

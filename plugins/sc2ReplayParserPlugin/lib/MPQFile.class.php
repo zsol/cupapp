@@ -15,20 +15,14 @@
 */
 
 
-
+/*
 define("MPQ_HASH_TABLE_OFFSET", 0);
 define("MPQ_HASH_NAME_A", 1);
 define("MPQ_HASH_NAME_B", 2);
 define("MPQ_HASH_FILE_KEY", 3);
-define("MPQ_HASH_ENTRY_EMPTY", (0xFFFF << 16) | 0xFFFF);
-define("MPQ_HASH_ENTRY_DELETED", (0xFFFF << 16) | 0xFFFE);
-define("MPQ_NOT_PARSED", 2);
-define("MPQ_PARSE_OK", 1);
-define("MPQ_ERR_NOTMPQFILE", -1);
-define("MPQ_SC2REPLAYFILE", 1);
-define("MPQ_UNKNOWNFILE", 0);
-
-
+define("MPQ_HASH_ENTRY_EMPTY", -1); // (0xFFFF << 16) | 0xFFFF)
+define("MPQ_HASH_ENTRY_DELETED", -2); // (0xFFFF << 16) | 0xFFFE)
+*/
 class MPQFile {
 	private $filename;
 	private $fp;
@@ -48,6 +42,13 @@ class MPQFile {
 	private $fileType;
 	private $fileData;
 	private $archiveSize;
+	// the following are MPQ-related constants
+	private static $MPQ_HASH_TABLE_OFFSET = 0;
+	private static $MPQ_HASH_NAME_A = 1;
+	private static $MPQ_HASH_NAME_B = 2;
+	private static $MPQ_HASH_FILE_KEY = 3;
+	private static $MPQ_HASH_ENTRY_EMPTY = -1;
+	private static $MPQ_HASH_ENTRY_DELETED = -2;
 	
 	function __construct($filename, $autoparse = true, $debug = 0) {
 		$this->filename = $filename;
@@ -64,7 +65,7 @@ class MPQFile {
 		$this->debug = $debug;
 		$this->debugNewline = "<br />\n";
 		$this->versionString = "null";
-		$this->fileType = MPQ_UNKNOWNFILE;
+		$this->fileType = null;
 		if (!self::$cryptTable)
 			self::initCryptTable();
 		
@@ -104,18 +105,76 @@ class MPQFile {
 		return $tmp[1];
 	}
 	
-	// parse user data block in the replay file
-	private function parseReplayDataHeader() {
-		//todo
+	static function parseVLFNumber($string, &$numByte) {
+		$number = 0;
+		$first = true;
+		$multiplier = 1;
+		for ($i = MPQFile::readByte($string,$numByte),$bytes = 0;true;$i = MPQFile::readByte($string,$numByte),$bytes++) {
+			$number += ($i & 0x7F) * pow(2,$bytes * 7);
+			if ($first) {
+				if ($number & 1) {
+					$multiplier = -1;
+					$number--;
+				}
+				$first = false;
+			}
+			if (($i & 0x80) == 0) break;
+		}
+		$number *= $multiplier;
+		$number /= 2; // can't use right-shift because the datatype will be float for large values on 32-bit systems
+		return $number;
 	}
 	
+	static function parseSerializedData($string, &$numByte) {
+		$dataType = MPQFile::readByte($string,$numByte);
+		switch ($dataType) {
+			case 0x02: // binary data
+				$dataLen = MPQFile::parseVLFNumber($string,$numByte);
+				return MPQFile::readBytes($string,$numByte,$dataLen);
+				break;
+			case 0x04: // simple array
+				$array = array();
+				$numByte += 2; // skip 01 00
+				$numElements = MPQFile::parseVLFNumber($string,$numByte);
+				while ($numElements > 0) {
+					$array[] = MPQFile::parseSerializedData($string,$numByte);
+					$numElements--;
+				}
+				return $array;
+				break;
+			case 0x05: // array with keys
+				$array = array();
+				$numElements = MPQFile::parseVLFNumber($string,$numByte);
+				while ($numElements > 0) {
+					$index = MPQFile::parseVLFNumber($string,$numByte);
+					$array[$index] = MPQFile::parseSerializedData($string,$numByte);
+					$numElements--;
+				}				
+				return $array;
+				break;
+			case 0x06: // number of one byte
+				return MPQFile::readByte($string,$numByte);
+				break;
+			case 0x07: // number of four bytes
+				return MPQFile::readUInt32($string,$numByte);
+				break;
+			case 0x09: // number in VLF
+				return MPQFile::parseVLFNumber($string,$numByte);
+				break;
+			default:
+				if ($this->debug) $this->debug(sprintf("Unknown data type in function parseDetailsValue (%d)",$dataType));
+				return false;
+		}
+	}
+	
+
 	function parseHeader() {
 		$fp = 0;
 		$headerParsed = false;
 		$headerOffset = 0;
 		while (!$headerParsed) {
 			$magic = unpack("c4",self::readBytes($this->fileData,$fp,4)); // MPQ 1Bh or 1Ah
-			if (($magic[1] != 0x4D) || ($magic[2] != 0x50) || ($magic[3] != 0x51)) { $this->init = MPQ_ERR_NOTMPQFILE; return false; }
+			if (($magic[1] != 0x4D) || ($magic[2] != 0x50) || ($magic[3] != 0x51)) { $this->init = false; return false; }
 			if ($magic[4] == 27) { // user data block (1Bh)
 				if ($this->debug) $this->debug(sprintf("Found user data block at %08X",$fp));
 				$uDataMaxSize = self::readUInt32($this->fileData, $fp);
@@ -123,66 +182,17 @@ class MPQFile {
 				$this->headerOffset = $headerOffset;
 				$uDataSize = self::readUInt32($this->fileData, $fp);
 				$uDataStart = $fp;
-				//fseek($fp,5,SEEK_CUR); // skip 05 08 00 02 2c
-				//fseek($fp,24,SEEK_CUR); // skip Starcraft II replay 0x1B 0x32 0x01 0x00
-				//fseek($fp,25,SEEK_CUR); // skip Starcraft II replay 0x1B 0x31 0x31 0x02 0x05 0x0c
-				//fseek($fp,30,SEEK_CUR);
-				$fileTypeHeader = self::readUInt16($this->fileData, $fp);
-				$fp -= 2;
-				if ($uDataSize == 0 || $fileTypeHeader != 0x0805) { // file is not replay file, so skip following section
-					if ($this->debug) $this->debug(sprintf("Unknown user data block(%04X), skipping...",$fileTypeHeader));
-					$fp = $headerOffset;
-					continue;
-				}
-				if ($this->debug) $this->debug(sprintf("File seems to be a Starcraft 2 replay file."));
-				$this->fileType = MPQ_SC2REPLAYFILE;
-				$fp += 30;
-				$loop = 0;
-				$versiontemp1 = 0;
-				$versiontemp2 = 0;
-				while ($fp < ($uDataSize + $uDataStart)) {
-					$key = unpack("C2",self::readBytes($this->fileData,$fp,2));
-					$value = $this->parseKeyVal($this->fileData,$fp);
-					if ($this->debug)
-						$this->debug(sprintf("User header key: %02X %02X value: %d",$key[1],$key[2],$value));
-					if ($loop == 0) {
-						switch ($key[1]) {
-							case 0x02: // major version
-								$this->verMajor = $value / 2;
-								break;	
-							case 0x04: // minor version
-								$versiontemp1 = $value / 2;
-								break;
-							case 0x06: // minorer? version
-								$versiontemp2 = $value / 2;
-								break;
-							case 0x08;
-								$this->build = $value / 2;
-								$loop++;
-								break;
-							default:
-						}
-					}
-					if ($loop == 1) {
-						switch ($key[1]) {
-							case 0x06:
-								$this->gameLen = ceil($value / 32);
-								break;
-							default:
-						}
-					}
-				}
-				$this->versionString = sprintf("%d.%d.%d.%d",$this->verMajor,$versiontemp1,$versiontemp2,$this->build);
-				/*
-				$verMajor =  $this->readUInt16();
-				$this->verMajor = $verMajor;
-				$build = $this->readUInt32(true);
-				$this->build = $build;
-				$build2 = $this->readUInt32(true);
-				fseek($fp,2,SEEK_CUR); // skip 02 00
-				$gameLen =  $this->readUInt16(true) / 2;
-				$this->gameLen = $gameLen;
-				*/
+				$userDataArray = MPQFile::parseSerializedData($this->fileData,$fp);
+				
+				$this->verMajor = $userDataArray[1][1];
+				$this->build = $userDataArray[1][4];
+				$this->gameLen = ceil($userDataArray[3] / 16);
+				$this->versionString = sprintf("%d.%d.%d.%d",$this->verMajor,
+															 $userDataArray[1][2],
+															 $userDataArray[1][3],
+															 $this->build
+															 );
+				
 				$fp = $headerOffset;
 			}
 			else if ($magic[4] == 26) { // header (1Ah)
@@ -222,7 +232,7 @@ class MPQFile {
 			$this->debug("Encrypted hash table:");
 			$this->printTable($tmp);
 		}
-		$hashTable = self::decryptStuff($tmp,self::hashStuff("(hash table)", MPQ_HASH_FILE_KEY));
+		$hashTable = self::decryptStuff($tmp,self::hashStuff("(hash table)", self::$MPQ_HASH_FILE_KEY));
 		if ($this->debug) {
 			$this->debug("DEBUG: Hash table");
 			$this->debug("HashA, HashB, Language+platform, Fileblockindex");
@@ -248,7 +258,7 @@ class MPQFile {
 			$this->printTable($tmp);
 		}
 
-		$blockTable = self::decryptStuff($tmp,self::hashStuff("(block table)", MPQ_HASH_FILE_KEY));		
+		$blockTable = self::decryptStuff($tmp,self::hashStuff("(block table)", self::$MPQ_HASH_FILE_KEY));		
 		$this->hashtable = $hashTable;
 		$this->blocktable = $blockTable;
 		if ($this->debug) {
@@ -266,23 +276,30 @@ class MPQFile {
 			}
 			$this->debugNewline = $tmpnewline;
 		}
-		$this->init = MPQ_PARSE_OK;
-
+		$this->init = true;
+		
+		if ($this->getFileSize("replay.details") > 0 && $this->getFileSize("replay.initData") > 0)
+			$this->fileType = "SC2replay";
+		else if ($this->getFileSize("DocumentHeader") > 0 && $this->getFileSize("Minimap.tga") > 0)
+			$this->fileType = "SC2map";
+		else
+			$this->fileType = "Unknown";
+		
 		return true;
 	}
 	
 
 	function getFileSize($filename) {
-		if ($this->init !== MPQ_PARSE_OK) {
+		if (!$this->init) {
 			if ($this->debug) $this->debug("Tried to use getFileSize without initializing");
 			return false;
 		}
-		$hashA = self::hashStuff($filename, MPQ_HASH_NAME_A);
-		$hashB = self::hashStuff($filename, MPQ_HASH_NAME_B);
-		$hashStart = self::hashStuff($filename, MPQ_HASH_TABLE_OFFSET) & ($this->hashTableSize - 1);
+		$hashA = self::hashStuff($filename, self::$MPQ_HASH_NAME_A);
+		$hashB = self::hashStuff($filename, self::$MPQ_HASH_NAME_B);
+		$hashStart = self::hashStuff($filename, self::$MPQ_HASH_TABLE_OFFSET) & ($this->hashTableSize - 1);
 		$tmp = $hashStart;
 		do {
-			if (($this->hashtable[$tmp*4 + 3] == MPQ_HASH_ENTRY_DELETED) || ($this->hashtable[$tmp*4 + 3] == MPQ_HASH_ENTRY_EMPTY)) return false;
+			if (($this->hashtable[$tmp*4 + 3] == self::$MPQ_HASH_ENTRY_DELETED) || ($this->hashtable[$tmp*4 + 3] == self::$MPQ_HASH_ENTRY_EMPTY)) return false;
 			if (($this->hashtable[$tmp*4] == $hashA) && ($this->hashtable[$tmp*4 + 1] == $hashB)) { // found file
 				$blockIndex = ($this->hashtable[($tmp *4) + 3]) *4;
 				$fileSize = $this->blocktable[$blockIndex + 2];
@@ -295,17 +312,17 @@ class MPQFile {
 	}
 	
 	function readFile($filename) {
-		if ($this->init !== MPQ_PARSE_OK) {
+		if (!$this->init) {
 			if ($this->debug) $this->debug("Tried to use getFile without initializing");
 			return false;
 		}
-		$hashA = self::hashStuff($filename, MPQ_HASH_NAME_A);
-		$hashB = self::hashStuff($filename, MPQ_HASH_NAME_B);
-		$hashStart = self::hashStuff($filename, MPQ_HASH_TABLE_OFFSET) & ($this->hashTableSize - 1);
+		$hashA = self::hashStuff($filename, self::$MPQ_HASH_NAME_A);
+		$hashB = self::hashStuff($filename, self::$MPQ_HASH_NAME_B);
+		$hashStart = self::hashStuff($filename, self::$MPQ_HASH_TABLE_OFFSET) & ($this->hashTableSize - 1);
 		$tmp = $hashStart;
 		$blockSize = -1;
 		do {
-			if (($this->hashtable[$tmp*4 + 3] == MPQ_HASH_ENTRY_DELETED) || ($this->hashtable[$tmp*4 + 3] == MPQ_HASH_ENTRY_EMPTY)) return false;
+			if (($this->hashtable[$tmp*4 + 3] == self::$MPQ_HASH_ENTRY_DELETED) || ($this->hashtable[$tmp*4 + 3] == self::$MPQ_HASH_ENTRY_EMPTY)) return false;
 			if (($this->hashtable[$tmp*4] == $hashA) && ($this->hashtable[$tmp*4 + 1] == $hashB)) { // found file
 				$blockIndex = ($this->hashtable[($tmp *4) + 3]) *4;
 				$blockOffset = $this->blocktable[$blockIndex] + $this->headerOffset;
@@ -384,7 +401,7 @@ class MPQFile {
 	}
 	
 	function parseReplay() {
-		if ($this->init !== MPQ_PARSE_OK) {
+		if (!$this->init) {
 			if ($this->debug) $this->debug("Tried to use parseReplay without initializing");
 			return false;
 		}
@@ -400,7 +417,7 @@ class MPQFile {
 		}
 	}
 	function isParsed() {
-		return $this->init === MPQ_PARSE_OK;
+		return $this->init === true;
 	}
 	function getState() {
 		return $this->init;
@@ -433,18 +450,18 @@ class MPQFile {
 	
 	// the following replaces a file in the archive, meaning a file with that filename must be present already.
 	function replaceFile($filename, $filedata) {
-		if ($this->getFileSize($filename) === false || strlen($filedata) == 0) return false;
-		if ($this->init !== MPQ_PARSE_OK) {
+		if (!$this->init) {
 			if ($this->debug) $this->debug("Tried to use replaceFile without initializing");
 			return false;
 		}
-		$hashA = self::hashStuff($filename, MPQ_HASH_NAME_A);
-		$hashB = self::hashStuff($filename, MPQ_HASH_NAME_B);
-		$hashStart = self::hashStuff($filename, MPQ_HASH_TABLE_OFFSET) & ($this->hashTableSize - 1);
+		if ($this->getFileSize($filename) === false || strlen($filedata) == 0) return false;
+		$hashA = self::hashStuff($filename, self::$MPQ_HASH_NAME_A);
+		$hashB = self::hashStuff($filename, self::$MPQ_HASH_NAME_B);
+		$hashStart = self::hashStuff($filename, self::$MPQ_HASH_TABLE_OFFSET) & ($this->hashTableSize - 1);
 		$tmp = $hashStart;
 		$blockIndex = -1;
 		do {
-			if (($this->hashtable[$tmp*4 + 3] == MPQ_HASH_ENTRY_DELETED) || ($this->hashtable[$tmp*4 + 3] == MPQ_HASH_ENTRY_EMPTY)) return false;
+			if (($this->hashtable[$tmp*4 + 3] == self::$MPQ_HASH_ENTRY_DELETED) || ($this->hashtable[$tmp*4 + 3] == self::$MPQ_HASH_ENTRY_EMPTY)) return false;
 			if (($this->hashtable[$tmp*4] == $hashA) && ($this->hashtable[$tmp*4 + 1] == $hashB)) { // found file
 				$blockIndex = ($this->hashtable[($tmp *4) + 3]) *4;
 				$blockOffset = $this->blocktable[$blockIndex] + $this->headerOffset;
@@ -493,13 +510,12 @@ class MPQFile {
 		$this->fileData = substr_replace($this->fileData, pack("V",$this->archiveSize + $newBlockSize), $this->headerOffset + 8, 4); 
 		// populate variables
 		$this->fileData .= $compressedData;
-		$this->printTable($this->blocktable);
 		$this->blocktable[$blockIndex] = $newBlockOffset;
 		$this->blocktable[$blockIndex + 1] = $newBlockSize;
 		$this->blocktable[$blockIndex + 2] = $newFileSize;
 		$this->blocktable[$blockIndex + 3] = $newFlags;
 		// encrypt the block table
-		$resultBlockTable = self::encryptStuff($this->blocktable,self::hashStuff("(block table)", MPQ_HASH_FILE_KEY));		
+		$resultBlockTable = self::encryptStuff($this->blocktable,self::hashStuff("(block table)", self::$MPQ_HASH_FILE_KEY));		
 		// replace the block table in fileData variable
 		for ($i = 0;$i < $this->blockTableSize * 4;$i++) {
 			$this->fileData = substr_replace($this->fileData, pack("V",$resultBlockTable[$i]), $this->blockTableOffset + $i * 4, 4); 
@@ -518,7 +534,7 @@ class MPQFile {
 	}
 	
 	function insertChatLogMessage($newMessage, $player, $time) {
-		if ($this->init !== MPQ_PARSE_OK || $this->getFileSize("replay.message.events") == 0) return false;
+		if (!$this->init || $this->getFileSize("replay.message.events") == 0) return false;
 		if (!is_numeric($player)) return false; //$playerId = $this->addFakeObserver($player);
 		else $playerId = $player;
 		if ($playerId <= 0) return false;
@@ -591,7 +607,7 @@ class MPQFile {
 	// DOES NOT WORK CURRENTLY!
 	function addFakeObserver($obsName) {
 		return false; // this function does not work currently so DO NOT USE!
-		if ($this->init !== MPQ_PARSE_OK || $this->getFileSize("replay.initData") == 0) return false;
+		if (!$this->init || $this->getFileSize("replay.initData") == 0) return false;
 		$string = $this->readFile("replay.initData");
 		$numByte = 0;
 		$numPlayers = MPQFile::readByte($string,$numByte);
@@ -702,23 +718,6 @@ class MPQFile {
 		return $playerId;
 	}
 
-	
-	private function parseKeyVal($string, &$numByte) {
-		$one = unpack("C",substr($string,$numByte,1)); 
-		$one = $one[1];
-		$retVal = $one & 0x7F;
-		$shift = 1;
-		$numByte++;
-		while (($one & 0x80) > 0) {
-			$one = unpack("C",substr($string,$numByte,1)); 
-			$one = $one[1];
-			$retVal = (($one & 0x7F) << $shift*7) | $retVal;
-			$shift++;
-			$numByte++;
-		}
-		return $retVal;
-	}
-	
 	function deflate_decompress($string) {
 		if (function_exists("gzinflate")){
 			$tmp = gzinflate(substr($string,2,strlen($string) - 2));
