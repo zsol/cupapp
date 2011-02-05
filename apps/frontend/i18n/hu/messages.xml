@@ -6,107 +6,107 @@
     <body>
       <trans-unit id="1">
         <source>Replays index</source>
-        <target/>
+        <target>Replay lista</target>
       </trans-unit>
       <trans-unit id="2">
         <source>Upload replay</source>
-        <target/>
+        <target>Replay feltöltés</target>
       </trans-unit>
       <trans-unit id="3">
         <source>Browse replays</source>
-        <target/>
+        <target>Replayek böngészése</target>
       </trans-unit>
       <trans-unit id="4">
         <source>Wrong extension!</source>
-        <target/>
+        <target>Rossz kiterjesztés!</target>
       </trans-unit>
       <trans-unit id="5">
         <source>File cannot be parsed!</source>
-        <target/>
+        <target>A fájl nem olvasható!</target>
       </trans-unit>
       <trans-unit id="6">
         <source>Upload successfull!</source>
-        <target/>
+        <target>Feltöltés sikeres!</target>
       </trans-unit>
       <trans-unit id="7">
         <source>Replay index</source>
-        <target/>
+        <target>Replay lista</target>
       </trans-unit>
       <trans-unit id="8">
         <source>View Replay</source>
-        <target/>
+        <target>Megnéz</target>
       </trans-unit>
       <trans-unit id="9">
         <source>Replay details</source>
-        <target/>
+        <target>Részletek</target>
       </trans-unit>
       <trans-unit id="10">
         <source>Message log</source>
-        <target/>
+        <target>Üzenetek</target>
       </trans-unit>
       <trans-unit id="11">
         <source>Time</source>
-        <target/>
+        <target>Idő</target>
       </trans-unit>
       <trans-unit id="12">
         <source>Player</source>
-        <target/>
+        <target>Játékos</target>
       </trans-unit>
       <trans-unit id="13">
         <source>Target</source>
-        <target/>
+        <target>Célpont</target>
       </trans-unit>
       <trans-unit id="14">
         <source>Message</source>
-        <target/>
+        <target>Üzenet</target>
       </trans-unit>
       <trans-unit id="15">
         <source>Standard informations</source>
-        <target/>
+        <target>Általános információk</target>
       </trans-unit>
       <trans-unit id="16">
         <source>Map name</source>
-        <target/>
+        <target>Térkép neve</target>
       </trans-unit>
       <trans-unit id="17">
         <source>Match length</source>
-        <target/>
+        <target>Meccs hossza</target>
       </trans-unit>
       <trans-unit id="18">
         <source>Game speed</source>
-        <target/>
+        <target>Játék sebessége</target>
       </trans-unit>
       <trans-unit id="19">
         <source>Download replay</source>
-        <target/>
+        <target>Replay letöltés</target>
       </trans-unit>
       <trans-unit id="20">
         <source>Description</source>
-        <target/>
+        <target>Leírás</target>
       </trans-unit>
       <trans-unit id="21">
         <source>Category</source>
-        <target/>
+        <target>Kategória</target>
       </trans-unit>
       <trans-unit id="22">
         <source>Players</source>
-        <target/>
+        <target>Játékosok</target>
       </trans-unit>
       <trans-unit id="23">
         <source>This players average APM was %%ss%%</source>
-        <target/>
+        <target>Ennek a játékosnak az átlag APMje %%ss%% volt</target>
       </trans-unit>
       <trans-unit id="24">
         <source>Upload time</source>
-        <target/>
+        <target>Feltöltés ideje</target>
       </trans-unit>
       <trans-unit id="25">
         <source>Type</source>
-        <target/>
+        <target>Típus</target>
       </trans-unit>
       <trans-unit id="26">
         <source>Details</source>
-        <target/>
+        <target>Részletek</target>
       </trans-unit>
     </body>
   </file>
