@@ -15,8 +15,11 @@ generator:
       actions: ~
       fields:  ~
       list:
-        display:           [user_id, game_type_id, category_id, =playersName, created_at]
+        display:           [user_id, game_type_id, category_id, =description, =playersName, created_at]
+        object_actions:
+          reloadReplay: { label: "reload replay" }
       filter:  ~
-      form:    ~
+      form:
+        display: [id, user_id, game_type_id, category_id, file_name, description, download_count, published_at, created_at, updated_at]
       edit:    ~
       new:     ~

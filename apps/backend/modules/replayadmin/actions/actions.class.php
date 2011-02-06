@@ -13,4 +13,16 @@ require_once dirname(__FILE__).'/../lib/replayadminGeneratorHelper.class.php';
  */
 class replayadminActions extends autoReplayadminActions
 {
+  public function executeListReloadReplay(sfWebRequest $request)
+  {
+    $this->Replay = $this->getRoute()->getObject();
+    if ($this->Replay->parseData()) {
+      $this->Replay->save();
+      $this->getUser()->setFlash('notice', "Replay data refreshed successfully");
+    } else {
+      $this->getUser()->setFlash('error', "Refresh failed!");
+    }
+    
+    $this->redirect('@replay_replayadmin');
+  }
 }

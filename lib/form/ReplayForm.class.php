@@ -11,5 +11,7 @@ class ReplayForm extends BaseReplayForm
 {
   public function configure()
   {
+    unset($this['game_info'], $this['avg_apm'], $this['players'], 
+	  $this['map_name']);
   }
 }
