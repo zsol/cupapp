@@ -46,16 +46,16 @@
             <table style="margin:0px auto;font-size: 1.3em;">
             <?php foreach ($team as $player): ?>
                 <tr>
-                    <td style="width:15px;">
+                    <td style="width:15px;vertical-align: middle;">
                         <div class="pColorBox" style="background:#<?php echo $player['color'] ?>;"></div>
                     </td>
-                    <td>
+                    <td style="vertical-align: middle;">
                         <a target="_blank" href="<?php echo ReplayHelper::getProfileUrl($player['name'], $player['uid'], $player['uidIndex']) ?>"><?php echo $player['name'] ?></a>
                     </td>
                     <td>
-                        <img alt="" title="" src="<?php echo RacePeer::getSmallImageUrlByName($player['race']) ?>"/>
+                        <img alt="<?php echo $player['race'] ?>" title="" src="<?php echo RacePeer::getSmallImageUrlByName($player['race']) ?>"/>
                     </td>
-                    <td>
+                    <td style="vertical-align: middle">
                         <span title="<?php echo __('This players average APM was %%ss%%',array('%%ss%%' => $player['avg_apm'])) ?>" style="font-size:.8em;">(<?php echo $player['avg_apm'] ?>)</span>
                     </td>
                 </tr>
