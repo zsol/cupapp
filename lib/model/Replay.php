@@ -230,14 +230,14 @@ class Replay extends BaseReplay {
         /*
          * Retrieve events log
          */
-        $event_log = $repData->getEvents();
+        //$event_log = $repData->getEvents();
 
         $gameInfo = array();
         $gameInfo['message_log'] = $messagesData;
         $gameInfo['global_info'] = $globalInfo;
         $gameInfo['players'] = $parties;
         $gameInfo['observers'] = $observers;
-        $gameInfo['event_log'] = $event_log;
+        //$gameInfo['event_log'] = $event_log;
 
         $this->setGameInfo(json_encode($gameInfo));
         $this->setPlayers($this->getPlayersName(', '));
