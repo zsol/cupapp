@@ -1,1 +1,1 @@
-aston {at} blizzfanatic [dot] com
+zsol at starcraft2 [] hu
