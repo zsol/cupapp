@@ -15,7 +15,7 @@ all:
     flood_defence_seconds:     30 #5 minutes
 
   register:
-    username_min_length:       5
+    username_min_length:       2
     username_max_length:       20
     password_min_length:       5
     password_max_length:       50
