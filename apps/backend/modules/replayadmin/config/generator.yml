@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-        display:           [user_id, game_type_id, category_id, playersName, created_at]
+        display:           [user_id, game_type_id, category_id, =playersName, created_at]
       filter:  ~
       form:    ~
       edit:    ~
