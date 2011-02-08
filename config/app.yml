@@ -36,6 +36,7 @@ all:
 
   sf_guard_plugin:
     routes_register:           false
+    profile_class: sfGuardUserProfile
 
 dev:
   domain:                      test.cupapp.com
