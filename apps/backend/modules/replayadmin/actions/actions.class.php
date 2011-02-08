@@ -25,4 +25,30 @@ class replayadminActions extends autoReplayadminActions
     
     $this->redirect('@replay_replayadmin');
   }
+
+  public function executeBatchReloadReplay(sfWebRequest $request)
+  {
+    $ids = $request->getParameter("ids");
+    $replays = ReplayPeer::retrieveByPks($ids);
+
+    foreach ($replays as $replay)
+    {
+      if ($replay->parseData())
+      {
+	$replay->save();
+      } else {
+	$error[] = $replay->getId();
+      }
+    }
+
+    if (count($error) == 0)
+    {
+      $this->getUser()->setFlash('notice', "Refresh successful!");
+    } else {
+      $this->getUser()->setFlash('error', "Refresh failed for replay IDs: " .
+				 implode($error, ", "));
+    }
+
+    $this->redirect('@replay_replayadmin');
+  }
 }
