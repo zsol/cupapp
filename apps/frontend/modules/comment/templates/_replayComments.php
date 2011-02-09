@@ -7,7 +7,7 @@
             <div class="comment_header">
                 <a name="comment_<?php echo $comment->getId() ?>" href="#comment_<?php echo $comment->getId() ?>">#<?php echo $i ?></a> <?php echo $user->getUsername()  ?>
 	   <?php if ($sf_user->isAuthenticated() && $sf_user->isAllowedToComment()):?>
-  	     - <a href="#comment_form" onclick="replyTo(<?php echo $comment->getId()?>)"><?php echo __("Reply")?></a>
+  	     - <a href="#comment_form" onclick="replyTo(<?php echo $i?>)"><?php echo __("Reply")?></a>
 	     <?php if ($sf_user->isSuperAdmin()): ?>
 	       - Delete
     	     <?php endif; ?>
