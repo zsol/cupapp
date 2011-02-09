@@ -6,6 +6,6 @@ generator:
         display: 
           "NONE": [username, password, password_again]
           "Permissions and groups": [is_active, is_super_admin, sf_guard_user_group_list, sf_guard_user_permission_list]
-          "Details": [email, avatar, last_commented, last_uploaded]
+          "Details": [email, avatar, last_commented, last_uploaded, modified_at]
 
 
