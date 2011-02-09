@@ -16,7 +16,7 @@
             </div>
             <div class="comment_body">
                 <div class="comment_avatar"><img style="float:left;" alt="avatar" src="<?php echo $user->getProfile()->getAvatarOrDefaultUrl() ?>"/></div>
-                <div class="comment_content"><?php echo $comment->getComment(); ?></div>
+		<div class="comment_content"><?php echo str_replace(array("\r\n", "\n", "\r"), "<br />", $comment->getComment()); ?></div>
             </div>
         </div>
     <?php $i++; ?>
