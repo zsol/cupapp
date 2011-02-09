@@ -1,9 +1,9 @@
 all:
   version:                     0.3.0
-  domain:                      sc2.blizzfanatic.com
+  domain:                      my.wild.dre.am
 
   date_format:                 m-d H:i
-  noresponse_email:            no-response@blizzfanatic.com
+  noresponse_email:            no-response@my.wild.dre.am
   send_confirmation_email:     true
 
   replay:
@@ -39,5 +39,5 @@ all:
     profile_class: sfGuardUserProfile
 
 dev:
-  domain:                      test.cupapp.com
+  domain:                      cupapp.dyndns.info
   send_confirmation_email:     false
