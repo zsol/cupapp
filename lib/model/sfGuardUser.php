@@ -35,7 +35,7 @@ class sfGuardUser extends PluginsfGuardUser
 
     public function getAvatarSaveName()
     {
-        return $this->getId() . '_' . time() . '.jpg';
+        return $this->getId() . '_' . time() . '.png';
     }
 
     public function getAvatarSavePath()

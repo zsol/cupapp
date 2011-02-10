@@ -53,7 +53,8 @@ class registerAction extends sfAction
                         RegisterHelper::createThumbnail($filePath, $savePath);
                         $userProfile->setAvatar($saveName);
                     } catch (Exception $e) {
-
+		      $this->getUser()->setFlash('error_message', $e->getMessage());
+		      $this->redirect('@homepage');
                     }
                 }
 
