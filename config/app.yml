@@ -40,4 +40,4 @@ all:
 
 dev:
   domain:                      cupapp.dyndns.info
-  send_confirmation_email:     false
+  send_confirmation_email:     true

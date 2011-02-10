@@ -28,8 +28,9 @@ class confirmAction extends sfAction {
             $code = $request->getParameter('code');
 
             if ($user = sfGuardUserPeer::retrieveByUsername($username)) {
-                if ($user->getIsActive()) {echo 'lol';
-                    $this->forward404();
+                if ($user->getIsActive()) {
+		  $this->getUser()->setFlash('notice', $i18n->__('Your email is already confirmed.'));
+		  $this->redirect('@homepage');
                 }
                 if ($user->getSalt() == $code) {
                     $user->setIsActive(true);
