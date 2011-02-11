@@ -1,9 +1,9 @@
 all:
   version:                     0.3.0
-  domain:                      my.wild.dre.am
+  domain:                      cupapp.com
 
   date_format:                 m-d H:i
-  noresponse_email:            no-response@my.wild.dre.am
+  noresponse_email:            no-response@cupapp.com
   send_confirmation_email:     true
 
   replay:
@@ -39,5 +39,5 @@ all:
     profile_class: sfGuardUserProfile
 
 dev:
-  domain:                      cupapp.dyndns.info
+  domain:                      test.cupapp.com
   send_confirmation_email:     true
