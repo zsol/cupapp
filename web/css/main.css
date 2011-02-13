@@ -82,6 +82,9 @@ h1#signin_title {
 h1#contact_title {
     background:#777 url(/images/titlebg_4.jpg) top right no-repeat;
 }
+h1#rules_title {
+    background:#777 url(/images/titlebg_2.jpg) top right no-repeat;
+}
 
 /*.wrapper h1:hover {
     background: #bbb;

@@ -33,7 +33,7 @@ editmyprofile:
 
 rules:
   url:   /:sf_culture/rules
-  param: { module: default, action: index }
+  param: { module: rules, action: index }
   requirements: { sf_culture: (?:hu|en) }
 
 homepage:
