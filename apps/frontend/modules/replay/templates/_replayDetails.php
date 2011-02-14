@@ -2,7 +2,7 @@
     <div style="float:left;">
         <h3><?php echo __('Standard informations') ?></h3>
         <?php $gameInfo = $replay->getGameInfo() ?>
-        <table style="margin-left:5px;width:380px;" class="stdtable replay_info">
+        <table style="margin-left:5px;width:360px;" class="stdtable replay_info">
             <tr>
                 <th><?php echo __('Map name') ?></th><td><?php echo $replay->getMapName() ?></td>
             </tr>
@@ -39,7 +39,7 @@
             </tr>
         </table>
     </div>
-    <div style="float:right;width:180px;margin-right:5px;">
+    <div style="float:right;width:200px;margin-right:5px;">
         <h3><?php echo __('Players') ?></h3>
             <?php $i = 1; ?>
             <?php foreach ($replay->getPlayersInfo() as $teamNum => $team) : ?>
