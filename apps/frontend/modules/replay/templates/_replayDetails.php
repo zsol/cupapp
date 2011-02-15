@@ -1,6 +1,6 @@
 <div style="margin-bottom:10px;">
     <div style="float:left;">
-        <h3><?php echo __('Standard informations') ?></h3>
+        <h3><?php echo __('Standard information') ?></h3>
         <?php $gameInfo = $replay->getGameInfo() ?>
         <table style="margin-left:5px;width:360px;" class="stdtable replay_info">
             <tr>
