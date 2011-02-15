@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-02-06T09:28:21Z" product-name="messages">
+  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-02-15T22:27:14Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -34,7 +34,7 @@
       </trans-unit>
       <trans-unit id="8">
         <source>View Replay</source>
-        <target>Megnéz</target>
+        <target>Replay megtekintése</target>
       </trans-unit>
       <trans-unit id="9">
         <source>Replay details</source>
@@ -54,7 +54,7 @@
       </trans-unit>
       <trans-unit id="13">
         <source>Target</source>
-        <target>Célpont</target>
+        <target>Cél</target>
       </trans-unit>
       <trans-unit id="14">
         <source>Message</source>
@@ -114,71 +114,63 @@
       </trans-unit>
       <trans-unit id="28">
         <source>Warning!</source>
-        <target/>
+        <target>Figyelem!</target>
       </trans-unit>
       <trans-unit id="29">
         <source>This site has never been tested on Internet Explorer ... at all! Please if you are still using Internet Explorer 6 please at least upgrade to IE8, that should work fine.</source>
-        <target/>
+        <target>Ezt az oldalt sose teszteltük Internet Explorerrel ... egyáltalán! Ha még mindig Internet Explorer 6-ot használsz, legalább 8-asra frissíts, az elvileg megy.</target>
       </trans-unit>
       <trans-unit id="30">
         <source>Thank you for your understanding and sorry for the inconveniences it may cause.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="31">
-        <source>Created and maintained by Ágoston Fung with the help of</source>
-        <target/>
+        <target>Köszönjük a megértést, és sajnáljuk, ha kellemetlenséget okoztunk.</target>
       </trans-unit>
       <trans-unit id="32">
         <source>the replay parser</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="33">
-        <source>This is an Open Source project hosted by</source>
-        <target/>
+        <target>a replay elemző</target>
       </trans-unit>
       <trans-unit id="34">
         <source>Menu</source>
-        <target/>
+        <target>Menü</target>
       </trans-unit>
       <trans-unit id="35">
         <source>Special thanks</source>
-        <target/>
+        <target>Köszönet</target>
       </trans-unit>
       <trans-unit id="36">
         <source>My replays</source>
-        <target/>
+        <target>Saját replayeim</target>
       </trans-unit>
       <trans-unit id="37">
         <source>You have no replays in the system.</source>
-        <target/>
+        <target>Nincs replayed a rendszerben.</target>
       </trans-unit>
       <trans-unit id="38">
         <source>Links</source>
-        <target/>
+        <target>Linkek</target>
       </trans-unit>
       <trans-unit id="39">
         <source>Last uploaded replays</source>
-        <target/>
+        <target>Utoljára feltöltött replayek</target>
       </trans-unit>
       <trans-unit id="40">
         <source>There is no replay in the system right now.</source>
-        <target/>
+        <target>Nincs egy darab replay se a rendszerben jelenleg.</target>
       </trans-unit>
       <trans-unit id="41">
         <source>Latest comments</source>
-        <target/>
+        <target>Kommentek mostanában</target>
       </trans-unit>
       <trans-unit id="42">
         <source>Logged in as</source>
-        <target/>
+        <target>Bejelentkezve mint</target>
       </trans-unit>
       <trans-unit id="43">
         <source>Edit profile</source>
-        <target/>
+        <target>Profil szerkesztése</target>
       </trans-unit>
       <trans-unit id="44">
         <source>Logout</source>
-        <target/>
+        <target>Kijelentkezés</target>
       </trans-unit>
       <trans-unit id="45">
         <source>Go to admin</source>
@@ -186,71 +178,71 @@
       </trans-unit>
       <trans-unit id="46">
         <source>You are not logged in.</source>
-        <target/>
+        <target>Nem vagy bejelentkezve.</target>
       </trans-unit>
       <trans-unit id="47">
         <source>Login</source>
-        <target/>
+        <target>Bejelentkezés</target>
       </trans-unit>
       <trans-unit id="48">
         <source>Register</source>
-        <target/>
+        <target>Regisztráció</target>
       </trans-unit>
       <trans-unit id="49">
         <source>This replay doesn't exist in our database anymore.</source>
-        <target/>
+        <target>Ez a replay már nem létezik az adatbázisunkban.</target>
       </trans-unit>
       <trans-unit id="50">
         <source>Cannot find the replay file. Please contact an administrator!</source>
-        <target/>
+        <target>A replay fájl nem található. Szólj egy adminisztrátornak!</target>
       </trans-unit>
       <trans-unit id="51">
         <source>Wrong request to download replay.</source>
-        <target/>
+        <target>Hibás lekérés a replay letöltésére.</target>
       </trans-unit>
       <trans-unit id="52">
         <source>Replay filter</source>
-        <target/>
+        <target>Replay szűrő</target>
       </trans-unit>
       <trans-unit id="53">
         <source>List me all the replays that has a player like %%seachPlayer%% take place on the map %%searchMap%% </source>
-        <target/>
+        <target>Mutasd az összes replayt, amiben egy %%seachPlayer%% nevű játékos játszik egy %%searchMap%% nevű pályán</target>
       </trans-unit>
       <trans-unit id="54">
         <source>I am only interested in replays in the category of %%category%% and game type of %%gametype%%</source>
-        <target/>
+        <target>Csak %%category%% kategóriájú és %%gametype%% típusú játékok érdekelnek</target>
       </trans-unit>
       <trans-unit id="55">
         <source>Please order the list for me by %%orderby%%</source>
-        <target/>
+        <target>Szeretném %%orderby%% szerint sorba rendezni a listát</target>
       </trans-unit>
       <trans-unit id="56">
         <source>Search/Filter</source>
-        <target/>
+        <target>Keresés/Szűrés</target>
       </trans-unit>
       <trans-unit id="57">
         <source>Sorry the replay upload is currently turned off because of the new version of Starcraft2. Thank you for your understanding.</source>
-        <target/>
+        <target>Sajnáljuk, a replay feltöltést ideiglenesen kikapcsoltuk az új Starcraft2 verzió miatt. Köszönjük türelmed.</target>
       </trans-unit>
       <trans-unit id="58">
         <source>Average APM</source>
-        <target/>
+        <target>Átlag APM</target>
       </trans-unit>
       <trans-unit id="59">
         <source>Download counter</source>
-        <target/>
+        <target>Letöltés számláló</target>
       </trans-unit>
       <trans-unit id="60">
         <source>Uploaded at</source>
-        <target/>
+        <target>Feltöltés időpontja</target>
       </trans-unit>
       <trans-unit id="61">
         <source>Winner?</source>
-        <target/>
+        <target>Nyertes?</target>
       </trans-unit>
       <trans-unit id="62">
         <source>Winner is unkown</source>
-        <target/>
+        <target>A nyertes ismeretlen</target>
       </trans-unit>
       <trans-unit id="63">
         <source>#top</source>
@@ -258,135 +250,171 @@
       </trans-unit>
       <trans-unit id="64">
         <source>Replay comments</source>
-        <target/>
+        <target>Megjegyzések a replayhez</target>
       </trans-unit>
       <trans-unit id="65">
         <source>Sorry you cannot upload a new replay right now. Please wait %%min%% minutes.</source>
-        <target/>
+        <target>Sajnos nem tudsz új replayt feltölteni most. Várnod kell %%min%% percet.</target>
       </trans-unit>
       <trans-unit id="66">
         <source>Replay result list</source>
-        <target/>
+        <target>Replay lista</target>
       </trans-unit>
       <trans-unit id="67">
         <source>Map</source>
-        <target/>
+        <target>Pálya</target>
       </trans-unit>
       <trans-unit id="68">
         <source>First page</source>
-        <target/>
+        <target>Első oldal</target>
       </trans-unit>
       <trans-unit id="69">
         <source>Previous Page</source>
-        <target/>
+        <target>Előző oldal</target>
       </trans-unit>
       <trans-unit id="70">
         <source>Next Page</source>
-        <target/>
+        <target>Következő oldal</target>
       </trans-unit>
       <trans-unit id="71">
         <source>Last page</source>
-        <target/>
+        <target>Utolsó oldal</target>
       </trans-unit>
       <trans-unit id="72">
         <source>There is no replay in the system that is in the searching criteria.</source>
-        <target/>
+        <target>A keresési feltételeknek egy replay se felel meg a rendszerben.</target>
       </trans-unit>
       <trans-unit id="73">
         <source>How to share this replay?</source>
-        <target/>
+        <target>Hogy osszam meg ezt a replayt?</target>
       </trans-unit>
       <trans-unit id="74">
         <source>Send this link to your friends</source>
-        <target/>
+        <target>Küldd el ezt a linket</target>
       </trans-unit>
       <trans-unit id="75">
         <source>Email is confirmed. Now you can log in.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="76">
-        <source>Dear</source>
-        <target/>
+        <target>Az email cím megerősítve. Most már bejelentkezhetsz.</target>
       </trans-unit>
       <trans-unit id="77">
         <source>Please visit %%url%% to confirm your email address.</source>
-        <target/>
+        <target>Látogasd meg a %%url%% linket az email címed megerősítéséhez.</target>
       </trans-unit>
       <trans-unit id="78">
         <source>Please visit &lt;a href="%%url%%"&gt;%%url%%&lt;/a&gt; to confirm your email address.</source>
-        <target/>
+        <target>Látogasd meg a &lt;a href="%%url%%"&gt;%%url%%&lt;/a%gt; linket az email címed megerősítéséhez.</target>
       </trans-unit>
       <trans-unit id="79">
         <source>Profile updated successfully.</source>
-        <target/>
+        <target>Profil sikeresen frissítve.</target>
       </trans-unit>
       <trans-unit id="80">
         <source>There were errors in the submission. See the form for details.</source>
-        <target/>
+        <target>Hibákat talaláltunk a beküldött adatokban. Lásd az űrlapot.</target>
       </trans-unit>
       <trans-unit id="81">
         <source>Registration complete! You will get an email with the confirmation link.</source>
-        <target/>
+        <target>Regisztráció sikeres! Hamarosan kapsz egy emailt a megerősítéshez szükséges linkkel.</target>
       </trans-unit>
       <trans-unit id="82">
         <source>Login form</source>
-        <target/>
+        <target>Bejelentkezés</target>
       </trans-unit>
       <trans-unit id="83">
         <source>You don't have the required permission to access this page.</source>
-        <target/>
+        <target>Nincs megfelelő jogosultságod az oldal megtekintéséhez.</target>
       </trans-unit>
       <trans-unit id="84">
         <source>Username</source>
-        <target/>
+        <target>Felhasználói név</target>
       </trans-unit>
       <trans-unit id="85">
         <source>Password</source>
-        <target/>
+        <target>Jelszó</target>
       </trans-unit>
       <trans-unit id="86">
         <source>Password confirmation</source>
-        <target/>
+        <target>Jelszó mégegyszer</target>
       </trans-unit>
       <trans-unit id="87">
         <source>Email address</source>
-        <target/>
+        <target>Email cím</target>
       </trans-unit>
       <trans-unit id="88">
         <source>Avatar (optional)</source>
-        <target/>
+        <target>Profilkép (nem kötelező)</target>
       </trans-unit>
       <trans-unit id="89">
         <source>Accept our rules</source>
-        <target/>
+        <target>A szabályaink elfogadása</target>
       </trans-unit>
       <trans-unit id="90">
         <source>I accept the rules written here.</source>
-        <target/>
+        <target>Elfogadom az itt írt szabályokat.</target>
       </trans-unit>
       <trans-unit id="91">
         <source>No comments yet.</source>
-        <target/>
+        <target>Egyelőre nincs megjegyzés.</target>
       </trans-unit>
       <trans-unit id="92">
         <source>Send comment</source>
-        <target/>
+        <target>Hozzászólás</target>
       </trans-unit>
       <trans-unit id="93">
         <source>You need to &lt;a href="%s"&gt;log in&lt;/a&gt; to comment.</source>
-        <target/>
+        <target>Hozzászóláshoz &lt;a href="%s"&gt;be kell jelentkezned&lt;/a&gt;.</target>
       </trans-unit>
       <trans-unit id="94">
         <source>You can only comment in every %%sec%% seconds.</source>
-        <target/>
+        <target>Csak %%sec%% másodpercenként szólhatsz hozzá.</target>
       </trans-unit>
       <trans-unit id="96">
         <source>Ps: Don't store your replays here, as I might have to wipe the database every now and then.</source>
-        <target>Ui: Ne tárold itt a replayjeidet, mert néha ki kell törölnöm az adatbázis teljes tartalmát.</target>
+        <target>Ui: Ne tárold itt a replayjeidet, mert néha ki kellhet törölnöm az adatbázis teljes tartalmát.</target>
       </trans-unit>
       <trans-unit id="97">
         <source>Hello dear visitor! What you see now are the beginnings of a replay sharing site. Please use it to your pleasure! If you find any bugs, sending the details to my email address (%%contact%%) would help a lot. Thanks in advance.</source>
-	<target>Szervusz kedves látogató! Ezen az oldalon a készülő replay feltöltő és megosztó alkalmazás egy pre-pre-alfa verzióját tudod most megtekinteni. Kérlek használd kedvedre! Ha találsz bármilyen hibát, akkor kérlek küldj el nekem mindenféle részleteket róla az email címemre (%%contact%%). Köszönöm szépen az együttműködésedet előre is!</target>
+        <target>Szervusz kedves látogató! Ezen az oldalon a készülő replay feltöltő és megosztó alkalmazás egy pre-pre-alfa verzióját tudod most megtekinteni. Kérlek használd kedvedre! Ha találsz bármilyen hibát, akkor kérlek küldj el nekem mindenféle részleteket róla az email címemre (%%contact%%). Köszönöm szépen az együttműködésedet előre is!</target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>Your email is already confirmed.</source>
+        <target>Az email címed már meg lett erősítve.</target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>Dear %%username%%</source>
+        <target>Kedves %%username%%</target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>Terms and Conditions</source>
+        <target>Házirend</target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>This is a really simple T&amp;C for the sake of human readability. By using the site, you agree to, first and foremost, act in good belief; use the site as it was intended to be used (share replays); not be a troll and be nice to other users of the site.</source>
+        <target>Az olvashatóság érdekében ez egy nagyon egyszerű házirend. A weboldal használatával beleegyezel legelőszöris abba, hogy jóhiszeműen cselekszel; arra használod az oldalt, amire azt szántuk (replayek megosztása); nem trollkodsz, és jófej leszel más emberekhez az oldalon.</target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>If you see someone you think is not adhering to above rules, do not hesitate to %%s%%.</source>
+        <target>Ha látsz valakit, aki megsérti a fenti szabályokat, ne habozz %%s%%.</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>contact the admins</source>
+        <target>szólni az adminoknak</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Reply</source>
+        <target>Válasz</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>Created and maintained by %%creators%% with the help of %%parser%%.</source>
+        <target>A fejlesztést és karbantartást %%creators%% végzik %%parser%% segítségével.</target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>these fine folks</source>
+        <target>ezek a jómunkásemberek</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>This is an Open Source project hosted by %%host%%.</source>
+        <target>Ez egy Nyílt Forrású projekt, forrás a %%host%% oldalon.</target>
       </trans-unit>
     </body>
   </file>

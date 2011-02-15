@@ -1,7 +1,6 @@
 <div class="footer">
-    <span style="font-size:13px;"><?php echo __('Created and maintained by Ágoston Fung with the help of') ?>
-    <?php echo __('the replay parser') ?> <a href="http://code.google.com/p/phpsc2replay/">PHPSc2Replay</a>.</span><br/>
-    <span style="font-size:13px;"><?php echo __('This is an Open Source project hosted by') ?> <a href="http://code.google.com/p/sc2-cup-app/">Google Code</a>.</span>
+  <span style="font-size:13px;"><?php echo __('Created and maintained by %%creators%% with the help of %%parser%%.', array('%%parser%%' => link_to(__('the replay parser'), "http://code.google.com/p/phpsc2replay/"), '%%creators%%' => link_to(__('these fine folks'), 'replay/contact'))) ?></span><br/>
+  <span style="font-size:13px;"><?php echo __('This is an Open Source project hosted by %%host%%.', array('%%host%%' => link_to("GitHub", "https://github.com/zsol/cupapp"))) ?></span>
 
 <br/><br/>
     StarCraft® II and Blizzard Entertainment® are all trademarks or registered trademarks of Blizzard
