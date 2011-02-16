@@ -274,6 +274,10 @@ div.download_link {
 	font-weight: bold;
 	padding: 5px;
 }
+div.facebook_block {
+	overflow: hidden;
+	height: 25px;
+}
 div.team_box {
 	padding: 5px;
 }

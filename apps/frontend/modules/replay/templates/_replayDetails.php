@@ -32,7 +32,7 @@
 			<a href="<?php echo url_for('@downloadreplay?id='.$replay->getId()) ?>"><?php echo __('Download replay') ?></a>
 		</div>
 		<div class="hover_block">
-			<div style="overflow: hidden; height: 30px;">
+			<div class="facebook_block">
         		<iframe scrolling="no" frameborder="0" style="border: medium none ; overflow: hidden; width: 280px; height: 30px;" allowtransparency="true" src="http://www.facebook.com/plugins/like.php?href=<?php echo 'http://test.cupapp.com'.url_for('@viewreplay?id='.$replay->getId().'&name='.$replay) ?>&layout=standard&show_faces=yes&amp;width=450&action=like&font=arial&colorscheme=light"></iframe>
  			</div>
 		</div>
