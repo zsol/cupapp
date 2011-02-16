@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-02-15T22:27:14Z" product-name="messages">
+  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-02-16T08:06:54Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -168,10 +168,6 @@
         <source>Edit profile</source>
         <target>Profil szerkesztése</target>
       </trans-unit>
-      <trans-unit id="44">
-        <source>Logout</source>
-        <target>Kijelentkezés</target>
-      </trans-unit>
       <trans-unit id="45">
         <source>Go to admin</source>
         <target/>
@@ -186,7 +182,7 @@
       </trans-unit>
       <trans-unit id="48">
         <source>Register</source>
-        <target>Regisztráció</target>
+        <target>Regisztrálj</target>
       </trans-unit>
       <trans-unit id="49">
         <source>This replay doesn't exist in our database anymore.</source>
@@ -415,6 +411,30 @@
       <trans-unit id="107">
         <source>This is an Open Source project hosted by %%host%%.</source>
         <target>Ez egy Nyílt Forrású projekt, forrás a %%host%% oldalon.</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Starcraft2 website</source>
+        <target>Starcraft2 weboldal</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Teamliquid</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Profile</source>
+        <target>Profil</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>Log out</source>
+        <target>Kijelentkezés</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Log in</source>
+        <target>Jelentkezz be</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>or</source>
+        <target>vagy</target>
       </trans-unit>
     </body>
   </file>
