@@ -9,16 +9,13 @@ body {
 }
 
 a:link, a:visited {
-    color:#FF9C00;
+    color:#BF0000;
     text-decoration:none;
 }
 
 a:hover {
-    color: #FFBB4F;
-}
-
-.wrapper a {
-    color: #BF0000;
+    color: black;
+	text-decoration: none;
 }
 
 .menu a {
@@ -260,7 +257,22 @@ span.repListBoxTime {
     font-size: 0.8em;
 }
 table.replay_info {
-	color: Cornflowerblue;
+	margin-left: 5px;
+	margin-bottom: 25px;
+	width: 360px;
+	text-align: left;	
+}
+div.hover_block {
+	margin: 5px 10px 5px 10px; 
+	text-align: center;
+}
+div.hover_block:hover {
+	background-color: #bbb;
+}
+div.download_link {
+	font-size: 1em;
+	font-weight: bold;
+	padding: 5px;
 }
 div.team_box {
 	padding: 5px;

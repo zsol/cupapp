@@ -2,7 +2,7 @@
     <div style="float:left;">
         <h3><?php echo __('Standard information') ?></h3>
         <?php $gameInfo = $replay->getGameInfo() ?>
-        <table style="margin-left:5px;width:360px;" class="stdtable replay_info">
+        <table class="stdtable replay_info">
             <tr>
                 <th><?php echo __('Map name') ?></th><td><?php echo $replay->getMapName() ?></td>
             </tr>
@@ -27,17 +27,16 @@
             <tr>
                 <th><?php echo __('Uploaded at') ?>:</th><td><?php echo $replay->getCreatedAt() ?> by <b><?php echo $replay->getsfGuardUser()->getUsername() ?></b></td>
             </tr>
-            <tr>
-                <th colspan="2"><a href="<?php echo url_for('@downloadreplay?id='.$replay->getId()) ?>"><?php echo __('Download replay') ?></a></th>
-            </tr>
-            <tr>
-                <th colspan="2">
-                    <div style="overflow: hidden; height: 30px;">
-                        <iframe scrolling="no" frameborder="0" style="border: medium none ; overflow: hidden; width: 280px; height: 30px;" allowtransparency="true" src="http://www.facebook.com/plugins/like.php?href=<?php echo 'http://test.cupapp.com'.url_for('@viewreplay?id='.$replay->getId().'&name='.$replay) ?>&layout=standard&show_faces=yes&amp;width=450&action=like&font=arial&colorscheme=light"></iframe>
-                    </div>
-                </th>
-            </tr>
         </table>
+		<div class="hover_block download_link">
+			<a href="<?php echo url_for('@downloadreplay?id='.$replay->getId()) ?>"><?php echo __('Download replay') ?></a>
+		</div>
+		<div class="hover_block">
+			<div style="overflow: hidden; height: 30px;">
+        		<iframe scrolling="no" frameborder="0" style="border: medium none ; overflow: hidden; width: 280px; height: 30px;" allowtransparency="true" src="http://www.facebook.com/plugins/like.php?href=<?php echo 'http://test.cupapp.com'.url_for('@viewreplay?id='.$replay->getId().'&name='.$replay) ?>&layout=standard&show_faces=yes&amp;width=450&action=like&font=arial&colorscheme=light"></iframe>
+ 			</div>
+		</div>
+
     </div>
     <div style="float:right;width:200px;margin-right:5px;">
         <h3><?php echo __('Players') ?></h3>
