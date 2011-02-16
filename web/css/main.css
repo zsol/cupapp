@@ -4,17 +4,20 @@
 body {
     padding-top:193px;
     background: #000000 url('/images/bg_1.jpg') center top no-repeat;
-    font-family: arial;
-    font-size: 15px;
+	font-family: verdana;
+	font-size: 11px;
+	line-height: 15px;;
 }
 
 a:link, a:visited {
     color:#BF0000;
+	font-weight: bold;
     text-decoration:none;
 }
 
 a:hover {
     color: black;
+	font-weight: bold;
 	text-decoration: none;
 }
 
@@ -59,6 +62,7 @@ h3 {
 -webkit-border-radius: 5px;
     background: #777;
     margin-bottom: 10px;
+	font-size: 1.2em;
 }
 
 h1#replay_details_title {
@@ -81,6 +85,10 @@ h1#contact_title {
 }
 h1#rules_title {
     background:#777 url(/images/titlebg_2.jpg) top right no-repeat;
+}
+
+div#index_div {
+	padding: 10px;
 }
 
 /*.wrapper h1:hover {
@@ -261,6 +269,8 @@ table.replay_info {
 	margin-bottom: 25px;
 	width: 360px;
 	text-align: left;	
+	font-family: verdana;
+	font-size: 1em;
 }
 div.hover_block {
 	margin: 5px 10px 5px 10px; 
@@ -379,4 +389,18 @@ div.comment_content {
 
 #replay_comment_comment {
     width:582px;
+}
+
+/*
+ Misc styles
+*/
+span.footer_credit {
+	font-size: 0.8em;
+}
+
+.footer a:hover {
+	color: #ccc;
+}
+.footer img {
+	border: medium none;
 }
