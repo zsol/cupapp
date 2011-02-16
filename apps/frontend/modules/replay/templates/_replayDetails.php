@@ -43,24 +43,28 @@
         <h3><?php echo __('Players') ?></h3>
             <?php $i = 1; ?>
             <?php foreach ($replay->getPlayersInfo() as $teamNum => $team) : ?>
-            <table style="margin:0px auto;font-size: 1.3em;">
-            <?php foreach ($team as $player): ?>
-                <tr>
-                    <td style="width:15px;vertical-align: middle;">
-                        <div class="pColorBox" style="background:#<?php echo $player['color'] ?>;"></div>
-                    </td>
-                    <td style="vertical-align: middle;">
-                        <a target="_blank" href="<?php echo ReplayHelper::getProfileUrl($player['name'], $player['uid'], $player['uidIndex']) ?>"><?php echo $player['name'] ?></a>
-                    </td>
-                    <td>
-                        <img alt="<?php echo $player['race'] ?>" title="" src="<?php echo RacePeer::getSmallImageUrlByName($player['race']) ?>"/>
-                    </td>
-                    <td style="vertical-align: middle">
-                        <span title="<?php echo __('This players average APM was %%ss%%',array('%%ss%%' => $player['avg_apm'])) ?>" style="font-size:.8em;">(<?php echo $player['avg_apm'] ?>)</span>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </table>
+			
+			<div class="team_box">
+				<table class="team_table">
+					<?php foreach ($team as $player): ?>
+						<tr>
+							<td class="player_color">
+								 <div class="pColorBox" style="background:#<?php echo $player['color'] ?>;"></div>
+							</td>
+								<td class="player_name">
+								<a target="_blank" href="<?php echo ReplayHelper::getProfileUrl($player['name'], $player['uid'], $player['uidIndex']) ?>"><?php echo $player['name'] ?></a>
+							</td>
+							<td class="player_icon">
+								<img class="player_icon" alt="<?php echo $player['race'] ?>" title="" src="<?php echo RacePeer::getSmallImageUrlByName($player['race']) ?>"/>
+							</td>
+							<td class="player_apm">
+								<span title="<?php echo __('This players average APM was %%ss%%',array('%%ss%%' => $player['avg_apm'])) ?>" style="font-size:.8em;">(<?php echo $player['avg_apm'] ?>)</span>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
+            </div>
+
             <?php if($i < count($replay->getPlayers())) : ?>
                 <div style="text-align:center;font-weight: bold;">VS</div>
                 <?php $i++; ?>

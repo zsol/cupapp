@@ -241,6 +241,8 @@ div.pColorBox {
     width:10px;
     height:10px;
     border:1px solid #333;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /*
@@ -256,6 +258,41 @@ span.repListBoxTime {
     font-style: italic;
     float:right;
     font-size: 0.8em;
+}
+table.replay_info {
+	color: Cornflowerblue;
+}
+div.team_box {
+	padding: 5px;
+}
+table.team_table {
+	width: 100%;
+	margin: 0px;
+	font-size: 1em;
+}
+td.player_color {
+	width: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+td.player_name {
+	text-align: left;
+	vertical-align: middle;
+	padding-left: 3px;
+}
+td.player_icon {
+	width: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+td.player_apm {
+	width: 35px;
+	text-align: center;
+	vertical-align: middle;
+}
+img.player_icon {
+	height: 20px;
+	width: auto;
 }
 
 #winner_list {
