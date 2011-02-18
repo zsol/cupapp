@@ -392,7 +392,7 @@ div.comment_content {
 }
 
 /*
- Misc styles
+ Footer
 */
 span.footer_credit {
 	font-size: 0.8em;
@@ -406,4 +406,23 @@ span.footer_credit {
 }
 .footer img {
 	border: medium none;
+}
+
+/*
+ Login form
+*/
+div.login_input {
+	margin: 10px 10px 10px 7px;
+}
+table.login_table {
+	text-align: left;
+	vertical-align: middle;
+	margin: 14px 10px 14px 10px;
+}
+.login_table th {
+	width: 105px;
+}
+td.error_field {
+	color: #BF0000;
+	padding-left: 10px;
 }

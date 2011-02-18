@@ -11,13 +11,31 @@
 <?php end_slot(); ?>
 
 <div class="greybox">
-    <h1 id="signin_title"><?php echo __('Login form') ?></h1>
-    <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
-      <table>
-        <?php echo $form ?>
-      </table>
-
-      <input type="submit" value="sign in" />
+	<h1 id="signin_title"><?php echo __('Login form') ?></h1>
+	<form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
+    	<table class='login_table'>
+			<tr>
+				<th><?php echo $form['username']->renderLabel(__('Username')) ?></th>
+				<td><?php echo $form['username'] ?></td>
+				<td class='error_field'><?php echo $form['username']->renderError() ?></td>
+			</tr>
+			<tr>
+				<th><?php echo $form['password']->renderLabel(__('Password'))?></th>
+				<td><?php echo $form['password'] ?></td>
+				<td class='error_field'><?php echo $form['password']->renderError() ?></td>
+			</tr>
+			<tr>
+				<th><?php echo $form['remember']->renderLabel(__('Remember me')) ?></th>
+				<td><?php echo $form['remember'] ?></td>
+				<td class='error_field'><?php echo $form['remember']->renderError() ?></td>
+			</tr>
+			<tr>
+				<td colspan='2'><?php echo $form['_csrf_token'] ?></td>
+			</tr>
+		</table>
+		<div class='login_input'>
+			<input type="submit" value="<?php echo __('Sign in') ?>" />
+		</div>
     </form>
-<div style="clear:both;"></div>
+	<div style="clear:both;"></div>
 </div>
