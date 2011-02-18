@@ -16,7 +16,7 @@ a:link, a:visited {
 }
 
 a:hover {
-    color: black;
+    color: #5A0808;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -398,8 +398,11 @@ span.footer_credit {
 	font-size: 0.8em;
 }
 
+.footer a:link, .footer a:visited {
+	color: #ff9c00;
+}
 .footer a:hover {
-	color: #ccc;
+	color: #FDC764;
 }
 .footer img {
 	border: medium none;
