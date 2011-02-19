@@ -37,6 +37,13 @@ all:
   sf_guard_plugin:
     routes_register:           false
     profile_class: sfGuardUserProfile
+    
+  language:
+    languages:
+      en:
+        name: English
+      hu:
+        name: Magyar
 
 dev:
   domain:                      test.cupapp.com

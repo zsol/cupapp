@@ -12,5 +12,6 @@
         <?php echo __('You are not logged in.') ?> <br/>
    <a href="<?php echo url_for('@sf_guard_signin') ?>"><?php echo __('Log in') ?></a> <?php echo __('or') ?> <a href="<?php echo url_for('@register') ?>"><?php echo __('Register') ?></a>
     <?php endif; ?>
+   <?php include_component('language', 'language') ?>
     <div style="clear:both;"></div>
 </div>
