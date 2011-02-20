@@ -1,6 +1,7 @@
 cache
 log
 web/uploads
+nbproject
 *~
 plugins/.channels
 plugins/.depdb
