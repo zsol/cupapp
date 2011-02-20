@@ -41,7 +41,7 @@ homepage:
   param:
     module: replay
     action: index
-    sf_culture: <?php echo sfPropel::getDefaultCulture() ?>
+    sf_culture: <?php echo sfPropel::getDefaultCulture() . "\n" ?>
   requirements: { sf_culture: (?:hu|en) }
 
 replayhome:
