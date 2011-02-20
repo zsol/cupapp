@@ -2,3 +2,9 @@ cache
 log
 web/uploads
 *~
+plugins/.channels
+plugins/.depdb
+plugins/.depdblock
+plugins/.filemap
+plugins/.lock
+plugins/.registry
