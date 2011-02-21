@@ -1,33 +1,43 @@
 <div style="margin-bottom:10px;">
-    <div style="float:left;">
+    <div style="float:left; margin-left: 5px;">
         <h3><?php echo __('Standard information') ?></h3>
         <?php $gameInfo = $replay->getGameInfo() ?>
-        <table class="stdtable replay_info">
+		<div class="shadow_box">
+        <table class="stdtable replay_info" >
             <tr>
-                <th><?php echo __('Map name') ?></th><td><?php echo $replay->getMapName() ?></td>
+                <th><?php echo __('Map name') ?>:</th>
+				<td><?php echo $replay->getMapName() ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Match length') ?></th><td><?php echo ReplayPeer::getFormattedGameLength($replay->getGameLength()) ?></td>
+                <th><?php echo __('Match length') ?>:</th>
+				<td><?php echo ReplayPeer::getFormattedGameLength($replay->getGameLength()) ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Game speed') ?></th><td><?php echo $replay->getGameSpeed() ?></td>
+                <th><?php echo __('Game speed') ?>:</th>
+				<td><?php echo $replay->getGameSpeed() ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Average APM') ?></th><td><?php echo $replay->getAvgAPM() ?></td>
+                <th><?php echo __('Average APM') ?>:</th>
+				<td><?php echo $replay->getAvgAPM() ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Description') ?>:</th><td><p style="width:260px; word-wrap: break-word;"><?php echo $replay->getDescription() ?></p></td>
+                <th><?php echo __('Description') ?>:</th>
+				<td><?php echo $replay->getDescription() ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Category') ?>:</th><td><?php echo $replay->getReplayCategory()->getName() ?></td>
+                <th><?php echo __('Category') ?>:</th>
+				<td><?php echo $replay->getReplayCategory()->getName() ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Download counter') ?>:</th><td><?php echo $replay->getDownloadCount() ?></td>
+                <th><?php echo __('Download counter') ?>:</th>
+				<td><?php echo $replay->getDownloadCount() ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Uploaded at') ?>:</th><td><?php echo $replay->getCreatedAt() ?> by <b><?php echo $replay->getsfGuardUser()->getUsername() ?></b></td>
+                <th><?php echo __('Uploaded at') ?>:</th>
+				<td><?php echo $replay->getCreatedAt() ?> by <b><?php echo $replay->getsfGuardUser()->getUsername() ?></b></td>
             </tr>
         </table>
+		</div>
 		<div class="hover_block download_link">
 			<a href="<?php echo url_for('@downloadreplay?id='.$replay->getId()) ?>"><?php echo __('Download replay') ?></a>
 		</div>
@@ -43,7 +53,7 @@
             <?php $i = 1; ?>
             <?php foreach ($replay->getPlayersInfo() as $teamNum => $team) : ?>
 			
-			<div class="team_box">
+			<div class="shadow_box team_box">
 				<table class="team_table">
 					<?php foreach ($team as $player): ?>
 						<tr>
@@ -69,9 +79,9 @@
                 <?php $i++; ?>
             <?php endif; ?>
             <?php endforeach; ?>
-                <div style="height:10px;"></div>
+            <div style="height:10px;"></div>
         <h3 class="toggle_down" id="winner_box"><?php echo __('Winner?') ?> <span style="float:right;"><img src="/images/icons/toggledown.png"/></span></h3>
-        <div id="winner_list">
+        <div id="winner_list" class="shadow_box">
         <?php if ($replay->isWinnerKnown()) : ?>
             <?php $i = 0; ?>
             <?php foreach($replay->getPlayersInfo() as $teamNum => $team) : ?>

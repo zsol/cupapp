@@ -107,7 +107,7 @@ div.wrapper {
     width:1000px;
     background: transparent;
     margin:0px auto;
-    #border:1px solid red;
+    /*border:1px solid red;*/
 }
 
 div.footer {
@@ -203,10 +203,14 @@ table.stdtable {
     border-collapse: collapse;
 }
 
-table.stdtable td, table.stdtable th {
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    padding:5px;
+table.stdtable th {
+    padding: 5px;
+	width: 135px;
+}
+table.stdtable td {
+	padding: 5px;
+	max-width: 225px;
+	word-wrap: break-word;
 }
 
 table.stdtable tr.odd {
@@ -214,7 +218,7 @@ table.stdtable tr.odd {
 }
 
 table.stdtable tr:hover {
-    background: #bbb;
+    background: #C2C2C2;
 }
 
 div.stdtable_border {
@@ -265,9 +269,7 @@ span.repListBoxTime {
     font-size: 0.8em;
 }
 table.replay_info {
-	margin-left: 5px;
-	margin-bottom: 25px;
-	width: 360px;
+	width: 350px;
 	text-align: left;	
 	font-family: verdana;
 	font-size: 1em;
@@ -283,13 +285,21 @@ div.download_link {
 	font-size: 1em;
 	font-weight: bold;
 	padding: 5px;
+	margin-top: 15px;
 }
 div.facebook_block {
 	overflow: hidden;
 	height: 25px;
 }
+div.shadow_box {
+	background-color: #B5B5B5;
+	border: 1px solid #9B9B9B;
+	border-radius: 5px;
+	margin: 7px 3px 7px 3px;
+	padding: 1px;
+}
 div.team_box {
-	padding: 5px;
+	padding: 2px;
 }
 table.team_table {
 	width: 100%;
@@ -324,7 +334,7 @@ img.player_icon {
 #winner_list {
     text-align:center;
     display:none;
-    border: 1px solid #222;
+	padding: 3px;
 -moz-border-radius: 3px;
 -webkit-border-radius: 3px;
 }
