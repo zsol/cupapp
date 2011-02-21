@@ -16,7 +16,7 @@
                 <th><?php echo __('Average APM') ?></th><td><?php echo $replay->getAvgAPM() ?></td>
             </tr>
             <tr>
-                <th><?php echo __('Description') ?>:</th><td><?php echo $replay->getDescription() ?></td>
+                <th><?php echo __('Description') ?>:</th><td><p style="width:260px; word-wrap: break-word;"><?php echo $replay->getDescription() ?></p></td>
             </tr>
             <tr>
                 <th><?php echo __('Category') ?>:</th><td><?php echo $replay->getReplayCategory()->getName() ?></td>

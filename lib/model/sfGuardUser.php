@@ -23,7 +23,7 @@ class sfGuardUser extends PluginsfGuardUser
     public function sendValidationEmail($html = '', $text = '')
     {
         $message = sfContext::getInstance()->getMailer()->compose();
-        $message->setSubject(sfContext::getInstance()->getI18N()->__('BlizzFanatic.Com Validation email'));
+        $message->setSubject(sfContext::getInstance()->getI18N()->__('Validation email for %%site%%', array('%%site%%' => sfConfig::get('app_domain'))));
         $message->setTo($this->getProfile()->getEmail());
         $message->setFrom(sfConfig::get('app_noresponse_email'));
 

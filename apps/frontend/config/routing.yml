@@ -37,8 +37,12 @@ rules:
   requirements: { sf_culture: (?:hu|en) }
 
 homepage:
-  url:   /
-  param: { module: replay, action: index }
+  url:   /:sf_culture
+  param:
+    module: replay
+    action: index
+    sf_culture: <?php echo sfPropel::getDefaultCulture() . "\n" ?>
+  requirements: { sf_culture: (?:hu|en) }
 
 replayhome:
   url:   /:sf_culture/replay

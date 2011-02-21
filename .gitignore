@@ -1,4 +1,11 @@
 cache
 log
 web/uploads
+nbproject
 *~
+plugins/.channels
+plugins/.depdb
+plugins/.depdblock
+plugins/.filemap
+plugins/.lock
+plugins/.registry
