@@ -13,7 +13,7 @@ function needs_sync_with()
 }
 
 if needs_sync_with "origin" ; then
-    cmd="git pull -q --ff-only -- origin $BRANCH"
+    cmd="git pull --ff-only -- origin $BRANCH"
     echo "Syncing (running $cmd)"
     eval "$cmd" || exit 2
 fi
