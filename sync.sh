@@ -16,6 +16,9 @@ if needs_sync_with "origin" ; then
     cmd="git pull --ff-only -- origin $BRANCH"
     echo "Syncing (running $cmd)"
     eval "$cmd" || exit 2
+    cmd="git submodule update --init" #init for first-time usage
+    echo "Syncing submodules (running $cmd)"
+    eval "$cmd" || exit 3
 fi
 
 popd > /dev/null
