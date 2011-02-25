@@ -25,7 +25,7 @@ pushd "$BASEDIR" > /dev/null
 
 run_cmd mkdir -p cache log web/uploads/userimg
 run_cmd sudo chgrp -R $WWWUSER cache log web/uploads
-run_cmd chmod -R g+rwx cache log web/uploads
+run_cmd sudo chmod -R g+rwx cache log web/uploads
 
 run_cmd "mysql $MYSQLARGS -e \"create database $MYSQLDB default character set utf8; create user '$MYSQLUSER'@'localhost' $MYSQLIDENTIFIEDBY; grant all on ${MYSQLDB}.* to '$MYSQLUSER'@'localhost';\""
 
