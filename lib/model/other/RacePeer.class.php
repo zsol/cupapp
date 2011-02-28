@@ -10,6 +10,7 @@
  * @author Eshton
  */
 class RacePeer {
+    const UNKNOWN = 0;
     const TERRAN  = 1;
     const PROTOSS = 2;
     const ZERG    = 3;
@@ -24,6 +25,7 @@ class RacePeer {
             case self::ZERG    : { return self::RACE_IMAGE_URL.'zerg_small.png'; }
             case self::RANDOM  : { return self::RACE_IMAGE_URL.'random_small.png'; }
         }
+        return self::RACE_IMAGE_URL.'unknown_small.png';
     }
 
     static public function getSmallImageUrlByName ($raceName) {
@@ -38,6 +40,7 @@ class RacePeer {
             case 'zerg'   : return self::ZERG;
             case 'random' : return self::RANDOM;
         }
+        return self::UNKNOWN;
     }
 }
 ?>
