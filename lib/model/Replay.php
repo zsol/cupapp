@@ -161,6 +161,7 @@ class Replay extends BaseReplay {
         }
 
         $game_avg_apm = 0;
+	$num_non_observers = 0;
 
         /*
          * Generate common information
@@ -189,6 +190,8 @@ class Replay extends BaseReplay {
               $observers[] = $playerData;
               continue;
           }
+	  
+	  $num_non_observers += 1;
 
           $playerData['race'] = $player['race'];
           $playerData['color'] = $player['color'];
@@ -211,7 +214,7 @@ class Replay extends BaseReplay {
           $game_avg_apm += $playerData['avg_apm'];
         }
 
-        $this->setAvgApm(round($game_avg_apm / count($players)));
+        $this->setAvgApm(round($game_avg_apm / $num_non_observers));
 
         /*
          * Retrieve message log
