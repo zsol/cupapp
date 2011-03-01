@@ -12,13 +12,21 @@ function needs_sync_with()
     return 0
 }
 
+function run_cmd()
+{
+    echo Running: \"$@\" ...
+    if eval "$@"; then
+	echo OK
+    else
+	echo "Failed..."
+	exit 1
+    fi
+}
+
 if needs_sync_with "origin" ; then
-    cmd="git pull --ff-only -- origin $BRANCH"
-    echo "Syncing (running $cmd)"
-    eval "$cmd" || exit 2
-    cmd="git submodule update --init" #init for first-time usage
-    echo "Syncing submodules (running $cmd)"
-    eval "$cmd" || exit 3
+    run_cmd git pull --ff-only -- origin $BRANCH
+    run_cmd git submodule update --init
+    run_cmd ./symfony cc
 fi
 
 popd > /dev/null
