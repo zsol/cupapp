@@ -136,6 +136,16 @@ class Replay extends BaseReplay {
         return '/uploads/replay/'.$userId.'/'.$this->getFilename();
     }
 
+    public function getRegion() {
+      $gameinfo = $this->getGameInfo();
+      return isset($gameinfo['global_info']['region']) ? $gameinfo['global_info']['region'] : "";
+    }
+
+    public function getPlayDate() {
+      $gameinfo = $this->getGameInfo();
+      return $gameinfo['global_info']['play_date'];
+    }
+
     /**
      * Parses replay data and sets values of this object
      *
@@ -172,6 +182,8 @@ class Replay extends BaseReplay {
         $globalInfo['game_speed'] = $repData->getGameSpeedText();
         $globalInfo['team_size'] = $repData->getTeamSize();
         $globalInfo['winner_known'] = $repData->isWinnerKnown();
+	$globalInfo['region'] = $repData->getRealm();
+	$globalInfo['play_date'] = $repData->getCtime();
 
         $this->setMapName($repData->getMapName());
         $this->setGameTypeId(ReplayGameTypePeer::getGameTypeIdByName($repData->getTeamSize()));

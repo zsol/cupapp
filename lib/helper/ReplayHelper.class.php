@@ -10,8 +10,15 @@
  * @author agoston
  */
 class ReplayHelper {
-    static public function getProfileUrl($name, $uid, $uidIndex) {
-        if (empty($name) || empty($uid) || empty($uidIndex)) {
+    static private function translateRegionToURL($region) {
+      $region = strtolower($region);
+      if ($region == "sg")
+	return "sea";
+      return $region;
+    }
+
+    static public function getProfileUrl($region, $name, $uid, $uidIndex) {
+        if (empty($name) || empty($uid) || empty($uidIndex) || empty($region)) {
             return null;
         }
 
@@ -19,7 +26,9 @@ class ReplayHelper {
         $pattern = str_replace('%%NAME%%', $name, $pattern);
         $pattern = str_replace('%%UID%%', $uid, $pattern);
         $pattern = str_replace('%%UIDINDEX%%', $uidIndex, $pattern);
+	$pattern = str_replace('%%REGION%%', ReplayHelper::translateRegionToURL($region), $pattern);
 
         return $pattern;
     }
+
 }
