@@ -30,6 +30,7 @@ all:
   boxes:
     last_uploaded_replays_num: 5
     my_last_replays_num:       5
+    last_comments_num:         5
 
   comment:
     flood_defence_seconds:     30

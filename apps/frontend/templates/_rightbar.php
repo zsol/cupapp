@@ -5,4 +5,4 @@
     <?php include_component('boxes','myLastReplays', array('onlymine' => true)) ?>
 <?php endif; ?>
 
-<?php //include_partial('boxes/commentsBox') ?>
+<?php include_component('boxes', 'lastComments') ?>
