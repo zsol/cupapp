@@ -90,6 +90,10 @@ h1#rules_title {
 div#index_div {
 	padding: 10px;
 }
+div.margined_div {
+	margin-left: 5px;
+	margin-right: 5px;
+}
 
 /*.wrapper h1:hover {
     background: #bbb;
