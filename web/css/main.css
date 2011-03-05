@@ -94,6 +94,9 @@ div.margined_div {
 	margin-left: 5px;
 	margin-right: 5px;
 }
+a.top_link {
+	margin-left: 10px;
+}
 
 /*.wrapper h1:hover {
     background: #bbb;

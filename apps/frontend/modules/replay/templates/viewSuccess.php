@@ -15,7 +15,7 @@
     <?php include_partial('replay/replayDetails', array('replay' => $replay)) ?>
     <?php include_partial('replay/messageLog', array('replay' => $replay)) ?>
     <?php include_partial('replay/shareBox', array('replay' => $replay)) ?>
-    <a href="#top"><?php echo __('#top') ?></a>
+    <a class="top_link" href="#top"><?php echo __('#top') ?></a>
 <div style="clear:both;"></div>
 </div>
 
@@ -23,6 +23,6 @@
     <h2><?php echo __('Replay comments') ?></h2>
     <?php include_component('comment','replayComments', array('replay' => $replay)) ?>
     <?php include_partial('comment/commentForm', array('form' => new ReplayCommentForm(), 'replay' => $replay)) ?>
-    <a href="#top"><?php echo __('#top') ?></a>
+    <a class="top_link" href="#top"><?php echo __('#top') ?></a>
 <div style="clear:both;"></div>
 </div>
