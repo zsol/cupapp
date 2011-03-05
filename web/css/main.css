@@ -217,12 +217,16 @@ table.stdtable tr.odd {
     background: #ddd;
 }
 
+table.stdtable tr.even { 
+	background: #D8D8D8;
+}
+
 table.stdtable tr:hover {
     background: #C2C2C2;
 }
 
 div.stdtable_border {
-    border: 2px solid #555;
+    border: 1px solid #555;
     padding: 2px;
 -moz-border-radius: 8px;
 -webkit-border-radius: 8px;
@@ -306,27 +310,27 @@ table.team_table {
 	margin: 0px;
 	font-size: 1em;
 }
-td.player_color {
+table.team_table td.player_color {
 	width: 20px;
 	text-align: center;
 	vertical-align: middle;
 }
-td.player_name {
+table.team_table td.player_name {
 	text-align: left;
 	vertical-align: middle;
 	padding-left: 3px;
 }
-td.player_icon {
+table.team_table td.player_icon {
 	width: 20px;
 	text-align: center;
 	vertical-align: middle;
 }
-td.player_apm {
+table.team_table td.player_apm {
 	width: 35px;
 	text-align: center;
 	vertical-align: middle;
 }
-img.player_icon {
+table.team_table img.player_icon {
 	height: 20px;
 	width: auto;
 }
@@ -338,6 +342,34 @@ img.player_icon {
 -moz-border-radius: 3px;
 -webkit-border-radius: 3px;
 }
+
+/*
+	Messages box
+*/
+table.replay_messages tr:nth-child(odd) {
+    background: #ddd;
+}
+table.replay_messages tr:nth-child(even) { 
+    background: #CDCDCD;
+}
+table.replay_messages tr:hover {
+	background: #C2C2C2;
+}
+table.replay_messages th {
+	background-color: #B5B5B5;
+	text-align: left;
+	width: auto;
+}
+table.replay_messages td.message_time {
+	width: 50px;
+}
+table.replay_messages td.message_player {
+	width: 120px;
+}
+table.replay_messages td.message_target {
+	width: 50px;
+}
+
 
 /*
     Register form
