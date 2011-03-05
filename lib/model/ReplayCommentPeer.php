@@ -18,4 +18,12 @@
  */
 class ReplayCommentPeer extends BaseReplayCommentPeer {
 
+  static public function getLastComments( $culture, $limit = 5 ) {
+    $c = new Criteria();
+    $c->addDescendingOrderByColumn(ReplayCommentPeer::CREATED_AT);
+    $c->add(ReplayCommentPeer::CULTURE, $culture);
+    $c->setLimit($limit);
+    return ReplayCommentPeer::doSelect($c);
+  }
+
 } // ReplayCommentPeer

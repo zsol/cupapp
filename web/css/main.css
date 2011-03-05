@@ -261,13 +261,13 @@ div.pColorBox {
 /*
   Replay box
 */
-div.repListBox {
+div.repListBox, div.comment_list_box {
     font-size: 0.9em;
     border-bottom: 1px solid #666;
     margin-bottom: 10px;
 }
 
-span.repListBoxTime {
+span.repListBoxTime, span.comment_list_box_time {
     font-style: italic;
     float:right;
     font-size: 0.8em;

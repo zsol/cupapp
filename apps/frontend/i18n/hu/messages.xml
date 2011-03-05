@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-02-19T10:35:24Z" product-name="messages">
+  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-03-02T08:30:30Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -59,10 +59,6 @@
       <trans-unit id="14">
         <source>Message</source>
         <target>Üzenet</target>
-      </trans-unit>
-      <trans-unit id="15">
-        <source>Standard informations</source>
-        <target>Általános információk</target>
       </trans-unit>
       <trans-unit id="16">
         <source>Map name</source>
@@ -368,10 +364,6 @@
         <source>Ps: Don't store your replays here, as I might have to wipe the database every now and then.</source>
         <target>Ui: Ne tárold itt a replayjeidet, mert néha ki kellhet törölnöm az adatbázis teljes tartalmát.</target>
       </trans-unit>
-      <trans-unit id="97">
-        <source>Hello dear visitor! What you see now are the beginnings of a replay sharing site. Please use it to your pleasure! If you find any bugs, sending the details to my email address (%%contact%%) would help a lot. Thanks in advance.</source>
-        <target>Szervusz kedves látogató! Ezen az oldalon a készülő replay feltöltő és megosztó alkalmazás egy pre-pre-alfa verzióját tudod most megtekinteni. Kérlek használd kedvedre! Ha találsz bármilyen hibát, akkor kérlek küldj el nekem mindenféle részleteket róla az email címemre (%%contact%%). Köszönöm szépen az együttműködésedet előre is!</target>
-      </trans-unit>
       <trans-unit id="98">
         <source>Your email is already confirmed.</source>
         <target>Az email címed már meg lett erősítve.</target>
@@ -439,6 +431,30 @@
       <trans-unit id="114">
         <source>Other languages</source>
         <target>Más nyelvek</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>What you see now are the beginnings of a replay sharing site. Please use it to your pleasure! If you find any bugs, sending the details to my email address (%%contact%%) would help a lot.</source>
+        <target>Amit magad előtt látsz, az egy replay megosztó oldal kezdeménye. Használd egészséggel! Ha találsz valami hibát, küldd el az email címemre (%%contact%%). Ezzel sokat segítesz, köszi!</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Standard information</source>
+        <target>Általános információkk</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Region</source>
+        <target>Régió</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Date of play</source>
+        <target>Meccs időpontja</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Remember me</source>
+        <target>Emlékezz rám</target>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Sign in</source>
+        <target>Jelentkezz be</target>
       </trans-unit>
     </body>
   </file>

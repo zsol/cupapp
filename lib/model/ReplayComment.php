@@ -17,5 +17,7 @@
  * @package    lib.model
  */
 class ReplayComment extends BaseReplayComment {
-
+  public function getCommentPrefix($length = 10) {
+    return substr($this->getComment(), 0, $length - 3) . (strlen($this->getComment()) <= $length - 3 ? '' : '...');
+  }
 } // ReplayComment

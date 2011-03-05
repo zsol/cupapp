@@ -1,7 +1,8 @@
+<?php use_helper('Date') ?>
 <div style="margin-bottom:10px;">
     <div style="float:left; margin-left: 5px;">
         <h3><?php echo __('Standard information') ?></h3>
-        <?php $gameInfo = $replay->getGameInfo() ?>
+        <?php $region = $replay->getRegion() ?>
 		<div class="shadow_box">
         <table class="stdtable replay_info" >
             <tr>
@@ -19,6 +20,14 @@
             <tr>
                 <th><?php echo __('Average APM') ?>:</th>
 				<td><?php echo $replay->getAvgAPM() ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Region')?>:</th>
+                <td><?php echo $region ?> </td>
+            </tr>
+            <tr>
+                <th><?php echo __('Date of play')?>:</th>
+                <td><?php echo format_datetime($replay->getPlayDate()) ?> </td>
             </tr>
             <tr>
                 <th><?php echo __('Description') ?>:</th>
@@ -61,7 +70,7 @@
 								 <div class="pColorBox" style="background:#<?php echo $player['color'] ?>;"></div>
 							</td>
 								<td class="player_name">
-								<a target="_blank" href="<?php echo ReplayHelper::getProfileUrl($player['name'], $player['uid'], $player['uidIndex']) ?>"><?php echo $player['name'] ?></a>
+								<a target="_blank" href="<?php echo ReplayHelper::getProfileUrl($region, $player['name'], $player['uid'], $player['uidIndex']) ?>"><?php echo $player['name'] ?></a>
 							</td>
 							<td class="player_icon">
 								<img class="player_icon" alt="<?php echo $player['race'] ?>" title="" src="<?php echo RacePeer::getSmallImageUrlByName($player['race']) ?>"/>
