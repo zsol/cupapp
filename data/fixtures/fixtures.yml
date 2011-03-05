@@ -28,7 +28,7 @@ ReplayGameType:
   FFA:
     name: "FFA"
   Unknown:
-    name: "Nemtudni"
+    name: "?"
 
 ReplayCategory:
   Common:
@@ -83,3 +83,34 @@ ReplayCategoryI18n:
     id:      Fun
     culture: "en"
     name:    "Fun"
+
+sfGuardPermission:
+  sfGuardPermission_1:
+    name: CommentAdmin
+    description: 'Able to administer comments'
+  sfGuardPermission_2:
+    name: ReplayAdmin
+    description: 'Able to administer replays'
+  sfGuardPermission_3:
+    name: AdminAdmin
+    description: 'Able to administer everything'
+sfGuardGroup:
+  sfGuardGroup_1:
+    name: CommentAdmin
+    description: 'Group of users with CommentAdmin perms'
+  sfGuardGroup_2:
+    name: ReplayAdmin
+    description: 'Group of users with ReplayAdmin perms'
+  sfGuardGroup_3:
+    name: AdminAdmin
+    description: 'Group of users with AdminAdmin perms'
+sfGuardGroupPermission:
+  sfGuardGroupPermission_1_1:
+    group_id: sfGuardGroup_1
+    permission_id: sfGuardPermission_1
+  sfGuardGroupPermission_2_2:
+    group_id: sfGuardGroup_2
+    permission_id: sfGuardPermission_2
+  sfGuardGroupPermission_3_3:
+    group_id: sfGuardGroup_3
+    permission_id: sfGuardPermission_3
