@@ -1,5 +1,5 @@
 <?php $replay = $sf_data->getRaw('replay') ?>
-<div id="message_log" style="margin-left: 5px; margin-right: 5px;">
+<div id="message_log" class="margined_div">
     <h3 style="margin-bottom:2px;" class="toggle_down" id="message_log_header">
 		<?php echo __('Message log') ?> <span style="float:right;"><img src="/images/icons/toggledown.png"/></span>
 	</h3>

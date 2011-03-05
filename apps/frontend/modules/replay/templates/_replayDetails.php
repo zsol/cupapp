@@ -1,6 +1,6 @@
 <?php use_helper('Date') ?>
-<div style="margin-bottom:10px;">
-    <div style="float:left; margin-left: 5px;">
+<div class="margined_div" style="margin-bottom:10px;">
+    <div style="float:left;">
         <h3><?php echo __('Standard information') ?></h3>
         <?php $region = $replay->getRegion() ?>
 		<div class="shadow_box">
@@ -57,7 +57,7 @@
 		</div>
 
     </div>
-    <div style="float:right;width:200px;margin-right:5px;">
+    <div style="float:right;width:200px;">
         <h3><?php echo __('Players') ?></h3>
             <?php $i = 1; ?>
             <?php foreach ($replay->getPlayersInfo() as $teamNum => $team) : ?>
