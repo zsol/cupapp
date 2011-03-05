@@ -5,7 +5,7 @@
         <?php echo __('Logged in as') ?> <b><?php echo $sf_user->getUsername() ?></b><br/>
         <a href="<?php echo url_for('@editmyprofile') ?>"><?php echo __('Edit profile') ?></a><br/>
         <a href="<?php echo url_for('@sf_guard_signout') ?>"><?php echo __('Log out') ?></a>
-        <?php if ($sf_user->getGuardUser()->getIsSuperAdmin()) : ?>
+        <?php if ($sf_user->getGuardUser()->getIsSuperAdmin() || $sf_user->hasCredential(array('AdminAdmin', 'CommentAdmin', 'ReplayAdmin'), false /*OR*/)) : ?>
             <br /><a href="/backend.php"><?php echo __('Go to admin') ?></a>
         <?php endif; ?>
     <?php else: ?>
