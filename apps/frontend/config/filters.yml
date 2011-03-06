@@ -11,5 +11,8 @@ security:  ~
 ban:
   class: banFilter
 
+google_analytics:
+  class: googleAnalyticsFilter
+
 cache:     ~
 execution: ~
