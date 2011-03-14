@@ -69,6 +69,16 @@ downloadreplay:
   param: { module: replay, action: download }
   requirements: { sf_culture: (?:hu|en) }
 
+amendreplay:
+  url: /:sf_culture/replay/amend/:id
+  param: { module: replay, action: amend }
+  requirements: { sf_culture: (?:hu|en) }
+
+deletereplay:
+  url: /:sf_culture/replay/delete/:id
+  param: { module: replay, action: delete }
+  requirements: { sf_culture: (?:hu|en) }
+
 contact:
   url:   /:sf_culture/replay/contact
   param: { module: replay, action: contact }

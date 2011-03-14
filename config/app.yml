@@ -12,7 +12,8 @@ all:
     pager_max_perpage:         10
     disable_upload:            false
     profile_url_pattern:       http://%%REGION%%.battle.net/sc2/en/profile/%%UID%%/%%UIDINDEX%%/%%NAME%%/
-    flood_defence_seconds:     30 #5 minutes
+    flood_defence_seconds:     30
+    amendable_limit_seconds:   600
 
   register:
     username_min_length:       2

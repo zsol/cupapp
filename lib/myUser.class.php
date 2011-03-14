@@ -13,30 +13,31 @@ class myUser extends sfGuardSecurityUser
     }
 
     public function getId() {
-        return $this->getGuardUser()->getId();
+      return $this->getGuardUser() ? $this->getGuardUser()->getId() : false;
     }
 
     public function getAvatar() {
-        return $this->getGuardUser()->getProfile()->getAvatar();
+      return $this->getGuardUser() ? $this->getGuardUser()->getProfile()->getAvatar() : false;
     }
 
     public function getAvatarUrl() {
-        return $this->getGuardUser()->getProfile()->getAvatarUrl();
+      return $this->getGuardUser() ? $this->getGuardUser()->getProfile()->getAvatarUrl() : false;
     }
 
     public function getAvatarOrDefaultUrl() {
-        return $this->getGuardUser()->getProfile()->getAvatarOrDefaultUrl();
+      return $this->getGuardUser() ? $this->getGuardUser()->getProfile()->getAvatarOrDefaultUrl() : false;
     }
 
     public function getUsername() {
-        return $this->getGuardUser()->getUsername();
+      return $this->getGuardUser() ? $this->getGuardUser()->getUsername() : false;
     }
 
     public function getEmail() {
-        return $this->getGuardUser()->getProfile()->getEmail();
+      return $this->getGuardUser() ? $this->getGuardUser()->getProfile()->getEmail() : false;
     }
 
     public function isAllowedToComment() {
+        if (!$this->getGuardUser()) { return false; }
         $flood_gap = sfConfig::get('app_comment_flood_defence_seconds');
         $now = time();
         $last_commented = strtotime($this->getGuardUser()->getProfile()->getLastCommented());
@@ -49,6 +50,7 @@ class myUser extends sfGuardSecurityUser
     }
 
     public function isAllowedToUpload() {
+        if (!$this->getGuardUser()) { return false; }
         $flood_gap = sfConfig::get('app_replay_flood_defence_seconds');
         $now = time();
         $last_uploaded = strtotime($this->getGuardUser()->getProfile()->getLastUploaded());

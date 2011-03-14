@@ -24,6 +24,17 @@ class Replay extends BaseReplay {
 
     protected $gameInfoArray = null;
 
+    public function isAmendable() {
+      $timelimit = sfConfig::get('app_replay_amendable_limit_seconds', 120);
+      $now = time();
+      $ctime = strtotime($this->getCreatedAt('Y-m-d H:i:s'));
+      return (($now - $ctime) < $timelimit);
+    }
+
+    public function isAmendableBy($userId) {
+      return $userId == $this->getUserId() && $this->isAmendable();
+    }
+
     public function getGameInfo() {
         if ($this->gameInfoArray == null) {
             $this->gameInfoArray = json_decode(parent::getGameInfo(), true);

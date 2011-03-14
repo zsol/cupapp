@@ -1,5 +1,13 @@
 <?php use_helper('Date') ?>
 <div class="margined_div" style="margin-bottom:10px;">
+  <?php if ($sf_user->isAuthenticated() && $replay->isAmendableBy($sf_user->getId())): ?>
+    <div class="hover_block">
+       <?php echo link_to(__('Amend replay'), '@amendreplay?id='.$replay->getId()); ?>
+       |
+       <?php echo link_to(__('Delete replay'), '@deletereplay?id='.$replay->getId(),
+                          array('method' => 'delete', 'confirm' => __('Are you sure?'))); ?>
+    </div>
+  <?php endif; ?>
     <div style="float:left;">
         <h3><?php echo __('Standard information') ?></h3>
         <?php $region = $replay->getRegion() ?>
