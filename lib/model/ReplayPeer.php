@@ -50,6 +50,12 @@ class ReplayPeer extends BaseReplayPeer {
         $pager->setPage($page);
         $c = new Criteria();
 
+	$order_by_column = ReplayPeer::CREATED_AT;
+
+	if (count($parameters) == 0) {
+	  $c->addDescendingOrderByColumn($order_by_column);
+	}
+
         if (!empty($parameters['search_player'])) {
             $c->add(ReplayPeer::PLAYERS, '%'.$parameters['search_player'].'%', Criteria::LIKE);
         }
@@ -65,13 +71,20 @@ class ReplayPeer extends BaseReplayPeer {
         if (!empty($parameters['order_options'])) {
             switch ($parameters['order_options']) {
                 case 'upload_date':
-                    $c->addDescendingOrderByColumn(ReplayPeer::CREATED_AT);
-                    break;
+		  $order_by_column = ReplayPeer::CREATED_AT;
+		  break;
                 case 'avg_apm':
-                    $c->addDescendingOrderByColumn(ReplayPeer::AVG_APM);
-                    break;
+		  $order_by_column = ReplayPeer::AVG_APM;
+		  break;
             }
         }
+	if (!empty($parameters['order'])) {
+	  if ($parameters['order'] == "ascending") {
+	    $c->addAscendingOrderByColumn($order_by_column);
+	  }
+	} else {
+	  $c->addDescendingOrderByColumn($order_by_column);
+	}
 
         $pager->setCriteria($c);
         $pager->init();

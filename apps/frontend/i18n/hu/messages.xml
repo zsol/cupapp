@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-03-14T17:07:03Z" product-name="messages">
+  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-03-14T17:21:30Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -203,10 +203,6 @@
       <trans-unit id="54">
         <source>I am only interested in replays in the category of %%category%% and game type of %%gametype%%</source>
         <target>Csak %%category%% kategóriájú és %%gametype%% típusú játékok érdekelnek</target>
-      </trans-unit>
-      <trans-unit id="55">
-        <source>Please order the list for me by %%orderby%%</source>
-        <target>Szeretném %%orderby%% szerint sorba rendezni a listát</target>
       </trans-unit>
       <trans-unit id="56">
         <source>Search/Filter</source>
@@ -499,6 +495,26 @@
       <trans-unit id="131">
         <source>Amend Replay</source>
         <target>Replay Javítása</target>
+      </trans-unit>
+      <trans-unit id="132">
+        <source>Please order the list for me by %%orderby%% in %%order%% order.</source>
+        <target>Rendezd a listát %%orderby%% szerint %%order%% sorrendbe.</target>
+      </trans-unit>
+      <trans-unit id="133">
+        <source>ascending</source>
+        <target>növekvő</target>
+      </trans-unit>
+      <trans-unit id="134">
+        <source>descending</source>
+        <target>csökkenő</target>
+      </trans-unit>
+      <trans-unit id="135">
+        <source>upload date</source>
+        <target>feltöltés ideje</target>
+      </trans-unit>
+      <trans-unit id="136">
+        <source>average APM</source>
+        <target>átlag APM</target>
       </trans-unit>
     </body>
   </file>

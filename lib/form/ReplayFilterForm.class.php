@@ -20,6 +20,7 @@ class ReplayFilterForm extends BaseFormPropel
             'game_type_id' => new sfWidgetFormPropelChoice(array('model' => 'ReplayGameType', 'add_empty' => true)),
             'category_id' => new sfWidgetFormPropelChoice(array('model' => 'ReplayCategory', 'add_empty' => true)),
             'order_options' => new sfWidgetFormChoice(array('choices' => array('upload_date' => $i18n->__('upload date'), 'avg_apm' => $i18n->__('average APM')))),
+	    'order' => new sfWidgetFormChoice(array('choices' => array('ascending' => $i18n->__('ascending'), 'descending' => $i18n->__('descending')))),
         ));
 
         /* $this->setValidators(array(

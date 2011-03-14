@@ -5,7 +5,7 @@
     <br/>
     <?php echo __('I am only interested in replays in the category of %%category%% and game type of %%gametype%%', array('%%category%%' => $form['category_id'], '%%gametype%%' => $form['game_type_id'])); ?>
     <br/>
-    <?php echo __('Please order the list for me by %%orderby%%', array('%%orderby%%' => $form['order_options'])); ?>
+   <?php echo __('Please order the list for me by %%orderby%% in %%order%% order.', array('%%orderby%%' => $form['order_options'], '%%order%%' => $form['order'])); ?>
     </div>
     <input style="float:right;color:red;" type="submit" value="<?php echo __('Search/Filter') ?>"/>
 </form>
