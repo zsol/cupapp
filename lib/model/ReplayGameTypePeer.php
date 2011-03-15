@@ -18,20 +18,20 @@
  */
 class ReplayGameTypePeer extends BaseReplayGameTypePeer {
 
-    const ONEVONE     = 1;
-    const TWOVTWO     = 2;
-    const THREEVTHREE = 3;
-    const FOURVFOUR   = 4;
-    const FFA         = 5;
-    const UNKNWOWN    = 6;
+    const UNKNWOWN    = '?';
 
     static public function getGameTypeIdByName( $name ) {
-        switch($name) {
-            case '1v1': return self::ONEVONE;
-            case '2v2': return self::TWOVTWO;
-            case '3v3': return self::THREEVTHREE;
-            case '4v4': return self::FOURVFOUR;
-            default   : return self::UNKNWOWN;
-        }
+
+      $criteria = new Criteria();
+      $criteria->add(self::NAME, $name, Criteria::EQUAL);
+      $type = self::doSelectOne($criteria);
+     
+      if (!$type) { // not found
+        $criteria = new Criteria();
+        $criteria->add(self::NAME, self::UNKNOWN, Criteria::EQUAL);
+        $type = self::doSelectOne($criteria);
+      }
+
+      return $type->getId();
     }
 } // ReplayGameTypePeer
