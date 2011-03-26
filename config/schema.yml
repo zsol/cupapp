@@ -28,6 +28,7 @@ propel:
     published_at:   { type: timestamp, required: false }
     created_at:     ~
     updated_at:     ~
+    reported_count: { type: smallint, sqlType: SMALLINT(3) UNSIGNED, required: false, default: 0 }
 
   replay_category:
     id:             ~

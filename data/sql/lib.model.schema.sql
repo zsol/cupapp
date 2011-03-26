@@ -64,6 +64,7 @@ CREATE TABLE `replay`
 	`published_at` DATETIME,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
+	`reported_count` SMALLINT(3) UNSIGNED default 0,
 	PRIMARY KEY (`id`),
 	INDEX `replay_FI_1` (`user_id`),
 	CONSTRAINT `replay_FK_1`
