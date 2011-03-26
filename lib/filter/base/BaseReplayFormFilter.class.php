@@ -25,6 +25,7 @@ abstract class BaseReplayFormFilter extends BaseFormFilterPropel
       'published_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'created_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'updated_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'reported_count' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -41,6 +42,7 @@ abstract class BaseReplayFormFilter extends BaseFormFilterPropel
       'published_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'created_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'reported_count' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('replay_filters[%s]');
@@ -72,6 +74,7 @@ abstract class BaseReplayFormFilter extends BaseFormFilterPropel
       'published_at'   => 'Date',
       'created_at'     => 'Date',
       'updated_at'     => 'Date',
+      'reported_count' => 'Number',
     );
   }
 }

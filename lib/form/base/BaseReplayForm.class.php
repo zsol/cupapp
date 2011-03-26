@@ -28,6 +28,7 @@ abstract class BaseReplayForm extends BaseFormPropel
       'published_at'   => new sfWidgetFormDateTime(),
       'created_at'     => new sfWidgetFormDateTime(),
       'updated_at'     => new sfWidgetFormDateTime(),
+      'reported_count' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -45,6 +46,7 @@ abstract class BaseReplayForm extends BaseFormPropel
       'published_at'   => new sfValidatorDateTime(array('required' => false)),
       'created_at'     => new sfValidatorDateTime(array('required' => false)),
       'updated_at'     => new sfValidatorDateTime(array('required' => false)),
+      'reported_count' => new sfValidatorInteger(array('min' => -32768, 'max' => 32767, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('replay[%s]');

@@ -25,7 +25,7 @@ abstract class BaseReplayPeer {
 	const TM_CLASS = 'ReplayTableMap';
 	
 	/** The total number of columns. */
-	const NUM_COLUMNS = 14;
+	const NUM_COLUMNS = 15;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -72,6 +72,9 @@ abstract class BaseReplayPeer {
 	/** the column name for the UPDATED_AT field */
 	const UPDATED_AT = 'replay.UPDATED_AT';
 
+	/** the column name for the REPORTED_COUNT field */
+	const REPORTED_COUNT = 'replay.REPORTED_COUNT';
+
 	/**
 	 * An identiy map to hold any loaded instances of Replay objects.
 	 * This must be public so that other peer classes can access this when hydrating from JOIN
@@ -95,11 +98,11 @@ abstract class BaseReplayPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'UserId', 'GameTypeId', 'CategoryId', 'FileName', 'GameInfo', 'Description', 'AvgApm', 'Players', 'MapName', 'DownloadCount', 'PublishedAt', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'userId', 'gameTypeId', 'categoryId', 'fileName', 'gameInfo', 'description', 'avgApm', 'players', 'mapName', 'downloadCount', 'publishedAt', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::USER_ID, self::GAME_TYPE_ID, self::CATEGORY_ID, self::FILE_NAME, self::GAME_INFO, self::DESCRIPTION, self::AVG_APM, self::PLAYERS, self::MAP_NAME, self::DOWNLOAD_COUNT, self::PUBLISHED_AT, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'user_id', 'game_type_id', 'category_id', 'file_name', 'game_info', 'description', 'avg_apm', 'players', 'map_name', 'download_count', 'published_at', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'UserId', 'GameTypeId', 'CategoryId', 'FileName', 'GameInfo', 'Description', 'AvgApm', 'Players', 'MapName', 'DownloadCount', 'PublishedAt', 'CreatedAt', 'UpdatedAt', 'ReportedCount', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'userId', 'gameTypeId', 'categoryId', 'fileName', 'gameInfo', 'description', 'avgApm', 'players', 'mapName', 'downloadCount', 'publishedAt', 'createdAt', 'updatedAt', 'reportedCount', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::USER_ID, self::GAME_TYPE_ID, self::CATEGORY_ID, self::FILE_NAME, self::GAME_INFO, self::DESCRIPTION, self::AVG_APM, self::PLAYERS, self::MAP_NAME, self::DOWNLOAD_COUNT, self::PUBLISHED_AT, self::CREATED_AT, self::UPDATED_AT, self::REPORTED_COUNT, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'user_id', 'game_type_id', 'category_id', 'file_name', 'game_info', 'description', 'avg_apm', 'players', 'map_name', 'download_count', 'published_at', 'created_at', 'updated_at', 'reported_count', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
 	);
 
 	/**
@@ -109,11 +112,11 @@ abstract class BaseReplayPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'UserId' => 1, 'GameTypeId' => 2, 'CategoryId' => 3, 'FileName' => 4, 'GameInfo' => 5, 'Description' => 6, 'AvgApm' => 7, 'Players' => 8, 'MapName' => 9, 'DownloadCount' => 10, 'PublishedAt' => 11, 'CreatedAt' => 12, 'UpdatedAt' => 13, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'userId' => 1, 'gameTypeId' => 2, 'categoryId' => 3, 'fileName' => 4, 'gameInfo' => 5, 'description' => 6, 'avgApm' => 7, 'players' => 8, 'mapName' => 9, 'downloadCount' => 10, 'publishedAt' => 11, 'createdAt' => 12, 'updatedAt' => 13, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::USER_ID => 1, self::GAME_TYPE_ID => 2, self::CATEGORY_ID => 3, self::FILE_NAME => 4, self::GAME_INFO => 5, self::DESCRIPTION => 6, self::AVG_APM => 7, self::PLAYERS => 8, self::MAP_NAME => 9, self::DOWNLOAD_COUNT => 10, self::PUBLISHED_AT => 11, self::CREATED_AT => 12, self::UPDATED_AT => 13, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'user_id' => 1, 'game_type_id' => 2, 'category_id' => 3, 'file_name' => 4, 'game_info' => 5, 'description' => 6, 'avg_apm' => 7, 'players' => 8, 'map_name' => 9, 'download_count' => 10, 'published_at' => 11, 'created_at' => 12, 'updated_at' => 13, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'UserId' => 1, 'GameTypeId' => 2, 'CategoryId' => 3, 'FileName' => 4, 'GameInfo' => 5, 'Description' => 6, 'AvgApm' => 7, 'Players' => 8, 'MapName' => 9, 'DownloadCount' => 10, 'PublishedAt' => 11, 'CreatedAt' => 12, 'UpdatedAt' => 13, 'ReportedCount' => 14, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'userId' => 1, 'gameTypeId' => 2, 'categoryId' => 3, 'fileName' => 4, 'gameInfo' => 5, 'description' => 6, 'avgApm' => 7, 'players' => 8, 'mapName' => 9, 'downloadCount' => 10, 'publishedAt' => 11, 'createdAt' => 12, 'updatedAt' => 13, 'reportedCount' => 14, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::USER_ID => 1, self::GAME_TYPE_ID => 2, self::CATEGORY_ID => 3, self::FILE_NAME => 4, self::GAME_INFO => 5, self::DESCRIPTION => 6, self::AVG_APM => 7, self::PLAYERS => 8, self::MAP_NAME => 9, self::DOWNLOAD_COUNT => 10, self::PUBLISHED_AT => 11, self::CREATED_AT => 12, self::UPDATED_AT => 13, self::REPORTED_COUNT => 14, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'user_id' => 1, 'game_type_id' => 2, 'category_id' => 3, 'file_name' => 4, 'game_info' => 5, 'description' => 6, 'avg_apm' => 7, 'players' => 8, 'map_name' => 9, 'download_count' => 10, 'published_at' => 11, 'created_at' => 12, 'updated_at' => 13, 'reported_count' => 14, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
 	);
 
 	/**
@@ -197,6 +200,7 @@ abstract class BaseReplayPeer {
 		$criteria->addSelectColumn(ReplayPeer::PUBLISHED_AT);
 		$criteria->addSelectColumn(ReplayPeer::CREATED_AT);
 		$criteria->addSelectColumn(ReplayPeer::UPDATED_AT);
+		$criteria->addSelectColumn(ReplayPeer::REPORTED_COUNT);
 	}
 
 	/**
