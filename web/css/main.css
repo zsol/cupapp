@@ -93,6 +93,7 @@ div#index_div {
 div.margined_div {
 	margin-left: 5px;
 	margin-right: 5px;
+        position: relative;
 }
 a.top_link {
 	margin-left: 10px;
@@ -349,6 +350,34 @@ table.team_table img.player_icon {
 -moz-border-radius: 3px;
 -webkit-border-radius: 3px;
 }
+
+div.report_replay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.8em;
+}
+
+div.report_replay a {
+    color: #666;
+    position: relative;
+}
+
+div.report_replay a span {
+    display: none;
+}
+
+div.report_replay a:hover span {
+    display: block;
+    position: absolute;
+    bottom: 2em; right: 2em; width: 15em;
+    border: 1px solid black;
+    background-color: #ccc;
+    color: #666;
+    text-align: center;
+}
+
+
 
 /*
 	Messages box

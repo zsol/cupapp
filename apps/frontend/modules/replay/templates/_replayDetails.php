@@ -113,5 +113,8 @@
         <?php endif; ?>
         </div>
     </div>
+    <div class="report_replay">
+      <a href="<?php echo url_for('@reportreplay?id='.$replay->getId()) ?>">[x]<span><?php echo __('Click here if you see something wrong with the details of this replay, we will take a look')?></span></a>
+    </div>
     <div style="clear:both;"></div>
 </div>
