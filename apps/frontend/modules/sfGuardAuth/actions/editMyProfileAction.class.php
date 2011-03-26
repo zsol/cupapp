@@ -44,23 +44,10 @@ class editMyProfileAction extends sfAction
                 //Create avatar
                 $file = $this->form->getValue('avatar');
                 if ($file) {
-                    $oldFile = null;
-                    if ($userProfile->getAvatar()) {
-                        $oldFile = $userProfile->getAvatarPath();
-                    }
                     $filePath = $file->getTempName();
-                    $saveName = $user->getAvatarSaveName();
-                    $savePath = $user->getAvatarSavePath();
-                    try {
-                        RegisterHelper::createThumbnail($filePath, $savePath);
-                        $userProfile->setAvatar($saveName);
-                    } catch (Exception $e) {
-
-                    }
-
-                    //Delete the old one
-                    if ($oldFile) {
-                        unlink($oldFile);
+                    if (!$userProfile->createAndSaveAvatar($filePath)) {
+                        $this->getUser()->setFlash('error_message', $i18n->__('Image cannot be created.'));
+                        $this->redirect('@homepage');
                     }
                 }
 

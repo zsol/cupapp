@@ -21,12 +21,20 @@ all:
     password_min_length:       5
     password_max_length:       50
     email_min_length:          5
-    avatar_max_upload_size:    50000 # 50 Kbytes
-    avatar_width:              50
-    avatar_height:             50
 
-  profile:
-    default_avatar:            /images/unknown.png
+  avatar:
+    max_upload_size:           50000 # 50 Kbytes
+    width_normal:              70
+    height_normal:             70
+    width_medium:              50
+    height_medium:             50
+    width_small:               20
+    height_small:              20
+    image_format:              png
+    image_format_mime_type:    image/png
+    default_avatar_normal:     /images/unknown_normal.png
+    default_avatar_medium:     /images/unknown_medium.png
+    default_avatar_small:      /images/unknown_small.png
 
   boxes:
     last_uploaded_replays_num: 5
@@ -47,6 +55,7 @@ all:
       hu:
         name: Magyar
 
+  #this needs to be refactored a bit
   google_analytics:
     code: >
       <script type="text/javascript">

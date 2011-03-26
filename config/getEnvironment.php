@@ -1,5 +1,8 @@
 <?php
 
+$env = 'dev';
+$debug = true;
+
 if ($_SERVER['SERVER_NAME'] == 'test.cupapp.com') {
     $env = 'dev';
     $debug = true;
