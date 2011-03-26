@@ -28,8 +28,8 @@ all:
     height_normal:             70
     width_medium:              50
     height_medium:             50
-    width_small:               20
-    height_small:              20
+    width_small:               23
+    height_small:              23
     image_format:              png
     image_format_mime_type:    image/png
     default_avatar_normal:     /images/unknown_normal.png

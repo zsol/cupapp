@@ -34,8 +34,8 @@ class AvatarHelper {
     public static function getSizeHeight($size) {
         switch ($size) {
             case self::SIZE_NORMAL: return sfConfig::get('app_avatar_height_normal', 70);break;
-            case self::SIZE_MEDIUM: return sfConfig::get('app_avatar_small_medium', 50);break;
-            case self::SIZE_SMALL : return sfConfig::get('app_avatar_small_small', 20);break;
+            case self::SIZE_MEDIUM: return sfConfig::get('app_avatar_height_medium', 50);break;
+            case self::SIZE_SMALL : return sfConfig::get('app_avatar_height_small', 20);break;
         }
     }
 
