@@ -55,14 +55,20 @@ h2 {
 
 h3 {
     margin-top: 0px;
-    text-align: center;
+    text-align: left;
     padding:5px;
     border: 1px solid black;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
     background: #777;
     margin-bottom: 10px;
-	font-size: 1.1em;
+    font-size: 1.1em;
+}
+
+h3 img {
+    float:left;
+    padding-left: 2px;
+    padding-right: 5px;
 }
 
 h1#replay_details_title {
