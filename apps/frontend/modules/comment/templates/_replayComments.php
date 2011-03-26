@@ -15,7 +15,7 @@
 	   <span style="float:right;"><?php echo $comment->getCreatedAt() ?></span>
             </div>
             <div class="comment_body">
-                <div class="comment_avatar"><img style="float:left;" alt="avatar" src="<?php echo $user->getProfile()->getAvatarOrDefaultUrl() ?>"/></div>
+                <div class="comment_avatar"><img style="float:left;" alt="avatar" src="<?php echo $user->getProfile()->getAvatarOrDefaultUrl(AvatarHelper::SIZE_MEDIUM) ?>"/></div>
 		<div class="comment_content"><?php echo str_replace(array("\r\n", "\n", "\r"), "<br />", $comment->getComment()); ?></div>
             </div>
         </div>

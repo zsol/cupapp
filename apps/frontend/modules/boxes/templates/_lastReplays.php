@@ -1,5 +1,5 @@
 <div class="greybox">
-    <h3><?php echo __('Last uploaded replays') ?></h3>
+    <h3><img alt="playbutton" src="/images/icons/control_play.png"/> <?php echo __('Last uploaded replays') ?></h3>
     <?php if (count($replays) == 0) : ?>
         <?php echo __('There is no replay in the system right now.') ?>
     <?php else : ?>

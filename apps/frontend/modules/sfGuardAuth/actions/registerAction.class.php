@@ -47,11 +47,8 @@ class registerAction extends sfAction
                 $file = $this->form->getValue('avatar');
                 if ($file) {
                     $filePath = $file->getTempName();
-                    $saveName = $user->getAvatarSaveName();
-                    $savePath = $user->getAvatarSavePath();
                     try {
-                        RegisterHelper::createThumbnail($filePath, $savePath);
-                        $userProfile->setAvatar($saveName);
+                        $userProfile->createAndSaveAvatar($filePath);
                     } catch (Exception $e) {
 		      $this->getUser()->setFlash('error_message', $e->getMessage());
 		      $this->redirect('@homepage');

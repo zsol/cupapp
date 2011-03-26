@@ -17,19 +17,89 @@
  * @package    lib.model
  */
 class sfGuardUserProfile extends BasesfGuardUserProfile {
-    public function getAvatarPath() {
-        return sfConfig::get('sf_upload_dir').'/userimg/'.$this->getAvatar();
+
+    /*
+     * Example: /var/www/cupapp/web/uploads/userimg/2_32523623623_normal.png
+     */
+    public function getAvatarPath($size) {
+        return sfConfig::get('sf_upload_dir').'/userimg/'.$this->getAvatarSized($size).'.'.sfConfig::get('app_avatar_image_format');
     }
 
-    public function getAvatarUrl() {
-        return '/uploads/userimg/'.$this->getAvatar();
+    /*
+     * Example: /uploads/userimg/2_32523623623_normal.png
+     */
+    public function getAvatarUrl($size) {
+        return '/uploads/userimg/'.$this->getAvatarSized($size).'.'.sfConfig::get('app_avatar_image_format');
     }
 
-    public function getAvatarOrDefaultUrl() {
+    /*
+     * Returns getAvatarUrl() or the default if there is no avatar
+     */
+    public function getAvatarOrDefaultUrl($size) {
         if (!$this->getAvatar()) {
-            return sfConfig::get('app_profile_default_avatar');
+            return sfConfig::get('app_avatar_default_avatar_'.AvatarHelper::getName($size));
         } else {
-            return $this->getAvatarUrl();
+            return $this->getAvatarUrl($size);
         }
+    }
+
+    /*
+     * Generates a unique name for a new avatar
+     */
+    public function getAvatarSaveName() {
+        return $this->getId() . '_' . time();
+    }
+
+    /*
+     * Returns the profile's avatar column with the size extension
+     *
+     * Example: 2_34265436346_normal
+     */
+    public function getAvatarSized($size) {
+        return $this->getAvatar().'_'.AvatarHelper::getName($size);
+    }
+
+    /**
+     * Generates new images for the profile avatar
+     *
+     * @param string $filePath The file path of the new file
+     * @return boolean
+     */
+    public function createAndSaveAvatar($filePath) {
+        /*
+         * save old
+         */
+        $oldAvatar = null;
+        $oldFiles = null;
+        if ($this->getAvatar()) {
+            $oldAvatar = $this->getAvatar();
+            $oldFiles['normal'] = $this->getAvatarPath(AvatarHelper::SIZE_NORMAL);
+            $oldFiles['medium'] = $this->getAvatarPath(AvatarHelper::SIZE_MEDIUM);
+            $oldFiles['small'] = $this->getAvatarPath(AvatarHelper::SIZE_SMALL);
+        }
+
+        /*
+         * create new
+         */
+        $this->setAvatar($this->getAvatarSaveName());
+        try {
+            AvatarHelper::createAvatarImages($filePath, $this);
+        } catch(Exception $e) {
+            //missing: delete files created through this process
+            var_dump($e->getMessage());exit;
+            $this->setAvatar($oldAvatar);
+            return false;
+        }
+
+        /*
+         * delete old
+         */
+        if ($oldFiles) {
+            foreach($oldFiles as $filePath) {
+                unlink($filePath);
+            }
+        }
+
+        return true;
     }
 } // sfGuardUserProfile

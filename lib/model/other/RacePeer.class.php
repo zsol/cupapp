@@ -43,4 +43,3 @@ class RacePeer {
         return self::UNKNOWN;
     }
 }
-?>
