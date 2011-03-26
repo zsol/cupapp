@@ -157,6 +157,11 @@ class Replay extends BaseReplay {
       return $gameinfo['global_info']['play_date'];
     }
 
+    public function report() {
+      $this->setReportedCount($this->getReportedCount() + 1);
+      $this->save();
+    }
+
     /**
      * Parses replay data and sets values of this object
      *
