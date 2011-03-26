@@ -473,8 +473,8 @@
         <target>Sajnálom, ez a replay már nem javítható.</target>
       </trans-unit>
       <trans-unit id="126">
-        <source>Too short! At least %%ss%% characters!</source>
-        <target>Túl rövid! Legalább %%ss%% karakter legyen!</target>
+        <source>This description is too short! At least %%ss%% characters!</source>
+        <target>Ez a leírás túl rövid! Legalább %%ss%% karakter lehet!</target>
       </trans-unit>
       <trans-unit id="127">
         <source>This field is required!</source>
@@ -527,6 +527,10 @@
       <trans-unit id="139">
         <source>Image cannot be created.</source>
         <target>A képet nem sikerült létrehozni.</target>
+      </trans-unit>
+      <trans-unit id="140">
+        <source>This description is too big! Maximum %%ss%% characters!</source>
+        <target>Ez a leírás túl hosszú! Maximum %%ss%% karater lehet!</target>
       </trans-unit>
     </body>
   </file>

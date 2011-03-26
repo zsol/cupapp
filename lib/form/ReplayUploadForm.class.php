@@ -22,8 +22,9 @@ class ReplayUploadForm extends BaseReplayForm
                     'required' => $i18n->__('This field is required!'))
       );
 
-      $this->setValidator('description', new sfValidatorString(array('min_length' => 10),array(
-                    'min_length' => $i18n->__('Too short! At least %%ss%% characters!', array('%%ss%%' => sfConfig::get('app_replay_description_min'))),
+      $this->setValidator('description', new sfValidatorString(array('min_length' => sfConfig::get('app_replay_description_min'), 'max_length' => sfConfig::get('app_replay_description_max')),array(
+                    'min_length' => $i18n->__('This description is too short! At least %%ss%% characters!', array('%%ss%%' => sfConfig::get('app_replay_description_min'))),
+                    'max_length' => $i18n->__('This description is too big! Maximum %%ss%% characters!', array('%%ss%%' => sfConfig::get('app_replay_description_max'))),
                     'required' => $i18n->__('This field is required!')
       )));
 

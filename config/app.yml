@@ -9,6 +9,7 @@ all:
   replay:
     max_upload_size:           500000 # 100 Kbytes
     description_min:           10
+    description_max:           600
     pager_max_perpage:         10
     disable_upload:            false
     profile_url_pattern:       http://%%REGION%%.battle.net/sc2/en/profile/%%UID%%/%%UIDINDEX%%/%%NAME%%/
