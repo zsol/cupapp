@@ -5,8 +5,8 @@
     <header/>
     <body>
       <trans-unit id="1">
-        <source>Replays index</source>
-        <target>Replay lista</target>
+        <source>Home</source>
+        <target>Kezdőoldal</target>
       </trans-unit>
       <trans-unit id="2">
         <source>Upload replay</source>

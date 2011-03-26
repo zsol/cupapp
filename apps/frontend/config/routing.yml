@@ -31,24 +31,41 @@ editmyprofile:
   param: { module: sfGuardAuth, action: editMyProfile }
   requirements: { sf_culture: (?:hu|en) }
 
-rules:
-  url:   /:sf_culture/rules
-  param: { module: rules, action: index }
-  requirements: { sf_culture: (?:hu|en) }
-
+#######
+#
+# CMS PAGES
+#
+#######
 homepage:
   url:   /:sf_culture
   param:
-    module: replay
-    action: index
+    module: cms
+    action: home
     sf_culture: <?php echo sfPropel::getDefaultCulture() . "\n" ?>
   requirements: { sf_culture: (?:hu|en) }
 
 replayhome:
-  url:   /:sf_culture/replay
-  param: { module: replay, action: index }
+  url:   /:sf_culture/home
+  param: { module: cms, action: home }
   requirements: { sf_culture: (?:hu|en) }
 
+contact:
+  url:   /:sf_culture/contact
+  param: { module: cms, action: contact }
+  requirements: { sf_culture: (?:hu|en) }
+
+rules:
+  url:   /:sf_culture/rules
+  param: { module: cms, action: rules }
+  requirements: { sf_culture: (?:hu|en) }
+
+
+
+#######
+#
+# REPLAY PAGES
+#
+#######
 uploadreplay:
   url:   /:sf_culture/replay/upload
   param: { module: replay, action: upload }
@@ -82,11 +99,6 @@ reportreplay:
 deletereplay:
   url: /:sf_culture/replay/delete/:id
   param: { module: replay, action: delete }
-  requirements: { sf_culture: (?:hu|en) }
-
-contact:
-  url:   /:sf_culture/replay/contact
-  param: { module: replay, action: contact }
   requirements: { sf_culture: (?:hu|en) }
 
 # generic rules

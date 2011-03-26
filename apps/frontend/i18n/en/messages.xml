@@ -5,7 +5,7 @@
     <header/>
     <body>
       <trans-unit id="1">
-        <source>Replays index</source>
+        <source>Home</source>
         <target/>
       </trans-unit>
       <trans-unit id="2">
