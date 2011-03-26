@@ -146,7 +146,7 @@
       </trans-unit>
       <trans-unit id="39">
         <source>Last uploaded replays</source>
-        <target>Utoljára feltöltött replayek</target>
+        <target>Legfrissebb replayek</target>
       </trans-unit>
       <trans-unit id="40">
         <source>There is no replay in the system right now.</source>

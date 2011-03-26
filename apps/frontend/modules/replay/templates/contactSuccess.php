@@ -6,7 +6,7 @@
     <?php include_partial('global/leftbar') ?>
 <?php end_slot(); ?>
 
- <?php slot('rightbar'); ?>
+<?php slot('rightbar'); ?>
     <?php include_partial('global/rightbar') ?>
 <?php end_slot(); ?>
 

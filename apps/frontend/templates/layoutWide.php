@@ -19,15 +19,15 @@
             <div class="top_suc_message"><?php echo html_entity_decode($sf_user->getFlash('success_message')) ?></div>
           <?php endif;?>
 
-          <?php if (has_slot('leftbar')) : ?>
-            <div class="leftbar">
-                <?php include_slot('leftbar') ?>
-            </div>
-          <?php endif; ?>
-
             <div class="main_content content_wide">
                 <?php echo $sf_content ?>
             </div>
+
+          <?php if (has_slot('rightbar')) : ?>
+            <div class="rightbar">
+                <?php include_slot('rightbar') ?>
+            </div>
+          <?php endif; ?>
 
           <div style="clear:both;"></div>
       </div>
