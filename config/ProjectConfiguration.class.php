@@ -12,5 +12,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sc2ReplayParserPlugin');
     $this->enablePlugins('sfThumbnailPlugin');
     $this->enablePlugins('sfFormExtraPlugin');
+    $this->enablePlugins('sfPropelMigrationsLightPlugin');
   }
 }
