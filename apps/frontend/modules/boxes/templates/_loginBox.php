@@ -1,5 +1,5 @@
 <div class="greybox" style="margin-top:0px;">
-    <h3><?php echo __('Profile') ?></h3>
+    <h3><img alt="user" src="/images/icons/user.png"/> <?php echo __('Profile') ?></h3>
     <?php if ($sf_user->isAuthenticated()) : ?>
         <img style="float:right;" alt="avatar" src="<?php echo $sf_user->getProfile()->getAvatarOrDefaultUrl(AvatarHelper::SIZE_NORMAL) ?>"/>
         <?php echo __('Logged in as') ?> <b><?php echo $sf_user->getUsername() ?></b><br/>

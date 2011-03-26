@@ -1,5 +1,5 @@
 <div class="greybox">
-    <h3><?php echo __('Latest comments') ?></h3>
+    <h3><img alt="comments" src="/images/icons/comments.png"/> <?php echo __('Latest comments') ?></h3>
     <?php if (count($comments) == 0) :?>
        <?php echo __('No comments yet. This is a rare moment, so appreciate it!') ?>
     <?php else: ?>
