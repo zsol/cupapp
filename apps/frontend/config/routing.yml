@@ -74,6 +74,11 @@ amendreplay:
   param: { module: replay, action: amend }
   requirements: { sf_culture: (?:hu|en) }
 
+reportreplay:
+  url: /:sf_culture/replay/report/:id
+  param: { module: replay, action: report }
+  requirements: { sf_culture: (?:hu|en) }
+
 deletereplay:
   url: /:sf_culture/replay/delete/:id
   param: { module: replay, action: delete }

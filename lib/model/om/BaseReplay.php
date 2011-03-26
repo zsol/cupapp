@@ -104,6 +104,13 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 	protected $updated_at;
 
 	/**
+	 * The value for the reported_count field.
+	 * Note: this column has a database default value of: 0
+	 * @var        int
+	 */
+	protected $reported_count;
+
+	/**
 	 * @var        sfGuardUser
 	 */
 	protected $asfGuardUser;
@@ -165,6 +172,7 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 	public function applyDefaultValues()
 	{
 		$this->download_count = 0;
+		$this->reported_count = 0;
 	}
 
 	/**
@@ -399,6 +407,16 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 		} else {
 			return $dt->format($format);
 		}
+	}
+
+	/**
+	 * Get the [reported_count] column value.
+	 * 
+	 * @return     int
+	 */
+	public function getReportedCount()
+	{
+		return $this->reported_count;
 	}
 
 	/**
@@ -781,6 +799,26 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 	} // setUpdatedAt()
 
 	/**
+	 * Set the value of [reported_count] column.
+	 * 
+	 * @param      int $v new value
+	 * @return     Replay The current object (for fluent API support)
+	 */
+	public function setReportedCount($v)
+	{
+		if ($v !== null) {
+			$v = (int) $v;
+		}
+
+		if ($this->reported_count !== $v || $this->isNew()) {
+			$this->reported_count = $v;
+			$this->modifiedColumns[] = ReplayPeer::REPORTED_COUNT;
+		}
+
+		return $this;
+	} // setReportedCount()
+
+	/**
 	 * Indicates whether the columns in this object are only set to default values.
 	 *
 	 * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -791,6 +829,10 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 	public function hasOnlyDefaultValues()
 	{
 			if ($this->download_count !== 0) {
+				return false;
+			}
+
+			if ($this->reported_count !== 0) {
 				return false;
 			}
 
@@ -830,6 +872,7 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			$this->published_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
 			$this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
 			$this->updated_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+			$this->reported_count = ($row[$startcol + 14] !== null) ? (int) $row[$startcol + 14] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -839,7 +882,7 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			}
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 14; // 14 = ReplayPeer::NUM_COLUMNS - ReplayPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 15; // 15 = ReplayPeer::NUM_COLUMNS - ReplayPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Replay object", $e);
@@ -1323,6 +1366,9 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			case 13:
 				return $this->getUpdatedAt();
 				break;
+			case 14:
+				return $this->getReportedCount();
+				break;
 			default:
 				return null;
 				break;
@@ -1358,6 +1404,7 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			$keys[11] => $this->getPublishedAt(),
 			$keys[12] => $this->getCreatedAt(),
 			$keys[13] => $this->getUpdatedAt(),
+			$keys[14] => $this->getReportedCount(),
 		);
 		return $result;
 	}
@@ -1431,6 +1478,9 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			case 13:
 				$this->setUpdatedAt($value);
 				break;
+			case 14:
+				$this->setReportedCount($value);
+				break;
 		} // switch()
 	}
 
@@ -1469,6 +1519,7 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[11], $arr)) $this->setPublishedAt($arr[$keys[11]]);
 		if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
 		if (array_key_exists($keys[13], $arr)) $this->setUpdatedAt($arr[$keys[13]]);
+		if (array_key_exists($keys[14], $arr)) $this->setReportedCount($arr[$keys[14]]);
 	}
 
 	/**
@@ -1494,6 +1545,7 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ReplayPeer::PUBLISHED_AT)) $criteria->add(ReplayPeer::PUBLISHED_AT, $this->published_at);
 		if ($this->isColumnModified(ReplayPeer::CREATED_AT)) $criteria->add(ReplayPeer::CREATED_AT, $this->created_at);
 		if ($this->isColumnModified(ReplayPeer::UPDATED_AT)) $criteria->add(ReplayPeer::UPDATED_AT, $this->updated_at);
+		if ($this->isColumnModified(ReplayPeer::REPORTED_COUNT)) $criteria->add(ReplayPeer::REPORTED_COUNT, $this->reported_count);
 
 		return $criteria;
 	}
@@ -1573,6 +1625,8 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 		$copyObj->setCreatedAt($this->created_at);
 
 		$copyObj->setUpdatedAt($this->updated_at);
+
+		$copyObj->setReportedCount($this->reported_count);
 
 
 		if ($deepCopy) {

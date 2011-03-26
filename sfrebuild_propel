@@ -23,7 +23,7 @@ php symfony propel:build-filters
 echo ----                     ----
 echo ---- Recreating database ----
 echo ----                     ----
-php symfony propel:insert-sql
+php symfony propel:migrate
 
 echo ----                  ----
 echo ---- Loading fixtures ----

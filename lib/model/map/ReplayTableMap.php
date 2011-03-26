@@ -50,6 +50,7 @@ class ReplayTableMap extends TableMap {
 		$this->addColumn('PUBLISHED_AT', 'PublishedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
 		$this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
+		$this->addColumn('REPORTED_COUNT', 'ReportedCount', 'SMALLINT', false, null, 0);
 		// validators
 	} // initialize()
 
