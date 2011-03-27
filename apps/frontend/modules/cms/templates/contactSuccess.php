@@ -19,7 +19,7 @@
     aston
     </div>
     <div style="vertical-align: middle; line-height:3.7em">
-    @starcraft2.hu
+    @cupapp.com
     </div>
     </div>
 <div style="clear:both;"></div>
