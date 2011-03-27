@@ -1,5 +1,5 @@
 <div class="footer">
-  <span><?php echo __('Created and maintained by %%creators%% with the help of %%parser%%.', array('%%parser%%' => link_to(__('the replay parser'), "http://code.google.com/p/phpsc2replay/"), '%%creators%%' => link_to(__('these fine folks'), 'replay/contact'))) ?></span><br/>
+  <span><?php echo __('Created and maintained by %%creators%% with the help of %%parser%%.', array('%%parser%%' => link_to(__('the replay parser'), "http://code.google.com/p/phpsc2replay/"), '%%creators%%' => link_to(__('these fine folks'), '@contact'))) ?></span><br/>
   <span><?php echo __('This is an Open Source project hosted by %%host%%.', array('%%host%%' => link_to("GitHub", "https://github.com/zsol/cupapp"))) ?></span>
 
 <br/><br/>
