@@ -39,8 +39,8 @@ propel:
 
   replay_comment:
     id:             ~
-    user_id:        { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true }
-    replay_id:      { type: integer, foreignTable: replay, foreignReference: id, required: true }
+    user_id:        { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true, onDelete: cascade }
+    replay_id:      { type: integer, foreignTable: replay, foreignReference: id, required: true, onDelete: cascade }
     culture:        { type: varchar(7), required: true }
     comment:        { type: longvarchar, required: true }
     created_at:     ~

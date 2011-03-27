@@ -133,11 +133,13 @@ CREATE TABLE `replay_comment`
 	INDEX `replay_comment_FI_1` (`user_id`),
 	CONSTRAINT `replay_comment_FK_1`
 		FOREIGN KEY (`user_id`)
-		REFERENCES `sf_guard_user` (`id`),
+		REFERENCES `sf_guard_user` (`id`)
+		ON DELETE CASCADE,
 	INDEX `replay_comment_FI_2` (`replay_id`),
 	CONSTRAINT `replay_comment_FK_2`
 		FOREIGN KEY (`replay_id`)
 		REFERENCES `replay` (`id`)
+		ON DELETE CASCADE
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
