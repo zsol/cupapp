@@ -6,10 +6,10 @@ default:
     content-type: text/html
 
   metas:
-    #title:        CupApp
-    #description:
-    #keywords:
-    #language:     en
+    #title:       CupApp
+    #description: 
+    #keywords:    
+    #language:    
     robots:       index, follow
 
   stylesheets:    [reset.css, main.css]

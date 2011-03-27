@@ -22,5 +22,8 @@
     @cupapp.com
     </div>
     </div>
+    <div><br/><br/></div>
+    <div style="text-align:center;"><img src="/images/cupappemail.gif"/></div>
+    <br/><br/>
 <div style="clear:both;"></div>
 </div>

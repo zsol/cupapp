@@ -512,6 +512,14 @@
         <source>This description is too big! Maximum %%ss%% characters!</source>
         <target/>
       </trans-unit>
+      <trans-unit id="136">
+        <source>layout.metas.description</source>
+        <target>Starcraft2 replay sharing and cup organizer application</target>
+      </trans-unit>
+      <trans-unit id="137">
+        <source>layout.metas.keywords</source>
+        <target>Starcraft2, Blizzard, cup, replay, replay sharing, replay parser</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

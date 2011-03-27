@@ -532,6 +532,14 @@
         <source>This description is too big! Maximum %%ss%% characters!</source>
         <target>Ez a leírás túl hosszú! Maximum %%ss%% karater lehet!</target>
       </trans-unit>
+      <trans-unit id="141">
+        <source>layout.metas.description</source>
+        <target>Starcraft2 replay megosztó és kupa szervező alkalmazás</target>
+      </trans-unit>
+      <trans-unit id="142">
+        <source>layout.metas.keywords</source>
+        <target>Starcraft2, Blizzard, cup, replay, replay megosztás, replay parser</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
