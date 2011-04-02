@@ -16,7 +16,7 @@
         <?php $i = 0; ?>
         <?php foreach($messages as $message) : ?>
         <tr>
-            <td class="message_time"><?php echo $message['time'] ?></td>
+            <td class="message_time"><?php echo strftime('%M:%S', $message['time']) ?></td>
             <td class="message_player"><?php echo $message['name'] ?></td>
             <td class="message_target"><?php echo $message['target'] ?></td>
             <td><?php echo $message['message'] ?></td>
