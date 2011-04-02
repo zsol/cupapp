@@ -11,7 +11,7 @@
              <div style="float:right;overflow:visible;margin:-1px 0px 0px 0px;padding:0px;">
                  <a href="<?php echo url_for('@viewreplay?id='.$replay->getId().'&name='.$replay.'#comment_'.$comment->getId()) ?>"><img alt="show comment" src="/images/icons/magnifier.png"/></a>
              </div>
-             <div><?php echo $comment->getsfGuardUser()->getUserName() ?></b> @ <?php echo $replay->getCreatedAt() ?></div>
+             <div><?php echo $comment->getsfGuardUser()->getUserName() ?></b> @ <?php echo $comment->getCreatedAt() ?></div>
              <div><?php echo link_to(substr($replay,0,28).'..','@viewreplay?id='.$replay->getId().'&name='.$replay) ?></div>
          </div>
 
