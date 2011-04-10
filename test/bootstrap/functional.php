@@ -24,3 +24,7 @@ sfContext::createInstance($configuration);
 
 // remove all cache
 sfToolkit::clearDirectory(sfConfig::get('sf_app_cache_dir'));
+
+// load initial data
+$loader = new sfPropelData();
+$loader->loadData(sfConfig::get('sf_test_dir').'/fixtures');

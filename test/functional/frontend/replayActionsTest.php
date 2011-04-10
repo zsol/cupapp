@@ -5,24 +5,6 @@ include(dirname(__FILE__).'/../../bootstrap/functional.php');
 $browser = new sfTestFunctional(new sfBrowser());
 
 /*
- * Index displays
- */
-$browser->
-  get('/replay/index')->
-
-  with('request')->begin()->
-    isParameter('module', 'replay')->
-    isParameter('action', 'index')->
-  end()->
-
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '/Replay index/')->
-    checkElement('body', '/You are not logged in/')->
-  end()
-;
-
-/*
  * Login page appears
  */
 $browser->
@@ -91,23 +73,6 @@ $browser->
 ;
 
 /*
- * Contact page displays
- */
-$browser->
-  get('/replay/contact')->
-
-  with('request')->begin()->
-    isParameter('module', 'replay')->
-    isParameter('action', 'contact')->
-  end()->
-
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '/Contact/')->
-  end()
-;
-
-/*
  * Normal login will create a CSRF problem
  */
 $browser->
@@ -120,9 +85,13 @@ $browser->
 
   with('response')->begin()->
     isStatusCode(200)->
-    checkElement('body', '/csrf token: Required./')->
+    checkElement('body', '/You are not logged in/')->
   end()
 ;
+
+$user = sfGuardUserPeer::retrieveByUsername('superadmin');
+$user->setPassword('dummypassword');
+$user->save();
 
 /*
  * We can login as superuser
@@ -130,12 +99,12 @@ $browser->
 $browser->
   get('/en/login')->
 
-  click('sign in', array( 'signin' => array(
+  click('Sign in', array( 'signin' => array(
       'username' => 'superadmin',
-      'password' => 'aston'
+      'password' => 'dummypassword'
   )))->
 
-  with('form')->begin()->
+with('form')->begin()->
         hasErrors(false)->
   end()->
 
@@ -148,8 +117,8 @@ $browser->
 $browser->
   get('/')->
   with('request')->begin()->
-    isParameter('module', 'replay')->
-    isParameter('action', 'index')->
+    isParameter('module', 'cms')->
+    isParameter('action', 'home')->
   end()->
 
   with('response')->begin()->
