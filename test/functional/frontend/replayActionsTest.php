@@ -143,3 +143,20 @@ $browser->
     checkElement('body', '/Upload replay/')->
   end()
 ;
+
+/*
+ * Log out works
+ */
+$browser->
+  get('/')->
+  click('Log out')->
+  with('response')->isRedirected()
+  ;
+
+$browser->
+  get('/')->
+  with('response')->begin()->
+    isStatusCode(200)->
+    checkElement('body', '/You are not logged in\./')->
+  end()
+  ;
