@@ -1,0 +1,204 @@
+sfGuardUser:
+  sfGuardUser_1:
+    username: superadmin
+    algorithm: sha1
+    salt: 286532c2b52717a4dd1c340a078258a6
+    password: 3bb905a8521b2ed9e88443786e60e52f4895de93
+    created_at: '2011-03-26 16:12:22'
+    last_login: '2011-04-11 20:44:01'
+    is_active: '1'
+    is_super_admin: '1'
+  sfGuardUser_2:
+    username: zsol
+    algorithm: sha1
+    salt: 9b9acf826f5ee17d7e3d4b9330997d65
+    password: 7b11fd6c860c0137fe219e95603ad78fdf7bdadc
+    created_at: '2011-03-26 16:14:19'
+    last_login: '2011-04-11 20:41:00'
+    is_active: '1'
+    is_super_admin: '0'
+sfGuardPermission:
+  sfGuardPermission_1:
+    name: CommentAdmin
+    description: 'Able to administer comments'
+  sfGuardPermission_2:
+    name: ReplayAdmin
+    description: 'Able to administer replays'
+  sfGuardPermission_3:
+    name: AdminAdmin
+    description: 'Able to administer everything'
+sfGuardUserPermission:
+  sfGuardUserPermission_1_3:
+    user_id: sfGuardUser_1
+    permission_id: sfGuardPermission_3
+sfGuardGroup:
+  sfGuardGroup_1:
+    name: CommentAdmin
+    description: 'Group of users with CommentAdmin perms'
+  sfGuardGroup_2:
+    name: ReplayAdmin
+    description: 'Group of users with ReplayAdmin perms'
+  sfGuardGroup_3:
+    name: AdminAdmin
+    description: 'Group of users with AdminAdmin perms'
+sfGuardGroupPermission:
+  sfGuardGroupPermission_1_1:
+    group_id: sfGuardGroup_1
+    permission_id: sfGuardPermission_1
+  sfGuardGroupPermission_2_2:
+    group_id: sfGuardGroup_2
+    permission_id: sfGuardPermission_2
+  sfGuardGroupPermission_3_3:
+    group_id: sfGuardGroup_3
+    permission_id: sfGuardPermission_3
+sfGuardUserProfile:
+  sfGuardUserProfile_1:
+    user_id: sfGuardUser_1
+    email: ''
+    modified_at: '2011-04-11 20:45:23'
+    last_commented: '2011-04-11 20:44:33'
+    last_uploaded: '2011-04-11 20:44:16'
+  sfGuardUserProfile_2:
+    user_id: sfGuardUser_2
+    email: zsol.zsol@gmail.com
+    avatar: _1301156059
+    modified_at: '2011-03-26 16:14:19'
+    last_commented: '2011-03-26 16:21:15'
+    last_uploaded: '2011-04-11 20:43:45'
+ReplayGameType:
+  ReplayGameType_1:
+    name: 1v1
+  ReplayGameType_2:
+    name: 2v2
+  ReplayGameType_3:
+    name: 3v3
+  ReplayGameType_4:
+    name: 4v4
+  ReplayGameType_5:
+    name: FFA
+  ReplayGameType_6:
+    name: '?'
+ReplayCategory:
+  ReplayCategory_1:
+    code: COMMON
+  ReplayCategory_2:
+    code: PRO
+  ReplayCategory_3:
+    code: LOW
+  ReplayCategory_4:
+    code: CUP
+  ReplayCategory_5:
+    code: FUN
+Replay:
+  Replay_1:
+    user_id: sfGuardUser_2
+    game_type_id: ReplayGameType_1
+    category_id: ReplayCategory_1
+    file_name: 1301156147.SC2Replay
+    game_info: '{"message_log":[{"time":8,"name":"sonofraff","target":"all","message":"hi gl"},{"time":11,"name":"Zsol","target":"all","message":"hf"},{"time":1139,"name":"sonofraff","target":"all","message":"G"},{"time":1142,"name":"sonofraff","target":"all","message":"GG"}],"global_info":{"map_name":"Slag Pits","game_length":1149,"game_speed":"Faster","team_size":"1v1","winner_known":true,"region":"EU","play_date":1301077818},"players":{"1":[{"name":"sonofraff","race":"Protoss","color":"B4141E","sColor":"Red","uid":1022078,"uidIndex":1,"avg_apm":94,"winner":false}],"2":[{"name":"Zsol","race":"Protoss","color":"0042FF","sColor":"Blue","uid":893192,"uidIndex":1,"avg_apm":58,"winner":true}]},"observers":[]}'
+    description: 'Uj peccs uj palya :D'
+    avg_apm: '76'
+    players: 'sonofraff, Zsol'
+    map_name: 'Slag Pits'
+    download_count: '0'
+    created_at: '2011-03-26 16:15:47'
+    updated_at: '2011-03-26 16:15:47'
+    reported_count: '0'
+  Replay_2:
+    user_id: sfGuardUser_2
+    game_type_id: ReplayGameType_1
+    category_id: ReplayCategory_1
+    file_name: 1302550949.SC2Replay
+    game_info: '{"message_log":[{"time":32,"name":"Aston","target":"all","message":"glgg"},{"time":36,"name":"FuNjY","target":"all","message":"u2"},{"time":1209,"name":"FuNjY","target":"all","message":"gg"},{"time":1211,"name":"Aston","target":"all","message":"gg"}],"global_info":{"map_name":"Slag Pits","game_length":1215,"game_speed":"Faster","team_size":"1v1","winner_known":true,"region":"EU","play_date":1301516532},"players":{"1":[{"name":"FuNjY","race":"Zerg","color":"B4141E","sColor":"Red","uid":832304,"uidIndex":1,"avg_apm":95,"winner":false}],"2":[{"name":"Aston","race":"Protoss","color":"0042FF","sColor":"Blue","uid":216819,"uidIndex":1,"avg_apm":80,"winner":true}]},"observers":[]}'
+    description: 'nyihaha astonreplay'
+    avg_apm: '88'
+    players: 'FuNjY, Aston'
+    map_name: 'Slag Pits'
+    download_count: '0'
+    created_at: '2011-04-11 20:42:29'
+    updated_at: '2011-04-11 20:42:29'
+    reported_count: '0'
+  Replay_3:
+    user_id: sfGuardUser_2
+    game_type_id: ReplayGameType_1
+    category_id: ReplayCategory_4
+    file_name: 1302551025.SC2Replay
+    game_info: '{"message_log":[{"time":16,"name":"nfteamDexy","target":"all","message":"fuckin hot in here lol :D"},{"time":26,"name":"Asacura","target":"all","message":"hell yeah :D"},{"time":742,"name":"Asacura","target":"all","message":"gg"},{"time":743,"name":"nfteamDexy","target":"all","message":"GG"}],"global_info":{"map_name":"The Shattered Temple","game_length":748,"game_speed":"Faster","team_size":"1v1","winner_known":true,"region":"EU","play_date":1302337325},"players":{"1":[{"name":"Asacura","race":"Zerg","color":"B4141E","sColor":"Red","uid":1144254,"uidIndex":1,"avg_apm":118,"winner":false}],"2":[{"name":"nfteamDexy","race":"Protoss","color":"0042FF","sColor":"Blue","uid":210678,"uidIndex":1,"avg_apm":125,"winner":true}]},"observers":[]}'
+    description: '1v1 cup nfTeam'
+    avg_apm: '122'
+    players: 'Asacura, nfteamDexy'
+    map_name: 'The Shattered Temple'
+    download_count: '0'
+    created_at: '2011-04-11 20:43:45'
+    updated_at: '2011-04-11 20:43:45'
+    reported_count: '0'
+  Replay_4:
+    user_id: sfGuardUser_1
+    game_type_id: ReplayGameType_2
+    category_id: ReplayCategory_4
+    file_name: 1302551053.SC2Replay
+    game_info: '{"message_log":[{"time":1318,"name":"nfteamPurple","target":"all","message":"gg"},{"time":1323,"name":"eSubaLopata","target":"all","message":"GG"}],"global_info":{"map_name":"Monlyth Ridge","game_length":1328,"game_speed":"Faster","team_size":"2v2","winner_known":true,"region":"EU","play_date":1302297746},"players":{"1":[{"name":"nfteamBreach","race":"Zerg","color":"168000","sColor":"Green","uid":1854328,"uidIndex":1,"avg_apm":146,"winner":false},{"name":"nfteamPurple","race":"Terran","color":"540081","sColor":"Purple","uid":228154,"uidIndex":1,"avg_apm":142,"winner":false}],"2":[{"name":"wonder","race":"Terran","color":"1CA7EA","sColor":"Teal","uid":349965,"uidIndex":1,"avg_apm":146,"winner":true},{"name":"eSubaLopata","race":"Protoss","color":"FE8A0E","sColor":"Orange","uid":597016,"uidIndex":1,"avg_apm":106,"winner":true}]},"observers":[{"name":"Darcin"},{"name":"YaShock"}]}'
+    description: '2v2 cup nfTeam'
+    avg_apm: '135'
+    players: 'nfteamBreach, nfteamPurple, wonder, eSubaLopata'
+    map_name: 'Monlyth Ridge'
+    download_count: '0'
+    created_at: '2011-04-11 20:44:13'
+    updated_at: '2011-04-11 20:44:16'
+    reported_count: '0'
+ReplayCategoryI18n:
+  ReplayCategoryI18n_1_en:
+    id: ReplayCategory_1
+    culture: en
+    name: Common
+  ReplayCategoryI18n_1_hu:
+    id: ReplayCategory_1
+    culture: hu
+    name: Általános
+  ReplayCategoryI18n_2_en:
+    id: ReplayCategory_2
+    culture: en
+    name: Professional
+  ReplayCategoryI18n_2_hu:
+    id: ReplayCategory_2
+    culture: hu
+    name: Profi
+  ReplayCategoryI18n_3_en:
+    id: ReplayCategory_3
+    culture: en
+    name: Beginner
+  ReplayCategoryI18n_3_hu:
+    id: ReplayCategory_3
+    culture: hu
+    name: Kezdő
+  ReplayCategoryI18n_4_en:
+    id: ReplayCategory_4
+    culture: en
+    name: Cup
+  ReplayCategoryI18n_4_hu:
+    id: ReplayCategory_4
+    culture: hu
+    name: Kupa
+  ReplayCategoryI18n_5_en:
+    id: ReplayCategory_5
+    culture: en
+    name: Fun
+  ReplayCategoryI18n_5_hu:
+    id: ReplayCategory_5
+    culture: hu
+    name: Poén
+ReplayComment:
+  ReplayComment_1:
+    user_id: sfGuardUser_2
+    replay_id: Replay_1
+    culture: hu
+    comment: 'Nyihaha működik :)'
+    created_at: '2011-03-26 16:21:14'
+    updated_at: '2011-03-26 16:21:14'
+  ReplayComment_2:
+    user_id: sfGuardUser_1
+    replay_id: Replay_1
+    culture: hu
+    comment: '#1: eh eh'
+    created_at: '2011-04-11 20:44:33'
+    updated_at: '2011-04-11 20:44:33'
