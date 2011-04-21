@@ -113,9 +113,27 @@ class Replay extends BaseReplay {
         return $gameType.'-'.$mapName.'-'.$players;
     }
 
+    private function deleteDir($dir) {
+      if (substr($dir, -1) == "/") {
+        $dir = substr($dir, 0, -1);
+      }
+
+      $files = scandir($dir);
+      foreach ($files as $file) {
+        if ($file != '.' && $file != '..') {
+          if (filetype($dir . '/' . $file) == "dir")
+            $this->deleteDir($dir . '/' . $file);
+          else
+            unlink($dir . '/' . $file);
+        }
+      }
+      reset($files);
+      rmdir($dir);
+    }
+
     public function delete(PropelPDO $con = null) {
-        unlink($this->getFilePath());
-        parent::delete();
+      $this->deleteDir(sfConfig::get('sf_upload_dir') . '/'. $this->getStoreDir());
+      parent::delete();
     }
 
     public function getFilePath() {
