@@ -44,6 +44,15 @@ homepage:
     sf_culture: <?php echo sfPropel::getDefaultCulture() . "\n" ?>
   requirements: { sf_culture: (?:hu|en) }
 
+homepage2:
+  url:   /:sf_culture/
+  param:
+    module: cms
+    action: home
+    sf_culture: <?php echo sfPropel::getDefaultCulture() . "\n" ?>
+  requirements: { sf_culture: (?:hu|en) }
+
+
 replayhome:
   url:   /:sf_culture/home
   param: { module: cms, action: home }
