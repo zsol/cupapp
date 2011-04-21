@@ -54,7 +54,6 @@ CREATE TABLE `replay`
 	`user_id` INTEGER  NOT NULL,
 	`game_type_id` INTEGER  NOT NULL,
 	`category_id` INTEGER  NOT NULL,
-	`file_name` VARCHAR(255)  NOT NULL,
 	`game_info` TEXT  NOT NULL,
 	`description` TEXT  NOT NULL,
 	`avg_apm` SMALLINT(2) UNSIGNED  NOT NULL,

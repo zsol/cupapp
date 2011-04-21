@@ -51,8 +51,8 @@ class ReplayCommentTableMap extends TableMap {
 	 */
 	public function buildRelations()
 	{
-    $this->addRelation('sfGuardUser', 'sfGuardUser', RelationMap::MANY_TO_ONE, array('user_id' => 'id', ), null, null);
-    $this->addRelation('Replay', 'Replay', RelationMap::MANY_TO_ONE, array('replay_id' => 'id', ), null, null);
+    $this->addRelation('sfGuardUser', 'sfGuardUser', RelationMap::MANY_TO_ONE, array('user_id' => 'id', ), 'CASCADE', null);
+    $this->addRelation('Replay', 'Replay', RelationMap::MANY_TO_ONE, array('replay_id' => 'id', ), 'CASCADE', null);
 	} // buildRelations()
 
 	/**

@@ -40,7 +40,6 @@ class ReplayTableMap extends TableMap {
 		$this->addForeignKey('USER_ID', 'UserId', 'INTEGER', 'sf_guard_user', 'ID', true, null, null);
 		$this->addForeignKey('GAME_TYPE_ID', 'GameTypeId', 'INTEGER', 'replay_game_type', 'ID', true, null, null);
 		$this->addForeignKey('CATEGORY_ID', 'CategoryId', 'INTEGER', 'replay_category', 'ID', true, null, null);
-		$this->addColumn('FILE_NAME', 'FileName', 'VARCHAR', true, 255, null);
 		$this->addColumn('GAME_INFO', 'GameInfo', 'LONGVARCHAR', true, null, null);
 		$this->addColumn('DESCRIPTION', 'Description', 'LONGVARCHAR', true, null, null);
 		$this->addColumn('AVG_APM', 'AvgApm', 'SMALLINT', true, null, null);
@@ -62,7 +61,7 @@ class ReplayTableMap extends TableMap {
     $this->addRelation('sfGuardUser', 'sfGuardUser', RelationMap::MANY_TO_ONE, array('user_id' => 'id', ), null, null);
     $this->addRelation('ReplayGameType', 'ReplayGameType', RelationMap::MANY_TO_ONE, array('game_type_id' => 'id', ), null, null);
     $this->addRelation('ReplayCategory', 'ReplayCategory', RelationMap::MANY_TO_ONE, array('category_id' => 'id', ), null, null);
-    $this->addRelation('ReplayComment', 'ReplayComment', RelationMap::ONE_TO_MANY, array('id' => 'replay_id', ), null, null);
+    $this->addRelation('ReplayComment', 'ReplayComment', RelationMap::ONE_TO_MANY, array('id' => 'replay_id', ), 'CASCADE', null);
     $this->addRelation('ReplayOftheweek', 'ReplayOftheweek', RelationMap::ONE_TO_MANY, array('id' => 'replay_id', ), null, null);
 	} // buildRelations()
 

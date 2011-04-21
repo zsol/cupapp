@@ -58,7 +58,7 @@ class sfGuardUserTableMap extends TableMap {
     $this->addRelation('sfGuardRememberKey', 'sfGuardRememberKey', RelationMap::ONE_TO_MANY, array('id' => 'user_id', ), 'CASCADE', null);
     $this->addRelation('sfGuardUserProfile', 'sfGuardUserProfile', RelationMap::ONE_TO_MANY, array('id' => 'user_id', ), 'CASCADE', null);
     $this->addRelation('Replay', 'Replay', RelationMap::ONE_TO_MANY, array('id' => 'user_id', ), null, null);
-    $this->addRelation('ReplayComment', 'ReplayComment', RelationMap::ONE_TO_MANY, array('id' => 'user_id', ), null, null);
+    $this->addRelation('ReplayComment', 'ReplayComment', RelationMap::ONE_TO_MANY, array('id' => 'user_id', ), 'CASCADE', null);
 	} // buildRelations()
 
 	/**

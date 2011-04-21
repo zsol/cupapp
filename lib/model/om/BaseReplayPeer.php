@@ -25,7 +25,7 @@ abstract class BaseReplayPeer {
 	const TM_CLASS = 'ReplayTableMap';
 	
 	/** The total number of columns. */
-	const NUM_COLUMNS = 15;
+	const NUM_COLUMNS = 14;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -41,9 +41,6 @@ abstract class BaseReplayPeer {
 
 	/** the column name for the CATEGORY_ID field */
 	const CATEGORY_ID = 'replay.CATEGORY_ID';
-
-	/** the column name for the FILE_NAME field */
-	const FILE_NAME = 'replay.FILE_NAME';
 
 	/** the column name for the GAME_INFO field */
 	const GAME_INFO = 'replay.GAME_INFO';
@@ -98,11 +95,11 @@ abstract class BaseReplayPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'UserId', 'GameTypeId', 'CategoryId', 'FileName', 'GameInfo', 'Description', 'AvgApm', 'Players', 'MapName', 'DownloadCount', 'PublishedAt', 'CreatedAt', 'UpdatedAt', 'ReportedCount', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'userId', 'gameTypeId', 'categoryId', 'fileName', 'gameInfo', 'description', 'avgApm', 'players', 'mapName', 'downloadCount', 'publishedAt', 'createdAt', 'updatedAt', 'reportedCount', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::USER_ID, self::GAME_TYPE_ID, self::CATEGORY_ID, self::FILE_NAME, self::GAME_INFO, self::DESCRIPTION, self::AVG_APM, self::PLAYERS, self::MAP_NAME, self::DOWNLOAD_COUNT, self::PUBLISHED_AT, self::CREATED_AT, self::UPDATED_AT, self::REPORTED_COUNT, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'user_id', 'game_type_id', 'category_id', 'file_name', 'game_info', 'description', 'avg_apm', 'players', 'map_name', 'download_count', 'published_at', 'created_at', 'updated_at', 'reported_count', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'UserId', 'GameTypeId', 'CategoryId', 'GameInfo', 'Description', 'AvgApm', 'Players', 'MapName', 'DownloadCount', 'PublishedAt', 'CreatedAt', 'UpdatedAt', 'ReportedCount', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'userId', 'gameTypeId', 'categoryId', 'gameInfo', 'description', 'avgApm', 'players', 'mapName', 'downloadCount', 'publishedAt', 'createdAt', 'updatedAt', 'reportedCount', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::USER_ID, self::GAME_TYPE_ID, self::CATEGORY_ID, self::GAME_INFO, self::DESCRIPTION, self::AVG_APM, self::PLAYERS, self::MAP_NAME, self::DOWNLOAD_COUNT, self::PUBLISHED_AT, self::CREATED_AT, self::UPDATED_AT, self::REPORTED_COUNT, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'user_id', 'game_type_id', 'category_id', 'game_info', 'description', 'avg_apm', 'players', 'map_name', 'download_count', 'published_at', 'created_at', 'updated_at', 'reported_count', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
 	);
 
 	/**
@@ -112,11 +109,11 @@ abstract class BaseReplayPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'UserId' => 1, 'GameTypeId' => 2, 'CategoryId' => 3, 'FileName' => 4, 'GameInfo' => 5, 'Description' => 6, 'AvgApm' => 7, 'Players' => 8, 'MapName' => 9, 'DownloadCount' => 10, 'PublishedAt' => 11, 'CreatedAt' => 12, 'UpdatedAt' => 13, 'ReportedCount' => 14, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'userId' => 1, 'gameTypeId' => 2, 'categoryId' => 3, 'fileName' => 4, 'gameInfo' => 5, 'description' => 6, 'avgApm' => 7, 'players' => 8, 'mapName' => 9, 'downloadCount' => 10, 'publishedAt' => 11, 'createdAt' => 12, 'updatedAt' => 13, 'reportedCount' => 14, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::USER_ID => 1, self::GAME_TYPE_ID => 2, self::CATEGORY_ID => 3, self::FILE_NAME => 4, self::GAME_INFO => 5, self::DESCRIPTION => 6, self::AVG_APM => 7, self::PLAYERS => 8, self::MAP_NAME => 9, self::DOWNLOAD_COUNT => 10, self::PUBLISHED_AT => 11, self::CREATED_AT => 12, self::UPDATED_AT => 13, self::REPORTED_COUNT => 14, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'user_id' => 1, 'game_type_id' => 2, 'category_id' => 3, 'file_name' => 4, 'game_info' => 5, 'description' => 6, 'avg_apm' => 7, 'players' => 8, 'map_name' => 9, 'download_count' => 10, 'published_at' => 11, 'created_at' => 12, 'updated_at' => 13, 'reported_count' => 14, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'UserId' => 1, 'GameTypeId' => 2, 'CategoryId' => 3, 'GameInfo' => 4, 'Description' => 5, 'AvgApm' => 6, 'Players' => 7, 'MapName' => 8, 'DownloadCount' => 9, 'PublishedAt' => 10, 'CreatedAt' => 11, 'UpdatedAt' => 12, 'ReportedCount' => 13, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'userId' => 1, 'gameTypeId' => 2, 'categoryId' => 3, 'gameInfo' => 4, 'description' => 5, 'avgApm' => 6, 'players' => 7, 'mapName' => 8, 'downloadCount' => 9, 'publishedAt' => 10, 'createdAt' => 11, 'updatedAt' => 12, 'reportedCount' => 13, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::USER_ID => 1, self::GAME_TYPE_ID => 2, self::CATEGORY_ID => 3, self::GAME_INFO => 4, self::DESCRIPTION => 5, self::AVG_APM => 6, self::PLAYERS => 7, self::MAP_NAME => 8, self::DOWNLOAD_COUNT => 9, self::PUBLISHED_AT => 10, self::CREATED_AT => 11, self::UPDATED_AT => 12, self::REPORTED_COUNT => 13, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'user_id' => 1, 'game_type_id' => 2, 'category_id' => 3, 'game_info' => 4, 'description' => 5, 'avg_apm' => 6, 'players' => 7, 'map_name' => 8, 'download_count' => 9, 'published_at' => 10, 'created_at' => 11, 'updated_at' => 12, 'reported_count' => 13, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
 	);
 
 	/**
@@ -190,7 +187,6 @@ abstract class BaseReplayPeer {
 		$criteria->addSelectColumn(ReplayPeer::USER_ID);
 		$criteria->addSelectColumn(ReplayPeer::GAME_TYPE_ID);
 		$criteria->addSelectColumn(ReplayPeer::CATEGORY_ID);
-		$criteria->addSelectColumn(ReplayPeer::FILE_NAME);
 		$criteria->addSelectColumn(ReplayPeer::GAME_INFO);
 		$criteria->addSelectColumn(ReplayPeer::DESCRIPTION);
 		$criteria->addSelectColumn(ReplayPeer::AVG_APM);
@@ -405,6 +401,9 @@ abstract class BaseReplayPeer {
 	 */
 	public static function clearRelatedInstancePool()
 	{
+		// invalidate objects in ReplayCommentPeer instance pool, since one or more of them may be deleted by ON DELETE CASCADE rule.
+		ReplayCommentPeer::clearInstancePool();
+
 	}
 
 	/**
@@ -1668,6 +1667,7 @@ abstract class BaseReplayPeer {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
+			$affectedRows += ReplayPeer::doOnDeleteCascade(new Criteria(ReplayPeer::DATABASE_NAME), $con);
 			$affectedRows += BasePeer::doDeleteAll(ReplayPeer::TABLE_NAME, $con);
 			// Because this db requires some delete cascade/set null emulation, we have to
 			// clear the cached instance *after* the emulation has happened (since
@@ -1700,24 +1700,14 @@ abstract class BaseReplayPeer {
 		}
 
 		if ($values instanceof Criteria) {
-			// invalidate the cache for all objects of this type, since we have no
-			// way of knowing (without running a query) what objects should be invalidated
-			// from the cache based on this Criteria.
-			ReplayPeer::clearInstancePool();
 			// rename for clarity
 			$criteria = clone $values;
 		} elseif ($values instanceof Replay) { // it's a model object
-			// invalidate the cache for this single object
-			ReplayPeer::removeInstanceFromPool($values);
 			// create criteria based on pk values
 			$criteria = $values->buildPkeyCriteria();
 		} else { // it's a primary key, or an array of pks
 			$criteria = new Criteria(self::DATABASE_NAME);
 			$criteria->add(ReplayPeer::ID, (array) $values, Criteria::IN);
-			// invalidate the cache for this object(s)
-			foreach ((array) $values as $singleval) {
-				ReplayPeer::removeInstanceFromPool($singleval);
-			}
 		}
 
 		// Set the correct dbName
@@ -1729,6 +1719,20 @@ abstract class BaseReplayPeer {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
+			$affectedRows += ReplayPeer::doOnDeleteCascade($criteria, $con);
+			
+			// Because this db requires some delete cascade/set null emulation, we have to
+			// clear the cached instance *after* the emulation has happened (since
+			// instances get re-added by the select statement contained therein).
+			if ($values instanceof Criteria) {
+				ReplayPeer::clearInstancePool();
+			} elseif ($values instanceof Replay) { // it's a model object
+				ReplayPeer::removeInstanceFromPool($values);
+			} else { // it's a primary key, or an array of pks
+				foreach ((array) $values as $singleval) {
+					ReplayPeer::removeInstanceFromPool($singleval);
+				}
+			}
 			
 			$affectedRows += BasePeer::doDelete($criteria, $con);
 			ReplayPeer::clearRelatedInstancePool();
@@ -1738,6 +1742,38 @@ abstract class BaseReplayPeer {
 			$con->rollBack();
 			throw $e;
 		}
+	}
+
+	/**
+	 * This is a method for emulating ON DELETE CASCADE for DBs that don't support this
+	 * feature (like MySQL or SQLite).
+	 *
+	 * This method is not very speedy because it must perform a query first to get
+	 * the implicated records and then perform the deletes by calling those Peer classes.
+	 *
+	 * This method should be used within a transaction if possible.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      PropelPDO $con
+	 * @return     int The number of affected rows (if supported by underlying database driver).
+	 */
+	protected static function doOnDeleteCascade(Criteria $criteria, PropelPDO $con)
+	{
+		// initialize var to track total num of affected rows
+		$affectedRows = 0;
+
+		// first find the objects that are implicated by the $criteria
+		$objects = ReplayPeer::doSelect($criteria, $con);
+		foreach ($objects as $obj) {
+
+
+			// delete related ReplayComment objects
+			$criteria = new Criteria(ReplayCommentPeer::DATABASE_NAME);
+			
+			$criteria->add(ReplayCommentPeer::REPLAY_ID, $obj->getId());
+			$affectedRows += ReplayCommentPeer::doDelete($criteria, $con);
+		}
+		return $affectedRows;
 	}
 
 	/**

@@ -43,12 +43,6 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 	protected $category_id;
 
 	/**
-	 * The value for the file_name field.
-	 * @var        string
-	 */
-	protected $file_name;
-
-	/**
 	 * The value for the game_info field.
 	 * @var        string
 	 */
@@ -223,16 +217,6 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 	public function getCategoryId()
 	{
 		return $this->category_id;
-	}
-
-	/**
-	 * Get the [file_name] column value.
-	 * 
-	 * @return     string
-	 */
-	public function getFileName()
-	{
-		return $this->file_name;
 	}
 
 	/**
@@ -510,26 +494,6 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 
 		return $this;
 	} // setCategoryId()
-
-	/**
-	 * Set the value of [file_name] column.
-	 * 
-	 * @param      string $v new value
-	 * @return     Replay The current object (for fluent API support)
-	 */
-	public function setFileName($v)
-	{
-		if ($v !== null) {
-			$v = (string) $v;
-		}
-
-		if ($this->file_name !== $v) {
-			$this->file_name = $v;
-			$this->modifiedColumns[] = ReplayPeer::FILE_NAME;
-		}
-
-		return $this;
-	} // setFileName()
 
 	/**
 	 * Set the value of [game_info] column.
@@ -862,17 +826,16 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			$this->user_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
 			$this->game_type_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
 			$this->category_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
-			$this->file_name = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->game_info = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->description = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->avg_apm = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
-			$this->players = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->map_name = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->download_count = ($row[$startcol + 10] !== null) ? (int) $row[$startcol + 10] : null;
-			$this->published_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-			$this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-			$this->updated_at = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
-			$this->reported_count = ($row[$startcol + 14] !== null) ? (int) $row[$startcol + 14] : null;
+			$this->game_info = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->description = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->avg_apm = ($row[$startcol + 6] !== null) ? (int) $row[$startcol + 6] : null;
+			$this->players = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->map_name = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->download_count = ($row[$startcol + 9] !== null) ? (int) $row[$startcol + 9] : null;
+			$this->published_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->updated_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+			$this->reported_count = ($row[$startcol + 13] !== null) ? (int) $row[$startcol + 13] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -882,7 +845,7 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			}
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 15; // 15 = ReplayPeer::NUM_COLUMNS - ReplayPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 14; // 14 = ReplayPeer::NUM_COLUMNS - ReplayPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Replay object", $e);
@@ -1337,36 +1300,33 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 				return $this->getCategoryId();
 				break;
 			case 4:
-				return $this->getFileName();
-				break;
-			case 5:
 				return $this->getGameInfo();
 				break;
-			case 6:
+			case 5:
 				return $this->getDescription();
 				break;
-			case 7:
+			case 6:
 				return $this->getAvgApm();
 				break;
-			case 8:
+			case 7:
 				return $this->getPlayers();
 				break;
-			case 9:
+			case 8:
 				return $this->getMapName();
 				break;
-			case 10:
+			case 9:
 				return $this->getDownloadCount();
 				break;
-			case 11:
+			case 10:
 				return $this->getPublishedAt();
 				break;
-			case 12:
+			case 11:
 				return $this->getCreatedAt();
 				break;
-			case 13:
+			case 12:
 				return $this->getUpdatedAt();
 				break;
-			case 14:
+			case 13:
 				return $this->getReportedCount();
 				break;
 			default:
@@ -1394,17 +1354,16 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 			$keys[1] => $this->getUserId(),
 			$keys[2] => $this->getGameTypeId(),
 			$keys[3] => $this->getCategoryId(),
-			$keys[4] => $this->getFileName(),
-			$keys[5] => $this->getGameInfo(),
-			$keys[6] => $this->getDescription(),
-			$keys[7] => $this->getAvgApm(),
-			$keys[8] => $this->getPlayers(),
-			$keys[9] => $this->getMapName(),
-			$keys[10] => $this->getDownloadCount(),
-			$keys[11] => $this->getPublishedAt(),
-			$keys[12] => $this->getCreatedAt(),
-			$keys[13] => $this->getUpdatedAt(),
-			$keys[14] => $this->getReportedCount(),
+			$keys[4] => $this->getGameInfo(),
+			$keys[5] => $this->getDescription(),
+			$keys[6] => $this->getAvgApm(),
+			$keys[7] => $this->getPlayers(),
+			$keys[8] => $this->getMapName(),
+			$keys[9] => $this->getDownloadCount(),
+			$keys[10] => $this->getPublishedAt(),
+			$keys[11] => $this->getCreatedAt(),
+			$keys[12] => $this->getUpdatedAt(),
+			$keys[13] => $this->getReportedCount(),
 		);
 		return $result;
 	}
@@ -1449,36 +1408,33 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 				$this->setCategoryId($value);
 				break;
 			case 4:
-				$this->setFileName($value);
-				break;
-			case 5:
 				$this->setGameInfo($value);
 				break;
-			case 6:
+			case 5:
 				$this->setDescription($value);
 				break;
-			case 7:
+			case 6:
 				$this->setAvgApm($value);
 				break;
-			case 8:
+			case 7:
 				$this->setPlayers($value);
 				break;
-			case 9:
+			case 8:
 				$this->setMapName($value);
 				break;
-			case 10:
+			case 9:
 				$this->setDownloadCount($value);
 				break;
-			case 11:
+			case 10:
 				$this->setPublishedAt($value);
 				break;
-			case 12:
+			case 11:
 				$this->setCreatedAt($value);
 				break;
-			case 13:
+			case 12:
 				$this->setUpdatedAt($value);
 				break;
-			case 14:
+			case 13:
 				$this->setReportedCount($value);
 				break;
 		} // switch()
@@ -1509,17 +1465,16 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[1], $arr)) $this->setUserId($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setGameTypeId($arr[$keys[2]]);
 		if (array_key_exists($keys[3], $arr)) $this->setCategoryId($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setFileName($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setGameInfo($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setDescription($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setAvgApm($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setPlayers($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setMapName($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setDownloadCount($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setPublishedAt($arr[$keys[11]]);
-		if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
-		if (array_key_exists($keys[13], $arr)) $this->setUpdatedAt($arr[$keys[13]]);
-		if (array_key_exists($keys[14], $arr)) $this->setReportedCount($arr[$keys[14]]);
+		if (array_key_exists($keys[4], $arr)) $this->setGameInfo($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setDescription($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setAvgApm($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setPlayers($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setMapName($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setDownloadCount($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setPublishedAt($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setUpdatedAt($arr[$keys[12]]);
+		if (array_key_exists($keys[13], $arr)) $this->setReportedCount($arr[$keys[13]]);
 	}
 
 	/**
@@ -1535,7 +1490,6 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(ReplayPeer::USER_ID)) $criteria->add(ReplayPeer::USER_ID, $this->user_id);
 		if ($this->isColumnModified(ReplayPeer::GAME_TYPE_ID)) $criteria->add(ReplayPeer::GAME_TYPE_ID, $this->game_type_id);
 		if ($this->isColumnModified(ReplayPeer::CATEGORY_ID)) $criteria->add(ReplayPeer::CATEGORY_ID, $this->category_id);
-		if ($this->isColumnModified(ReplayPeer::FILE_NAME)) $criteria->add(ReplayPeer::FILE_NAME, $this->file_name);
 		if ($this->isColumnModified(ReplayPeer::GAME_INFO)) $criteria->add(ReplayPeer::GAME_INFO, $this->game_info);
 		if ($this->isColumnModified(ReplayPeer::DESCRIPTION)) $criteria->add(ReplayPeer::DESCRIPTION, $this->description);
 		if ($this->isColumnModified(ReplayPeer::AVG_APM)) $criteria->add(ReplayPeer::AVG_APM, $this->avg_apm);
@@ -1605,8 +1559,6 @@ abstract class BaseReplay extends BaseObject  implements Persistent {
 		$copyObj->setGameTypeId($this->game_type_id);
 
 		$copyObj->setCategoryId($this->category_id);
-
-		$copyObj->setFileName($this->file_name);
 
 		$copyObj->setGameInfo($this->game_info);
 

@@ -18,7 +18,6 @@ propel:
     user_id:        { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true }
     game_type_id:   { type: integer, foreignTable: replay_game_type, foreignReference: id, required: true }
     category_id:    { type: integer, foreignTable: replay_category, foreignReference: id, required: true }
-    file_name:      { type: varchar(255), required: true }
     game_info:      { type: longvarchar, required: true }
     description:    { type: longvarchar, required: true }
     avg_apm:        { type: smallint, sqlType: SMALLINT(2) UNSIGNED, required: true }

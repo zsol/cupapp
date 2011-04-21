@@ -63,7 +63,6 @@ class uploadAction extends sfAction
                     return sfView::SUCCESS;
                 }
 
-                $newReplay->setFileName($filename);
                 $file->save($newReplay->getFilePath());
 
                 $result = $newReplay->parseData();
