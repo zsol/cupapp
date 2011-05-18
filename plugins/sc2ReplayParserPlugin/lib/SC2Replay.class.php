@@ -123,6 +123,19 @@ class SC2Replay {
 	function getCtime() { return $this->gameCtime; }
 	function getFiletime() { return $this->gameFiletime; }
 	function getRecorder() { if ($this->recorderId == 0) return null; return $this->players[$this->recorderId]; }
+        
+        function jsonify() { 
+          if (extension_loaded('json')) {
+            $json = array(); 
+            foreach ($this as $key => $value) { 
+              $json[$key] = $value; 
+            }; 
+            return json_encode($json, JSON_FORCE_OBJECT); 
+          } else {
+            return "{}";
+          }
+        }
+
 	// getFormattedGameLength returns the time in h hrs, m mins, s secs 
 	function getFormattedGameLength() {
 		return $this->getFormattedSecs($this->gameLength);
@@ -477,37 +490,86 @@ class SC2Replay {
 						case 0x8B:
 						case 0x9B:
 						case 0x0B: // player uses an ability
-							if ($this->build >= 16561) {
+							$ability = -1;
+							$firstByte = -1;
+							if ($this->build >= 18317) {
 								$firstByte = MPQFile::readByte($string,$numByte);
-								$temp = MPQFile::readByte($string,$numByte);
-								$ability = (MPQFile::readByte($string,$numByte) << 16) | (MPQFile::readByte($string,$numByte) << 8) | (MPQFile::readByte($string,$numByte) & 0x3F);
+								$temp = MPQFile::readByte($string,$numByte);								
+								if ($firstByte & 0x0c && !($firstByte & 1)) {
+									if ($temp & 8) {
+										if ($temp & 0x80)
+											$numByte += 8;
+										$numByte += 10;
+										$ability = 0;
+									}
+									else {
+										$ability = (MPQFile::readByte($string,$numByte) << 16) | (MPQFile::readByte($string,$numByte) << 8) | (MPQFile::readByte($string,$numByte));
+										if (($temp & 0x60) == 0x60)
+											$numByte += 4;
+										// else if ($temp & 0x40) {
+										else {
+											$flagtemp = $ability & 0xF0; // some kind of flag
+											if ($flagtemp & 0x20) {
+												$numByte += 9;
+												if ($firstByte & 8)
+													$numByte += 9;
+											}
+											else if ($flagtemp & 0x10)
+												$numByte += 9;
+											else if ($flagtemp & 0x40)
+												$numByte += 18;
+
+										}
+										$ability = $ability & 0xFFFF0F; // strip flag bits
+									}
+								}
+							}
+							if ($this->build >= 16561 && ($firstByte == -1 || $ability == -1)) {
+								if ($firstByte == -1) {
+									$firstByte = MPQFile::readByte($string,$numByte);
+									$temp = MPQFile::readByte($string,$numByte);	
+								}
+								if ($ability == -1)
+									$ability = (MPQFile::readByte($string,$numByte) << 16) | (MPQFile::readByte($string,$numByte) << 8) | (MPQFile::readByte($string,$numByte) & 0x3F);
 								if ($temp == 0x20 || $temp == 0x22) {
 									$nByte = $ability & 0xFF;
 									if ($nByte > 0x07) {
-										if ($firstByte == 0x29 || $firstByte == 0x19) { $numByte += 4; break; }
-										$numByte += 9;
-										if (($nByte & 0x20) > 0)
+										if ($firstByte == 0x29 || $firstByte == 0x19) { $numByte += 4; }
+										else {
 											$numByte += 9;
+											if (($nByte & 0x20) > 0) {
+												$numByte += 8;
+												$nByte = MPQFile::readByte($string,$numByte);
+												if ($nByte & 8) $numByte += 4;
+											}
+										}
 									}
 								}
 								else if ($temp == 0x48 || $temp == 0x4A)
 									$numByte += 7;
 								else if ($temp == 0x88 || $temp == 0x8A)
 									$numByte += 15;
+							}
+							// the following updates race name in English based on the worker (SCV, Drone, Probe) that the player trained first
+							if ($this->build >= 16561) {
 								if (!$this->players[$playerId]['isObs'] && $this->players[$playerId]['race'] == "") {
-									switch ($ability) {
-										case 0x020A00: //SCV
-											$this->players[$playerId]['race'] = "Terran";
-											break;
-										case 0x021E00: //probe
-											$this->players[$playerId]['race'] = "Protoss";
-											break;										
-										case 0x023000: //drone
-											$this->players[$playerId]['race'] = "Zerg";
-											break;
+									if ($this->build >= 18574) {
+										if ($ability == 0x010C00) $this->players[$playerId]['race'] = "Terran";
+										elseif ($ability == 0x012000) $this->players[$playerId]['race'] = "Protoss";
+										elseif ($ability == 0x013200) $this->players[$playerId]['race'] = "Zerg";
+									}
+									else if ($this->build >= 17326) {
+										if ($ability == 0x020C00) $this->players[$playerId]['race'] = "Terran";
+										elseif ($ability == 0x022000) $this->players[$playerId]['race'] = "Protoss";
+										elseif ($ability == 0x023200) $this->players[$playerId]['race'] = "Zerg";
+									}
+									else {
+										if ($ability == 0x020A00) $this->players[$playerId]['race'] = "Terran";
+										elseif ($ability == 0x021E00) $this->players[$playerId]['race'] = "Protoss";
+										elseif ($ability == 0x023000) $this->players[$playerId]['race'] = "Zerg";
 									}
 								}
-								if ($temp & 0x20) {
+								if ($ability) {
 									$this->addPlayerAbility($playerId, ceil($time /16), $ability);
 									$events[] = array('p' => $playerId, 't' => $time, 'a' => $ability);
 									$this->events = $events;
@@ -515,10 +577,10 @@ class SC2Replay {
 								
 								if ($this->debug) $this->debug(sprintf("Used ability - player id: $playerId - time: %d - ability code: %06X",floor($time / 16),$ability));
 								$this->addPlayerAction($playerId, floor($time / 16));
-									
+
 								break;
 							}
-							// at least 32 bytes
+							// the following section is only reached for builds pre-16561							
 							$data = MPQFile::readBytes($string,$numByte,32);
 							$reqTarget = unpack("C",substr($data,7,1));
 							$reqTarget = $reqTarget[1];
@@ -873,6 +935,7 @@ class SC2Replay {
 							$numByte += 8; // 00 00 00 04 00 00 00 04
 							break;
 						case 0x07:
+						case 0x0e:
 							$numByte += 4;
 							break;
 						default:
@@ -884,8 +947,22 @@ class SC2Replay {
 						case 0x87:
 							$numByte += 8;
 							break;
+						// 64 d4 6b a4 b5 48 4d ff 43 fa 56 8d 67 1a 15 88 0f 04 00 00 00 00 00 00 00 00 00 00 6e 03 00 00 00 00
+						// c2 b6 c4 06             4d fa 56 8d 07             02 00 01 d3 08             00 00 6e 03
+						// the next event code format is based on the previous two lines, may be faulty
+						// the purpose is unknown
 						case 0x08:
-							$numByte += 10;
+							$numByte += 3;
+							$nextByte = MPQFile::readByte($string,$numByte);
+							if (($nextByte & 0xF0) > 0) $numByte += 4;
+							
+							$numByte += 4;
+							$nextByte = MPQFile::readByte($string,$numByte);
+							if (($nextByte & 0xF0) > 0) $numByte += 4;
+
+							$nextByte = MPQFile::readByte($string,$numByte);
+							$numByte += (($nextByte & 0x0F) * 4);
+							// $numByte += 10;
 							break;
 						case 0x18:
 							$numByte += 162;
@@ -931,6 +1008,7 @@ class SC2Replay {
 				case 0x04: // inaction
 					if (($eventCode & 0x0F) == 2) { $numByte += 2; break; }
 					else if (($eventCode & 0x0C) == 2) break;
+					else if (($eventCode & 0x0C) == 0x0C) break; // at least 0x1C, 0x3C, 0x4C and 0x7C have been observed
 					switch($eventCode) {
 						case 0x16:
 							$numByte += 24;
@@ -941,10 +1019,6 @@ class SC2Replay {
 						case 0x18:
 							$numByte += 4;
 							break;
-						case 0x1C:
-							break;
-     					        case 0x3C: //well what do you know.. this is unknown, too
-						        break;
 						case 0x87: //unknown
 							$numByte += 4;
 							break;
