@@ -13,6 +13,9 @@
 <div class="greybox">
     <h1 id="replay_index_title"><?php echo __('Home') ?></h1>
     <div id="index_div">
+      <p>
+        <?php echo __("UPDATE: The site should be able to parse replays made with the 1.3.3 patch. (No, this project didn't die, expect more features soon ;-))"); ?>
+      </p>
             <p>
                     Hello dear visitor! <br/><br/>
                     <?php echo __("What you see now are the beginnings of a replay sharing site. Please use it to your pleasure! If you find any bugs, sending the details to my email address (%%contact%%) would help a lot.", array('%%contact%%' => link_to(__("Contact"), '@contact'))); ?> <br/><br/>
