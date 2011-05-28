@@ -28,10 +28,12 @@ propel:
     created_at:     ~
     updated_at:     ~
     reported_count: { type: smallint, sqlType: SMALLINT(3) UNSIGNED, required: false, default: 0 }
+    storage_id:     { type: varchar(40), required: true }
 
   replay_category:
     id:             ~
     code:           { type: varchar(50), required: true }
+    type:           { type: varchar(50), required: true, default: "common" }
 
   replay_category_i18n:
     name:           { type: varchar(50), required: true }
