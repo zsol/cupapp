@@ -68,7 +68,15 @@ rules:
   param: { module: cms, action: rules }
   requirements: { sf_culture: (?:hu|en) }
 
-
+#######
+#
+# FEED PAGES
+#
+#######
+latestreplays_feed:
+  url: /:sf_culture/feed/latestreplays
+  param: { module: feed, action: latestReplays }
+  requirements: { sf_culture: (?:hu|en) }
 
 #######
 #
