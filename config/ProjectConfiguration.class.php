@@ -13,5 +13,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfThumbnailPlugin');
     $this->enablePlugins('sfFormExtraPlugin');
     $this->enablePlugins('sfPropelMigrationsLightPlugin');
+    $this->enablePlugins('sfFeed2Plugin');
   }
 }
