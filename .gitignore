@@ -9,3 +9,4 @@ plugins/.depdblock
 plugins/.filemap
 plugins/.lock
 plugins/.registry
+config/databases.yml
