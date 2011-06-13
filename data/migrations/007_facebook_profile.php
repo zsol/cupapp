@@ -22,9 +22,9 @@ class Migration007 extends sfMigration
    */
   public function down()
   {
-    $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP UNIQUE KEY `facebook_uid_index`");
-    $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP UNIQUE KEY `email_index`");
-    $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP UNIQUE KEY `email_hash_index`");
+    $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP INDEX `facebook_uid_index`");
+    $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP INDEX `email_index`");
+    $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP INDEX `email_hash_index`");
     $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP COLUMN `facebook_uid`");
     $this->executeSQL("ALTER TABLE sf_guard_user_profile DROP COLUMN `email_hash`");
   }
