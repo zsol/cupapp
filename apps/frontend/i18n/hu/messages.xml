@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-03-26T16:16:37Z" product-name="messages">
+  <file source-language="EN" target-language="hu" datatype="plaintext" original="messages" date="2011-06-13T12:11:16Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -539,6 +539,34 @@
       <trans-unit id="142">
         <source>layout.metas.keywords</source>
         <target>Starcraft2, Blizzard, cup, replay, replay megosztás, replay parser</target>
+      </trans-unit>
+      <trans-unit id="143">
+        <source>Hello dear visitor!</source>
+        <target>Üdv kedves látogató!</target>
+      </trans-unit>
+      <trans-unit id="144">
+        <source>Update:</source>
+        <target>Frissítés:</target>
+      </trans-unit>
+      <trans-unit id="145">
+        <source>You now can connect your facebook account to the site! If you already have a username and password here, just log in with those and then click on the facebook connect button. Once this is done, you will always be logged in if you are logged in to facebook.</source>
+        <target>Mostantól csatlakoztathatod a facebook azonosítód az oldalhoz! Ha már van felhasználóneved és jelszavad itt, csak jelentkezz be velük, majd kattints a facebook gombra a jobboldali menüben. Amint ezt megcsináltad, mindig be leszel jelentkezve, amikor a facebookba is beléptél.</target>
+      </trans-unit>
+      <trans-unit id="146">
+        <source>If you don't have an account on this site yet, you can create one by clicking on %%REGISTER%%, and then choosing the facebook button. This will automatically connect with your facebook account and you won't have to remember any passwords</source>
+        <target>Ha nincs még azonosítód ezen az oldalon, készíthetsz egyet, ha rákattintasz a %%REGISTER%% szövegre, majd a facebook gombra kattintasz. Ezzel automatikusan összekapcsolod a facebook azonosítód az oldallal, és nem kell megjegyezned semmilyen jelszót.</target>
+      </trans-unit>
+      <trans-unit id="147">
+        <source>Bad zip archive!</source>
+        <target>Hibás tömörített zipfájl</target>
+      </trans-unit>
+      <trans-unit id="148">
+        <source>%%FNAME%%: File cannot be parsed!</source>
+        <target>%%FNAME%%: A fájl hibás!</target>
+      </trans-unit>
+      <trans-unit id="149">
+        <source>Too short! At least %%ss%% characters!</source>
+        <target>Túl rövid! Legalább %%ss%% karakter!</target>
       </trans-unit>
     </body>
   </file>
