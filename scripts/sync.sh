@@ -25,7 +25,7 @@ function run_cmd()
 
 if needs_sync_with "origin" ; then
     run_cmd git pull --ff-only -- origin $BRANCH
-    run_cmd git submodule update --init
+    run_cmd git submodule update --init --recursive
     run_cmd ./symfony propel:migrate
     run_cmd ./symfony propel:build-model
     run_cmd ./symfony propel:build-forms
