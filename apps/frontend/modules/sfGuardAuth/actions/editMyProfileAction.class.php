@@ -36,6 +36,9 @@ class editMyProfileAction extends sfAction
                 if ($parameters['password1']) {
                     $user->setPassword($parameters['password1']);
                 }
+                if (isset($parameters['username']) && $parameters['username'] != $user->getUserName()) {
+                  $user->setUserName($parameters['username']);
+                }
                 $user->save();
 
                 //Retrieve profile object
