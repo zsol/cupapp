@@ -10,3 +10,8 @@ plugins/.filemap
 plugins/.lock
 plugins/.registry
 config/databases.yml
+lib/model/map
+lib/model/om
+lib/filter/base/
+lib/form/base
+data/sql/lib.model.schema.sql
