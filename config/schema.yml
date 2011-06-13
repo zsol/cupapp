@@ -4,10 +4,16 @@ propel:
     id:             ~
     user_id:        { type: integer, foreignTable: sf_guard_user, foreignReference: id, required: true, onDelete: cascade }
     email:          { type: varchar(50), required: true }
+    email_hash:     { type: varchar(255) }
     avatar:         { type: varchar(128), required: false }
     modified_at:    { type: timestamp, required: true }
     last_commented: { type: timestamp, required: false }
     last_uploaded:  { type: timestamp, required: false }
+    facebook_uid:    { type: varchar(20) }
+    _uniques:
+      facebook_uid_index: [facebook_uid]
+      email_index:        [email]
+      email_hash_index:   [email_hash]
 
   replay_game_type:
     id:             ~

@@ -6,6 +6,9 @@ rendering: ~
 remember_me:
   class: sfGuardRememberMeFilter
 
+fb_remember_me:
+  class: facebookRememberMeFilter
+
 security:  ~
 
 ban:
