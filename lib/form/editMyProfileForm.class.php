@@ -12,14 +12,29 @@
 class editMyProfileForm extends registerForm {
     public function configure() {
         $i18n = sfContext::getInstance()->getI18N();
+        $username = sfContext::getInstance()->getUser()->getUserName();
 
         $this->setWidgets(array(
+                                'username' => new sfWidgetFormInput(),
             'password1' => new sfWidgetFormInput(array('type' => 'password')),
             'password2' => new sfWidgetFormInput(array('type' => 'password')),
             'avatar'    => new sfWidgetFormInputFile(),
         ));
 
         $this->setValidators(array(
+            'username' => new sfValidatorOr(array(new sfValidatorBoolean(array('true_values' => array($username))),
+                                                  new sfValidatorAnd(array(
+                new userNameValidator(),
+                new sfValidatorString(array(
+                    'required' => true,
+                    'min_length' => sfConfig::get('app_register_username_min_length'),
+                    'max_length' => sfConfig::get('app_register_username_max_length')
+                    ), array(
+                        'required'   => $i18n->__('Please provide a username.'),
+                        'min_length' => $i18n->__('The username should be at least %%ss%% characters long.', array('%%ss%%' => sfConfig::get('app_register_username_min_length'))),
+                        'max_length' => $i18n->__('The username cannot be longer than %%ss%% characters.', array('%%ss%%' => sfConfig::get('app_register_username_max_length'))),
+                )),
+            ),array(),array('required' => $i18n->__('Please provide a username.'))))),
             'password1' => new sfValidatorString(array(
                 'required' => false,
                 'min_length' => sfConfig::get('app_register_password_min_length'),
@@ -43,5 +58,7 @@ class editMyProfileForm extends registerForm {
             'invalid' => $i18n->__('The confirmation password should match the original one.')
         )));
         $this->widgetSchema->setNameFormat('editprofile[%s]');
+        
+        $this->setDefault('username', $username);
     }
 }

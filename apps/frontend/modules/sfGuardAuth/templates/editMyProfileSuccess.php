@@ -16,9 +16,10 @@
       <?php echo $form['_csrf_token'] ?>
       <table class="registerForm">
         <tr>
-          <th><?php echo __('Username') ?></th>
+          <th><?php echo $form['username']->renderLabel(__('Username')) ?></th>
           <td>
-            <?php echo $sf_user->getUsername() ?>
+            <?php echo $form['username']->renderError() ?>
+            <?php echo $form['username'] ?>
           </td>
         </tr>
         <tr>
@@ -55,5 +56,6 @@
         </tr>
       </table>
     </form>
+
 <div style="clear:both;"></div>
 </div>

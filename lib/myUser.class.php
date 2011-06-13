@@ -61,4 +61,16 @@ class myUser extends sfGuardSecurityUser
 
         return false;
     }
+
+    public function signIn($user, $remember = false, $con = null)
+    {
+      parent::signIn($user, $remember, $con);
+      sfContext::getInstance()->getResponse()->setCookie('signed_out', '', 1);
+    }
+
+    public function signOut()
+    {
+      parent::signOut();
+      sfContext::getInstance()->getResponse()->setCookie('signed_out', 'true', 0);
+    }
 }
