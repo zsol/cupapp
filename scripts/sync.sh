@@ -31,6 +31,7 @@ if needs_sync_with "origin" ; then
     run_cmd ./symfony propel:build-forms
     run_cmd ./symfony propel:build-filters
     run_cmd ./symfony propel:build-sql
+    run_cmd ./symfony plugin:publish-assets
     run_cmd ./symfony cc
 fi
 

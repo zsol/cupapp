@@ -10,6 +10,13 @@
     <?php include_partial('global/rightbar') ?>
 <?php end_slot(); ?>
 
+<?php
+use_helper('sfFacebookConnect');
+slot('fb_connect');
+include_facebook_connect_script();
+end_slot();
+?>
+
 <div class="greybox">
     <h1><?php echo __('Register') ?></h1>
     <form action="<?php echo url_for('@register') ?>" method="post" enctype="multipart/form-data">
@@ -20,6 +27,11 @@
           <td>
               <?php echo $form['username']->renderError() ?>
               <?php echo $form['username'] ?>
+          </td>
+          <td rowspan="5" style="vertical-align: middle; border-left: solid 1px">
+            <div class="facebook_login">
+              <?php echo facebook_connect_button(); ?>
+            </div>
           </td>
         </tr>
         <tr>

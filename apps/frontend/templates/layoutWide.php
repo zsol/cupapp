@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
+    <?php use_javascript("/sfFacebookConnectPlugin/js/animation/animation.js") ?>
   </head>
   <body>
       <a name="top"></a>
@@ -33,5 +34,6 @@
           <div style="clear:both;"></div>
       </div>
       <?php include_partial('global/footer') ?>
+      <?php if (has_slot('fb_connect')) include_slot('fb_connect') ?>
   </body>
 </html>

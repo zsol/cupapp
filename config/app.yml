@@ -48,6 +48,27 @@ all:
   sf_guard_plugin:
     routes_register:           false
     profile_class: sfGuardUserProfile
+    profile_field_name: user_id
+    profile_facebook_uid_name: facebook_uid
+    profile_email_name: email
+    profile_email_hash_name: email_hash
+    signin_success: 'editmyprofile'
+    
+  facebook:
+    api_key: <?php $secrets = json_decode(file_get_contents(__DIR__."/facebook_secrets.txt"), true); echo $secrets['api_key']  . "\n" ?>
+    api_secret: <?php echo $secrets['api_secret'] . "\n" ?>
+    api_id: <?php echo $secrets['api_id'] . "\n" ?>
+    redirect_after_connect: false
+    redirect_after_connect_url: 'homepage'
+    #connect_signin_url: 'sfFacebookConnectAuth/signin'
+    app_url: '/cupapp'
+    guard_adapter: ~
+    js_framework: jQuery
+    
+
+  facebook_connect:
+    load_routing: true
+    user_permissions: []
     
   language:
     languages:
