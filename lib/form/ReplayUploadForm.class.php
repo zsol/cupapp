@@ -38,6 +38,6 @@ class ReplayUploadForm extends BaseReplayForm
                                                 array('max_length' => $i18n->__('The category name is too long! At most %%c%% characters', array('%%c%%' => $cat_name_max)),
                                                       'min_length' => $i18n->__('The category name is too short! At least %%c%% characters', array('%%c%%' => $cat_name_min)))));;
 
-      $this->useFields(array('replay_file','description','category_id', 'new_category_name'));
+      $this->useFields(array('replay_file','description','category_id',));//turned off for now 'new_category_name'));
   }
 }
