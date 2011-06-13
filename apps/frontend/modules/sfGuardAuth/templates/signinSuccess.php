@@ -10,6 +10,13 @@
     <?php include_partial('global/rightbar') ?>
 <?php end_slot(); ?>
 
+<?php
+use_helper('sfFacebookConnect');
+slot('fb_connect');
+include_facebook_connect_script();
+end_slot();
+?>
+
 <div class="greybox">
 	<h1 id="signin_title"><?php echo __('Login form') ?></h1>
 	<form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
@@ -18,6 +25,11 @@
 				<th><?php echo $form['username']->renderLabel(__('Username')) ?></th>
 				<td><?php echo $form['username'] ?></td>
 				<td class='error_field'><?php echo $form['username']->renderError() ?></td>
+        <td rowspan="2" style="vertical-align:middle">
+          <div class="facebook_login">
+            <?php echo facebook_connect_button(); ?>
+          </div>
+        </td>
 			</tr>
 			<tr>
 				<th><?php echo $form['password']->renderLabel(__('Password'))?></th>

@@ -393,6 +393,9 @@ abstract class BasesfGuardUserPeer {
 		// invalidate objects in sfGuardUserProfilePeer instance pool, since one or more of them may be deleted by ON DELETE CASCADE rule.
 		sfGuardUserProfilePeer::clearInstancePool();
 
+		// invalidate objects in ReplayCommentPeer instance pool, since one or more of them may be deleted by ON DELETE CASCADE rule.
+		ReplayCommentPeer::clearInstancePool();
+
 	}
 
 	/**
@@ -732,6 +735,12 @@ abstract class BasesfGuardUserPeer {
 			
 			$criteria->add(sfGuardUserProfilePeer::USER_ID, $obj->getId());
 			$affectedRows += sfGuardUserProfilePeer::doDelete($criteria, $con);
+
+			// delete related ReplayComment objects
+			$criteria = new Criteria(ReplayCommentPeer::DATABASE_NAME);
+			
+			$criteria->add(ReplayCommentPeer::USER_ID, $obj->getId());
+			$affectedRows += ReplayCommentPeer::doDelete($criteria, $con);
 		}
 		return $affectedRows;
 	}

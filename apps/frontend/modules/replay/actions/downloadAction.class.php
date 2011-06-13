@@ -48,7 +48,7 @@ class downloadAction extends sfAction
                 $response->setContent(file_get_contents($file));
                 return sfView::NONE;
             } else {
-                $this->getUser()->setFlash('error_message', $i18n->__('Cannot find the replay file. Please contact an administrator!'));
+                $this->getUser()->setFlash('error_message', $i18n->__('Cannot find the replay file. Please contact an administrator!') . $file);
                 $referer = $request->getReferer();
                 if ($referer) {
                     $this->redirect($referer);

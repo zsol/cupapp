@@ -22,8 +22,19 @@ class Replay extends BaseReplay {
     const RESULT_LOSER   = 2;
     const RESULT_UNKNOWN = 3;
 
+    const FILE_NAME = 'replay.SC2Replay';
+
     protected $gameInfoArray = null;
 
+    public function __construct() {
+      $this->generateStorageId();
+      $this->setCreatedAt(time());
+      parent::__construct();
+    }
+    
+    public function generateStorageId() {
+      $this->setStorageId(sha1(strtotime($this->getCreatedAt('Y-m-d H:i:s')) . rand()));
+    }
     public function isAmendable() {
       $timelimit = sfConfig::get('app_replay_amendable_limit_seconds', 120);
       $now = time();
@@ -111,26 +122,45 @@ class Replay extends BaseReplay {
         return $gameType.'-'.$mapName.'-'.$players;
     }
 
+    private function deleteDir($dir) {
+      if (substr($dir, -1) == "/") {
+        $dir = substr($dir, 0, -1);
+      }
+
+      $files = scandir($dir);
+      foreach ($files as $file) {
+        if ($file != '.' && $file != '..') {
+          if (filetype($dir . '/' . $file) == "dir")
+            $this->deleteDir($dir . '/' . $file);
+          else
+            unlink($dir . '/' . $file);
+        }
+      }
+      reset($files);
+      rmdir($dir);
+    }
+
     public function delete(PropelPDO $con = null) {
-        unlink($this->getFilePath());
-        parent::delete();
+      $this->deleteDir(sfConfig::get('sf_upload_dir') . '/'. $this->getStoreDir());
+      parent::delete();
     }
 
     public function getFilePath() {
-        $userId = $this->getUserId();
-        return sfConfig::get('sf_upload_dir').'/replay/'.$userId.'/'.$this->getFileName();
+      return sfConfig::get('sf_upload_dir').'/'. $this->getStoreDir() . self::FILE_NAME;
     }
     
+    public function getStoreDir() {
+      $uid = $this->getUserId();
+      return 'replay/' . $uid . '/' . $this->getStorageId() . '/';
+    }
+
     /**
      * Creates the directory structure and gives back the filename string
      *
      * @return string
      */
     public function generatePreparedFileName() {
-        $userId = $this->getUserId();
-        $gameTypeId = $this->getGameTypeId();
-
-        $dir = sfConfig::get('sf_upload_dir').'/replay/'.$userId.'/';
+        $dir = sfConfig::get('sf_upload_dir') . '/' . $this->getStoreDir();
 
         if (!file_exists($dir)) {
             $rs = @mkdir($dir,0755,true);
@@ -139,12 +169,12 @@ class Replay extends BaseReplay {
             }
         }
 
-        return strtotime($this->getCreatedAt('Y-m-d H:i:s')).'.SC2Replay';
+        return self::FILE_NAME;
     }
 
     public function getDownloadLink(){
         $userId = $this->getUserId();
-        return '/uploads/replay/'.$userId.'/'.$this->getFilename();
+        return '/uploads/' . $this->getStoreDir() . self::FILE_NAME;
     }
 
     public function getRegion() {
