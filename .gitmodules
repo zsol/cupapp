@@ -3,4 +3,4 @@
 	url = git://github.com/symfony/symfony1.git
 [submodule "plugins/sfFacebookConnectPlugin"]
 	path = plugins/sfFacebookConnectPlugin
-	url = git@github.com:zsol/sfFacebookConnectPlugin.git
+	url = git://github.com/zsol/sfFacebookConnectPlugin.git
