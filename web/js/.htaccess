@@ -1,0 +1,4 @@
+<IfModule mod_expires.c>
+   ExpiresActive On
+   ExpiresDefault "modification plus 1 year"
+</IfModule>
