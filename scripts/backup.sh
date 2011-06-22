@@ -28,8 +28,14 @@ cp -a $HOME/$INSTANCE/web/uploads $FILENAME/
 
 tar cjf $BACKUPDIR/$FILENAME.tar.bz2 --preserve-permissions --preserve-order $FILENAME/ 2> /dev/null || echo "ERROR DURING TAR"
 
-find "${BACKUPDIR}" -atime +5 -printf '%CY %CW %p\n' | sort -n | while read REPLY; do yearweek=$(echo $REPLY | cut -d' ' -f1,2); if [[ "${current}" != "" && "${current}" == "${yearweek}" ]]; then rm $(echo $REPLY | cut -d' ' -f3); else current="$yearweek"; fi; done
-
+find "${BACKUPDIR}" -mtime +5 -printf '%f %p\n' | sort -n | while read REPLY; do 
+    yearweek=$(date -d $(echo $REPLY | cut -d' ' -f1 | cut -d'.' -f1) "+%Y %W"); 
+    if [[ "${current}" != "" && "${current}" == "${yearweek}" ]]; then 
+        rm $(echo $REPLY | cut -d' ' -f2); 
+    else 
+        current="$yearweek"; 
+    fi; 
+done
 cd - > /dev/null
 
 rm -rf $BACKUP
