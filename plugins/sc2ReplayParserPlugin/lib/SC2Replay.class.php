@@ -497,8 +497,11 @@ class SC2Replay {
 								$temp = MPQFile::readByte($string,$numByte);								
 								if ($firstByte & 0x0c && !($firstByte & 1)) {
 									if ($temp & 8) {
-										if ($temp & 0x80)
+									        if ($temp & 0x80) {
 											$numByte += 8;
+											if ($this->build >= 19595)
+											  $numByte += 1;
+										}
 										$numByte += 10;
 										$ability = 0;
 									}
@@ -516,8 +519,11 @@ class SC2Replay {
 											}
 											else if ($flagtemp & 0x10)
 												$numByte += 9;
-											else if ($flagtemp & 0x40)
+											else if ($flagtemp & 0x40) {
 												$numByte += 18;
+												if ($this->build >= 19595)
+												  $numByte += 1;
+											}
 
 										}
 										$ability = $ability & 0xFFFF0F; // strip flag bits

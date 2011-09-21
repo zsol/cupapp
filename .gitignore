@@ -15,3 +15,4 @@ lib/model/om
 lib/filter/base/
 lib/form/base
 data/sql/lib.model.schema.sql
+.key
